@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="From the One: a concept tree from the Unconception down to three hundred leaves.">
+<title>From the One</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap">
+
+<style>
+:root{--bg:#EDF0F3;--ink:#1B2430;--muted:#7A8592;--line:#C6CED7;--lamp:#B27418;--focus:#2A67A8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11171E;--ink:#E7EBEF;--muted:#8B97A4;--line:#2B3540;--lamp:#E2A749;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--ink:#E7EBEF;--muted:#8B97A4;--line:#2B3540;--lamp:#E2A749;--focus:#71A9E4}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 "IBM Plex Sans",system-ui,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:pointer}
+#path{position:fixed;top:14px;left:16px;right:16px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 6px;z-index:2}
+#path span{cursor:pointer}#path span:hover{color:var(--ink)}#path i{color:var(--line);font-style:normal}
+#hint{position:fixed;bottom:14px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted);pointer-events:none;z-index:2;padding:0 16px}
+</style>
+<link rel="stylesheet" href="./theme.css">
+<link rel="stylesheet" href="./nav.css">
+<script src="./nav.js" defer data-page="one" data-root="./" data-pos="br"></script>
+</head>
+<body>
+<canvas id="c"></canvas><div id="path"></div>
+<div id="hint">one at the top · every step down splits · each split is its own thing · click to go down into it · right-click, double-click or double-tap to come back up · scroll to zoom</div>
+<script>
+const T=["The Unconception",[
+ ["Being",[
+  ["Mind",[
+   ["Awareness",[["Sensation",["sight","sound","touch","taste","smell","balance","interoception","pain"]],["Perception",["objects","space","time","motion","faces","depth","colour","gestalt"]],["Attention",["focused","divided","sustained","selective","vigilance","salience"]],["Arousal",["waking","sleep","dreaming","anaesthesia","coma","flow","trance"]]]],
+   ["Cognition",[["Memory",["working","episodic","semantic","procedural","prospective","forgetting","consolidation"]],["Reasoning",["deduction","induction","abduction","analogy","heuristics","bias"]],["Language",["syntax","semantics","pragmatics","inner speech","metaphor","narrative"]],["Imagination",["simulation","counterfactuals","creativity","daydream","play"]],["Learning",["habit","conditioning","insight","imitation","instruction","unlearning"]],
+    ["Metacognition",[["Introspection",["access to states","confidence","feeling of knowing","tip of the tongue","introspective error"]],["Self-monitoring",["error detection","effort sense","conflict detection","surprise"]],["Self-control",["inhibition","planning","delay of reward","attention steering","goal shielding"]],["Theory of mind",["other minds","empathy","deception","perspective taking","shared intention"]],["Meta-memory",["knowing what you know","source monitoring","judgments of learning"]]]]]],
+   ["Feeling",[["Emotion",["fear","anger","joy","sadness","disgust","surprise","shame","awe","love","grief"]],["Mood",["anxiety","depression","elation","calm","irritability","boredom"]],["Motivation",["hunger","thirst","desire","curiosity","belonging","status","safety","meaning"]],["Valence",["pleasure","pain","wanting","liking","relief","craving"]]]],
+   ["Self",[["Bodily self",["ownership","agency","location","boundary"]],["Narrative self",["autobiography","identity","roles","values"]],["Minimal self",["bare witness","presence","first person"]],["Social self",["reputation","status","belonging","face"]],["How many selves",["one for all: open individualism","one each: closed","none persisting: empty"]]]]
+  ]],
+  ["Matter",[
+   ["Spacetime",["space","time","causality","locality","simultaneity","horizon"]],
+   ["Fields and particles",[["Fermions",["quarks","electrons","neutrinos"]],["Bosons",["photon","gluon","W and Z","Higgs","graviton?"]],["Forces",["gravity","electromagnetism","strong","weak"]],["Quantum",["superposition","entanglement","measurement","decoherence","uncertainty"]]]],
+   ["Chemistry",["elements","bonds","reactions","molecules","catalysis","self-assembly"]],
+   ["Life",[["Cell",["membrane","metabolism","genome","signalling"]],["Evolution",["variation","selection","inheritance","drift","major transitions"]],["Organism",["development","homeostasis","behaviour","death"]],["Ecology",["niche","competition","symbiosis","succession"]]]],
+   ["Cosmos",["stars","galaxies","expansion","dark matter","dark energy","black holes","beginning","end"]]
+  ]],
+  ["Structure",[
+   ["Number",["natural","integer","rational","real","complex","infinite","transfinite"]],
+   ["Logic",["deduction","proof","consistency","completeness","incompleteness","undecidability","paradox"]],
+   ["Geometry",["shape","symmetry","dimension","topology","curvature","the amplituhedron"]],
+   ["Information",["bit","entropy","computation","complexity","compression","noise","error correction"]],
+   ["Probability",["chance","likelihood","randomness","inference","Bayes","expectation"]]
+  ]],
+  ["Value",[
+   ["Good",["welfare","flourishing","pleasure","meaning","love","freedom"]],
+   ["Right",["duty","rights","fairness","consent","harm","promise"]],
+   ["Virtue",["courage","temperance","justice","wisdom","compassion","honesty","humility"]],
+   ["Beauty",["harmony","the sublime","elegance","proportion","novelty"]],
+   ["Truth",["correspondence","coherence","evidence","honesty","sincerity"]]
+  ]],
+  ["Knowing",[
+   ["Belief",["credence","certainty","doubt","faith","trust"]],
+   ["Evidence",["observation","measurement","testimony","memory","intuition"]],
+   ["Method",["experiment","theory","model","falsification","replication","peer review"]],
+   ["Limits",["the fog front","cognitive closure","incompleteness","other minds","the speck","the Unconception"]]
+  ]],
+  ["Society",[
+   ["Bonds",["kinship","friendship","love","loyalty","enmity"]],
+   ["Institutions",["law","market","state","school","church","science"]],
+   ["Culture",["language","story","ritual","art","music","game","technology"]],
+   ["Power",["authority","force","persuasion","wealth","status"]]
+  ]]
+ ]]
+]];
+// build
+const nodes=[]; function build(a,parent,depth){ const n={t:typeof a==="string"?a:a[0],kids:[],parent,depth,leaf:0}; nodes.push(n); if(Array.isArray(a)&&a[1]) a[1].forEach(k=>n.kids.push(build(k,n,depth+1))); n.leaf=n.kids.length?n.kids.reduce((s,k)=>s+k.leaf,0):1; return n; }
+const root=build(T,null,0);
+let cursor=0; (function lay(n){ if(!n.kids.length){n.lx=cursor++;} else {n.kids.forEach(lay); n.lx=(n.kids[0].lx+n.kids[n.kids.length-1].lx)/2;} })(root);
+const total=cursor, XU=1, YU=Math.max(3,total*0.11/6);
+nodes.forEach(n=>{ n.x=(n.lx-(total-1)/2)*XU; n.y=n.depth*YU; });
+// camera
+const cv=document.getElementById("c"),ctx=cv.getContext("2d"); let Wd,Hd,dpr;
+function size(){dpr=Math.min(devicePixelRatio||1,2);Wd=innerWidth;Hd=innerHeight;cv.width=Wd*dpr;cv.height=Hd*dpr;} size(); addEventListener("resize",()=>{size();setFocus(focus,true);});
+let focus=root, hover=null, scale=1,scaleT=1,tx=0,ty=0,txT=0,tyT=0;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function ext(n){ let mn=1e9,mx=-1e9,d=0; (function w(m,k){ mn=Math.min(mn,m.x); mx=Math.max(mx,m.x); d=Math.max(d,k); m.kids.forEach(c=>w(c,k+1)); })(n,0); return [mn,mx,d]; }
+function setFocus(n,instant){ focus=n; const [mn,mx,d]=ext(n); const span=Math.max(mx-mn,3), dep=Math.max(d,1);
+  scaleT=Math.min(Math.max(Math.min(Wd*0.86/span, Hd*0.72/(dep*YU)),2),140); txT=(mn+mx)/2; tyT=n.y+dep*YU/2;
+  if(instant){scale=scaleT;tx=txT;ty=tyT;} try{localStorage.setItem("gem-one",String(nodes.indexOf(n)));}catch(e){}
+  const p=[]; for(let m=n;m;m=m.parent) p.unshift(m); document.getElementById("path").innerHTML=p.map((m,i)=>(i?"<i>›</i>":"")+`<span data-i="${nodes.indexOf(m)}">${esc(m.t)}</span>`).join("");
+  document.querySelectorAll("#path span").forEach(s=>s.addEventListener("click",()=>setFocus(nodes[+s.dataset.i]))); }
+try{const i=+localStorage.getItem("gem-one"); if(nodes[i]) focus=nodes[i];}catch(e){}
+const P=n=>({sx:Wd/2+(n.x-tx)*scale, sy:Hd/2+(n.y-ty)*scale+20});
+function inPath(n){ for(let m=focus;m;m=m.parent) if(m===n) return true; return false; }
+function under(n){ for(let m=n;m;m=m.parent) if(m===focus) return true; return false; }
+function draw(){
+  scale+=(scaleT-scale)*0.12; tx+=(txT-tx)*0.12; ty+=(tyT-ty)*0.12;
+  ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,Wd,Hd);
+  const ink=css("--ink"),muted=css("--muted"),line=css("--line"),lamp=css("--lamp"),bg=css("--bg");
+  for(const n of nodes){ if(!n.parent) continue; const a=P(n.parent),b=P(n); const hot=under(n)||inPath(n);
+    ctx.strokeStyle=hot?ink:line; ctx.globalAlpha=hot?0.7:0.35; ctx.lineWidth=hot?1.1:0.7; ctx.beginPath(); ctx.moveTo(a.sx,a.sy); ctx.bezierCurveTo(a.sx,(a.sy+b.sy)/2,b.sx,(a.sy+b.sy)/2,b.sx,b.sy); ctx.stroke(); }
+  ctx.globalAlpha=1; const labels=[];
+  for(const n of nodes){ const p=P(n); if(p.sx<-60||p.sx>Wd+60||p.sy<-60||p.sy>Hd+60) continue;
+    const hot=under(n)||inPath(n)||n===hover; let r=n===root?6:n.depth<=2?4:n.kids.length?2.6:1.8; if(hot) r+=1;
+    ctx.fillStyle=n===root?lamp:ink; ctx.globalAlpha=hot?1:0.55; ctx.beginPath(); ctx.arc(p.sx,p.sy,r,0,7); ctx.fill();
+    const gap=n.parent? (n.kids.length? scale*XU*Math.max(1,n.leaf)*0.9 : scale*XU*0.95) : 1e9;
+    const show = n===root||n.depth<=2||inPath(n)||n===hover||(under(n)&&n.depth<=focus.depth+2&&gap>34)||(under(n)&&gap>60);
+    if(show) labels.push({n,p,hot}); }
+  ctx.globalAlpha=1;
+  for(const {n,p,hot} of labels){ const big=n===focus; const fs=big?Math.max(18,Math.min(26,Wd*0.03)):n.depth<=1?16:n.kids.length?13:12;
+    ctx.font=`${n.kids.length||big?500:400} ${fs}px Spectral, Georgia, serif`; ctx.textAlign="center"; ctx.textBaseline="bottom"; ctx.lineWidth=4; ctx.lineJoin="round"; ctx.strokeStyle=bg;
+    let y=p.sy-8; if(!n.kids.length){ ctx.textBaseline="top"; y=p.sy+7; ctx.save(); ctx.translate(p.sx,y); ctx.rotate(0.5); ctx.textAlign="left"; ctx.strokeText(n.t,0,0); ctx.fillStyle=hot?ink:muted; ctx.fillText(n.t,0,0); ctx.restore(); continue; }
+    ctx.strokeText(n.t,p.sx,y); ctx.fillStyle=n===root?lamp:(hot?ink:muted); ctx.fillText(n.t,p.sx,y);
+    if(n.kids.length&&(big||n.depth<=1)){ ctx.font="400 11px IBM Plex Sans, sans-serif"; ctx.textBaseline="bottom"; ctx.strokeText(`${n.leaf} below`,p.sx,y-fs-2); ctx.fillStyle=muted; ctx.fillText(`${n.leaf} below`,p.sx,y-fs-2); } }
+  requestAnimationFrame(draw);
+}
+// input
+let down=null,moved=false,pts=new Map(),pinch0=0,lastTap=0,timer=null;
+function pick(x,y){ let best=null,bd=20*20; for(const n of nodes){ const p=P(n); const d=(p.sx-x)**2+(p.sy-y)**2; if(d<bd){bd=d;best=n;} } return best; }
+cv.addEventListener("pointerdown",e=>{ cv.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(pts.size===1){down={x:e.clientX,y:e.clientY};moved=false;} if(pts.size===2){const a=[...pts.values()];pinch0=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);} });
+cv.addEventListener("pointermove",e=>{ if(!pts.has(e.pointerId)){hover=pick(e.clientX,e.clientY);return;} const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const a=[...pts.values()];const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y); if(pinch0) scaleT=Math.min(140,Math.max(2,scaleT*d/pinch0)); pinch0=d; return;}
+  if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>6) moved=true; if(moved){ txT-=(e.clientX-prev.x)/scale; tyT-=(e.clientY-prev.y)/scale; } });
+function up(e){ pts.delete(e.pointerId); if(pts.size) return; if(!moved&&down){ const now=Date.now(); if(e.pointerType==="touch"&&now-lastTap<320){ clearTimeout(timer); back(); lastTap=0; return; } lastTap=now; const x=down.x,y=down.y; clearTimeout(timer); timer=setTimeout(()=>{ const n=pick(x,y); if(n) setFocus(n.kids.length?n:n.parent); },230); } down=null; }
+cv.addEventListener("pointerup",up); cv.addEventListener("pointercancel",up);
+function back(){ clearTimeout(timer); if(focus.parent) setFocus(focus.parent); }
+addEventListener("contextmenu",e=>{e.preventDefault();back();}); cv.addEventListener("dblclick",e=>{e.preventDefault();clearTimeout(timer);back();});
+cv.addEventListener("wheel",e=>{e.preventDefault(); scaleT=Math.min(140,Math.max(2,scaleT*(e.deltaY<0?1.12:0.89)));},{passive:false});
+addEventListener("keydown",e=>{ if(e.key==="Escape"||e.key==="Backspace"){e.preventDefault();back();} });
+setFocus(focus,true); requestAnimationFrame(draw);
+</script>
+</body>
+</html>

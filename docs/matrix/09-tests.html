@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>09 — Tests Registry · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>09 — Tests Registry</h1>
+<p>Every test proposed anywhere in the conversation or the matrix, with the cell
+it bears on, its status at To Nyn (2026-09-04), and what a positive or null
+result would and would not show. Statuses use the F axis from
+<a href="07-fog-front.html">07-fog-front.md</a>.</p>
+<h2>1. Registry</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Test</th>
+<th>Proposed by</th>
+<th>Bears on</th>
+<th>Status</th>
+<th>Positive result would</th>
+<th>Null result would</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T01</td>
+<td>Planck-scale pixelation (photon dispersion, Holometer)</td>
+<td>Gemini T12</td>
+<td>C3 Local Code, D1a</td>
+<td>F0 null so far</td>
+<td>Support discreteness (C3 or D1a)</td>
+<td>Constrain, not eliminate; many C3 models are continuous</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>CMB &quot;bruising&quot; from bubble collisions</td>
+<td>Gemini T12</td>
+<td>D2c, C-Meta</td>
+<td>F0 null so far (Feeney 2011 onward)</td>
+<td>Support multiverse</td>
+<td>Weakly constrain; collisions may be rare</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>Quantum observer effect as &quot;rendering shortcut&quot;</td>
+<td>Gemini T12</td>
+<td>D1a</td>
+<td><strong>Invalid test</strong></td>
+<td>Nothing: decoherence needs no conscious observer</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T04</td>
+<td>Push consciousness past biology to access non-sensory information</td>
+<td>Gemini T12</td>
+<td>Trap-Ag (D1c or C1)</td>
+<td>F2, no design</td>
+<td>Would need controlled demonstration of information access with no physical channel; would be revolutionary</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>T05</td>
+<td>Whole-brain emulation reproduces human behavior</td>
+<td>Gemini T12</td>
+<td>C2</td>
+<td>F1 (decades)</td>
+<td>Shows behavior is computable from structure</td>
+<td>Shows current models incomplete</td>
+</tr>
+<tr>
+<td>T06</td>
+<td>Emulation &quot;has inner experience&quot;</td>
+<td>Gemini T12</td>
+<td>C</td>
+<td><strong>Not settleable</strong> (Axiom 6)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T07</td>
+<td>Biocomputing tissue &quot;develops a sense of self&quot;</td>
+<td>Gemini T12</td>
+<td>C</td>
+<td><strong>Not settleable</strong> (Axiom 6) for experience; F1 for self-model behaviors</td>
+<td>Behavioral self-modeling</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T08</td>
+<td>GWT vs IIT adversarial collaboration (Cogitate)</td>
+<td>Field</td>
+<td>C2-f vs C2-b</td>
+<td>F0 partial (2023–2025): both theories lost specific predictions</td>
+<td>Discriminates correlates</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T09</td>
+<td>Perturbational Complexity Index</td>
+<td>Field</td>
+<td>Clinical</td>
+<td>F0</td>
+<td>Detects consciousness in unresponsive patients</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T10</td>
+<td>Cross-subject decoding with minimal training</td>
+<td>Field</td>
+<td>Content fog</td>
+<td>F1 → F0 in progress</td>
+<td>Universal-ish decoders</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T11</td>
+<td>Verbatim inner-speech decoding</td>
+<td>Gemini T1</td>
+<td>Content fog</td>
+<td>F2 with fMRI/MEG (inverse problem); F1 with invasive arrays</td>
+<td>Word-level decoding</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T12</td>
+<td>Detect the Architect&#39;s &quot;emotional parameters&quot; from macro-patterns</td>
+<td>Gemini T13</td>
+<td>D1a S</td>
+<td><strong>No design</strong>; underdetermined</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T13</td>
+<td>Derive Standard Model constants from structure alone</td>
+<td>Field</td>
+<td>C3</td>
+<td>F2</td>
+<td>Strong support for C3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T14</td>
+<td>Emergent spacetime from entanglement in our universe (not AdS)</td>
+<td>Field</td>
+<td>C3</td>
+<td>F2</td>
+<td>Support C3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T15</td>
+<td>Amplituhedron extended to real QCD and gravity</td>
+<td>Field</td>
+<td>C3 (weak)</td>
+<td>F1 in progress</td>
+<td>Mathematical elegance; not by itself evidence of &quot;code&quot;</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T16</td>
+<td>Quantum simulation of lattice gauge theories</td>
+<td>Field</td>
+<td>Inside B1 physics</td>
+<td>F1</td>
+<td>Confirms physics we already believe</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T17</td>
+<td>Quantum simulation of holographic toy models (SYK, HaPPY)</td>
+<td>Field</td>
+<td>C3 toy</td>
+<td>F1</td>
+<td>Shows toy models are consistent</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T18</td>
+<td>Orch-OR quantum coherence in microtubules</td>
+<td>Penrose–Hameroff</td>
+<td>C (quantum mind)</td>
+<td>F1; results so far negative or unclear</td>
+<td>Would support a specific C2-b variant</td>
+<td>Expected by most</td>
+</tr>
+<tr>
+<td>T19</td>
+<td>Mental causation leaves a physical trace</td>
+<td>Field</td>
+<td>C5 interactionist</td>
+<td>F0 null</td>
+<td>Support C5</td>
+<td>Pressure on C5</td>
+</tr>
+<tr>
+<td>T20</td>
+<td>fMRI lie detection admissible in court</td>
+<td>Field</td>
+<td>Legal</td>
+<td>F0: rejected (Semrau 2010)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T21</td>
+<td>Bostrom&#39;s simulation argument premises (civilizations run many sims)</td>
+<td>Bostrom</td>
+<td>D1a</td>
+<td>F2, sociological</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T22</td>
+<td>Search for &quot;bugs&quot; or law violations</td>
+<td>Owner T10</td>
+<td>D1a imperfect</td>
+<td>F0 null: no confirmed violation</td>
+<td>Support D1a</td>
+<td>Weak constraint</td>
+</tr>
+<tr>
+<td>T23</td>
+<td>Communicate with a Layer 2 author</td>
+<td>Owner T10 (via Gemini)</td>
+<td>D1a S≠S0</td>
+<td>No design</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T24</td>
+<td>Google-effect on memory</td>
+<td>Sparrow 2011</td>
+<td>Efficiency trap</td>
+<td>F0 mixed replications</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h2>2. What is invalid or unsettleable, and why</h2>
+<ul>
+<li><strong>T03</strong> is the most important correction from the conversation. The
+double-slit interference pattern disappears when a <em>which-path measurement</em>
+is made by any device, conscious or not. Consciousness-causes-collapse (von
+Neumann–Wigner) is a fringe interpretation with no experimental support
+over decoherence-based accounts. No rendering shortcut is demonstrated.</li>
+<li><strong>T06, T07</strong> fail by Axiom 6. They can test behavior, never experience.</li>
+<li><strong>T12</strong> is underdetermined: any macro-pattern is compatible with S0, S± and
+D2. The problem of evil is the only established inference from world
+pattern to S, and it is negative (against S+), not positive.</li>
+</ul>
+<h2>3. Coverage: which axes have any valid test at all</h2>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Has an F0/F1 test that could move it?</th>
+<th>Best candidate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A (terminal ground)</td>
+<td>No</td>
+<td>None; purely philosophical</td>
+</tr>
+<tr>
+<td>B (graspability)</td>
+<td>No</td>
+<td>None; by construction (Corollary 2 in 07)</td>
+</tr>
+<tr>
+<td>C (substrate)</td>
+<td>Weakly</td>
+<td>T19 (against interactionist C5); T13/T14 (for C3)</td>
+</tr>
+<tr>
+<td>D (authorship)</td>
+<td>Weakly</td>
+<td>T01, T22 (for D1a if positive); T02 (for D2c)</td>
+</tr>
+<tr>
+<td>S (stance)</td>
+<td>Negatively only</td>
+<td>Problem of evil (against S+)</td>
+</tr>
+<tr>
+<td>M, N (morality)</td>
+<td>No</td>
+<td>Hume&#39;s gap</td>
+</tr>
+<tr>
+<td>F (knowability)</td>
+<td>Self-referential</td>
+<td>FG is proven; F3/F4 boundary untestable</td>
+</tr>
+</tbody></table>
+<p>This table is the matrix&#39;s own To Nyn verdict on itself: <strong>most of the map is
+currently beyond test, and much of it may be beyond test at every position.</strong>
+That is not a failure of the map. It is the map correctly reporting the fog.</p>
+<h2>4. Quantum computing: what it can and cannot settle</h2>
+<p>The owner&#39;s corrected question: &quot;I meant quantum computing settle this once
+it&#39;s more advanced.&quot;</p>
+<h3>What a mature, fault-tolerant quantum computer can do for the matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Cell it bears on</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Simulate quantum many-body systems exactly</td>
+<td>Physics inside B1 C2/C3</td>
+<td>Settles F1 questions in chemistry, materials, nuclear physics. None of these touch axes A, B, D.</td>
+</tr>
+<tr>
+<td>Simulate lattice gauge theories and toy quantum gravity (SYK, tensor-network holography)</td>
+<td>C3 emergent-spacetime programs</td>
+<td>Can confirm or refute <em>specific models</em>. If a model that derives spacetime from entanglement matches our universe&#39;s observed features, C3 gains support. This is the strongest genuine contribution.</td>
+</tr>
+<tr>
+<td>Test the amplituhedron program&#39;s extensions numerically</td>
+<td>C3 (weak)</td>
+<td>Mathematical confirmation, not ontological.</td>
+</tr>
+<tr>
+<td>Break classical cryptography; optimize; sample</td>
+<td>None</td>
+<td>Irrelevant to the matrix.</td>
+</tr>
+<tr>
+<td>Probe Orch-OR coherence claims indirectly</td>
+<td>C2-b quantum-mind variant</td>
+<td>Marginal.</td>
+</tr>
+</tbody></table>
+<h3>What it cannot do, at any level of maturity</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Whether our layer is authored (D)</td>
+<td>A simulation of physics inside a simulation looks identical to a simulation of physics inside base reality. Authorship is not a computable property of the laws.</td>
+</tr>
+<tr>
+<td>Whether the ground is graspable (B)</td>
+<td>A QC is a formal system inside our logic; it cannot step outside our logic by running faster. FG applies to it exactly as to classical machines.</td>
+</tr>
+<tr>
+<td>Whether anything experiences (Axiom 6)</td>
+<td>A QC observes from outside like everything else.</td>
+</tr>
+<tr>
+<td>Whether there is a terminal ground (A)</td>
+<td>Not an empirical question.</td>
+</tr>
+<tr>
+<td>Any F3 or F4 claim</td>
+<td>By definition.</td>
+</tr>
+</tbody></table>
+<h3>The owner&#39;s stronger hope, addressed</h3>
+<p>Gemini suggested (Turns 18–19) that quantum computers &quot;use the same native
+physics that run the universe&#39;s backend&quot; and therefore constitute a &quot;hardware
+evolution designed to shift our cognitive horizon up the chart.&quot; Two problems:</p>
+<ol>
+<li>All computers use the universe&#39;s physics. A transistor is quantum
+mechanical. A QC uses <em>superposition and entanglement as resources</em>, which
+is a computational-complexity advantage, not an ontological one.</li>
+<li>Shifting <code>p</code> upward, in the matrix&#39;s sense, means gaining access to a
+higher layer or a stronger logic. A QC gives neither. It gives a faster
+route to answers already inside <code>K(p_now)</code>. It moves questions from F1 to
+F0. It does not move anything from F3 to F1.</li>
+</ol>
+<p>Net: quantum computing is a powerful instrument for the <em>physics sub-cells of
+B1 C3</em>. It is the right tool for T13, T14, T16, T17. It is not a tool for the
+genesis question, and no future version of it will be, for reasons that have
+nothing to do with qubit counts.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

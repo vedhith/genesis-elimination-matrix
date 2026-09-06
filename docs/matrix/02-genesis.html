@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 — Genesis: The Origin Partition · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>02 — Genesis: The Origin Partition</h1>
+<p>The root question: <strong>what is the ultimate ground of what exists, and how did
+our layer come to be?</strong> This document owns axes A, B and D. Axis C (what kind
+of stuff) is in <a href="03-substrate.html">03-substrate.md</a>; the stance of any author
+(axis S) is in <a href="05-authorship.html">05-authorship.md</a>.</p>
+<p>Each axis is an exhaustive split per <a href="01-axioms.html">01-axioms.md</a> Axiom 1.</p>
+<h2>1. Axis A — Is there a terminal ground?</h2>
+<p>Either the chain of &quot;what explains this?&quot; stops somewhere, or it does not.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Value</th>
+<th>Meaning</th>
+<th>Example positions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A1</td>
+<td>Terminal, necessary</td>
+<td>The chain stops at something that could not have failed to exist.</td>
+<td>Classical theism (Aquinas); Spinoza&#39;s substance; Platonism about mathematics; Leibniz&#39;s principle of sufficient reason.</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Terminal, brute</td>
+<td>The chain stops at something that simply is, with no reason.</td>
+<td>Russell (&quot;the universe is just there, and that&#39;s all&quot;); Hume; most default physicalism.</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>No terminal</td>
+<td>The chain never stops: infinite regress, or a loop.</td>
+<td>Infinite nested simulations (the owner&#39;s Infinite Box Cascade run forever); cyclic cosmologies; Buddhist dependent origination read cosmologically; Hegel&#39;s self-grounding Absolute read as a loop.</td>
+</tr>
+</tbody></table>
+<p>Exhaustiveness: A1 and A2 together are &quot;there is a terminal&quot; (necessary or
+not-necessary), A3 is &quot;there is not.&quot; Complete.</p>
+<p>Where the owner&#39;s ideas land: the Infinite Box Cascade is A3 if it truly never
+ends, or A1/A2 if it ends in the Un-Concept. The owner&#39;s &quot;everything leads to
+the Un-Concept&quot; is a claim that the cascade terminates (A1 or A2) in a
+B2 ground (next axis).</p>
+<h2>2. Axis B — Is the ground graspable?</h2>
+<p>Either the ground is describable within some logic we possess, or it is not.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Value</th>
+<th>Meaning</th>
+<th>Example positions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B1</td>
+<td>Graspable in principle</td>
+<td>Statable in mathematics, physics, or reasoning we have, whether or not we can test it yet.</td>
+<td>Physicalism; mathematical universe; simulation hypothesis; most theisms that ascribe properties to God.</td>
+</tr>
+<tr>
+<td>B2a</td>
+<td>Graspable by some mind, not ours</td>
+<td>Describable in a logic that a differently built mind could hold, but closed to human cognition.</td>
+<td>McGinn&#39;s cognitive closure; Chomsky&#39;s &quot;mysteries&quot;; the owner&#39;s Fog Front in its position-relative sense.</td>
+</tr>
+<tr>
+<td>B2b</td>
+<td>Ungraspable by any mind</td>
+<td>Not describable in any logic at all.</td>
+<td>Apophatic theology (Pseudo-Dionysius); Neoplatonic One beyond being; Nirguna Brahman; the Dao that cannot be spoken; Kant&#39;s noumenon in its strongest reading; the owner&#39;s Un-Concept in its strongest sense.</td>
+</tr>
+</tbody></table>
+<p>Exhaustiveness: B1 or not-B1; not-B1 splits into &quot;some possible mind could&quot;
+or &quot;none could.&quot; Complete.</p>
+<p>Key consequence: B2a is relative to observer position and can, in principle,
+become B1 by moving the observer (Axiom 2). B2b cannot. The owner&#39;s Turn 14
+worry (&quot;maybe we wake up and know more&quot;) is exactly the B2a/B2b distinction.
+The Un-Concept must be filed as B2b to do the work the owner wants it to do;
+filed as B2a it is just a very high Fog Front.</p>
+<h2>3. Axis D — Was our layer authored?</h2>
+<p>Either the observed universe is the product of some agent&#39;s intention, or it
+is not.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Value</th>
+<th>Meaning</th>
+<th>Example positions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D1a</td>
+<td>Authored by an agent in a higher layer</td>
+<td>A being inside a larger physical reality made ours.</td>
+<td>Simulation hypothesis (Bostrom); the owner&#39;s Sandbox / Architect; Gnostic demiurge; Plato&#39;s Timaeus craftsman.</td>
+</tr>
+<tr>
+<td>D1b</td>
+<td>Authored by an agent identical to the ground</td>
+<td>The terminal ground is itself a mind that willed our layer.</td>
+<td>Classical theism; Berkeley&#39;s idealism; Kastrup&#39;s analytic idealism read theistically.</td>
+</tr>
+<tr>
+<td>D1c</td>
+<td>Authored by us</td>
+<td>The observers inside the layer are, collectively or ultimately, its authors.</td>
+<td>Wheeler&#39;s participatory universe; some readings of Advaita (Brahman = Atman); self-simulation hypotheses.</td>
+</tr>
+<tr>
+<td>D2a</td>
+<td>Unauthored, necessary</td>
+<td>Our layer had to exist as it is.</td>
+<td>Necessitarianism; Spinoza; some block-universe readings; Tegmark&#39;s mathematical universe (all consistent structures exist).</td>
+</tr>
+<tr>
+<td>D2b</td>
+<td>Unauthored, brute</td>
+<td>Our layer just exists, no reason.</td>
+<td>Default physicalism; Russell.</td>
+</tr>
+<tr>
+<td>D2c</td>
+<td>Unauthored, selected</td>
+<td>Our layer is one of many, and we find ourselves in this one for anthropic or evolutionary reasons.</td>
+<td>Multiverse plus anthropic principle; Smolin&#39;s cosmological natural selection; eternal inflation; the owner&#39;s &quot;multi-universal evolution.&quot;</td>
+</tr>
+</tbody></table>
+<p>Exhaustiveness: D1 (agent) or D2 (no agent). D1 splits by where the agent is
+relative to the ground: above us but below the ground, identical to the ground,
+or identical to us. D2 splits by modal status: necessary, brute, or one among
+many. Complete under the assumption that &quot;agent&quot; is well-defined; a borderline
+case (a blind optimizing process with no intentions) is D2c.</p>
+<p>Note on overlap: D1a is compatible with any Axis A or B value for the <em>ground</em>,
+because the author in D1a is not the ground. This is the owner&#39;s &quot;the engineer
+is just another box.&quot; A D1a author answers nothing about A or B.</p>
+<h2>4. The full genesis address</h2>
+<p>A genesis position is a triple <code>A? B? D?</code>, plus C from
+<a href="03-substrate.html">03-substrate.md</a>. There are 3 × 3 × 6 = 54 genesis cells
+before substrate is added. Not all are equally populated. Some are nearly
+empty of named defenders, which is itself information: those are the
+unconceived alternatives that break naive elimination arguments.</p>
+<h2>5. Constraints between axes</h2>
+<p>Some combinations are incoherent or nearly so. These are the matrix&#39;s own
+&quot;gates,&quot; stated as logical constraints rather than as attacks on religions.</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B2b ∧ D1b with any asserted stance (S ≠ S?)</td>
+<td>If the ground is ungraspable, no property of it, including a will or a stance toward us, can be asserted. This is the owner&#39;s Gate 2. Positions in this cell must set S = S? or move to B1.</td>
+</tr>
+<tr>
+<td>B2b ∧ any asserted C value</td>
+<td>Same reason: to say the ground is &quot;mind-like&quot; or &quot;matter-like&quot; is to grasp it. B2b forces C = ?</td>
+</tr>
+<tr>
+<td>A3 ∧ D1b</td>
+<td>If there is no terminal ground, there is no ground-identical author.</td>
+</tr>
+<tr>
+<td>D1c ∧ A1</td>
+<td>If we are the authors and the ground is necessary, we are the necessary ground, which is a strong identity claim (Advaita accepts it; most positions do not). Not incoherent, but flagged.</td>
+</tr>
+</tbody></table>
+<h2>6. Where the original four pillars sit</h2>
+<p>The four pillars from the Gemini conversation, mapped onto the partition:</p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Region of the map</th>
+<th>What it left out</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Universe Code</td>
+<td>B1 ∧ C3 (abstract/informational substrate), any D</td>
+<td>Did not distinguish authored code (D1) from self-existing mathematics (D2a). Tegmark and Bostrom are in the same pillar but opposite D values.</td>
+</tr>
+<tr>
+<td>Sandbox / Architect</td>
+<td>B1 ∧ D1a</td>
+<td>Did not cover D1b (ground-identical author, classical theism) or D1c (participatory).</td>
+</tr>
+<tr>
+<td>Clutter / AI</td>
+<td>B1 ∧ C2 ∧ D2</td>
+<td>Correctly placed.</td>
+</tr>
+<tr>
+<td>Un-Concept</td>
+<td>B2b (and B2a when spoken of loosely)</td>
+<td>Conflated B2a and B2b, which is why the Turn 14 self-refutation felt threatening.</td>
+</tr>
+</tbody></table>
+<p>Cells the four pillars did not cover at all:</p>
+<ul>
+<li><strong>B1 ∧ C1 ∧ D2</strong>: unauthored experiential ground. Panpsychism, cosmopsychism,
+non-theistic idealism (Kastrup), Whitehead&#39;s process philosophy. A large,
+actively defended region with no pillar.</li>
+<li><strong>B1 ∧ C4</strong>: neutral monism (Russell, James, Mach). The ground is neither
+mental nor physical but yields both.</li>
+<li><strong>B1 ∧ C5</strong>: substance dualism (Descartes) and property dualism (Chalmers).</li>
+<li><strong>A3 anywhere</strong>: genuinely infinite regress with no terminal, treated as the
+answer rather than a problem.</li>
+<li><strong>D1b with S?</strong>: an author identical to the ground whose stance is
+unassertable. This is roughly Maimonides&#39; or Aquinas&#39;s God described only
+negatively, and the owner&#39;s &quot;Un-Concept god&quot; if it is granted agency.</li>
+</ul>
+<p>The elimination method could not have worked over the four pillars because
+eliminating Code, Sandbox and Clutter leaves all of these, not just the
+Un-Concept. Over the partition it can work, subject to
+<a href="10-elimination-rules.html">10-elimination-rules.md</a>.</p>
+<h2>7. The hourglass, restated</h2>
+<p>The owner&#39;s hourglass (many testable branches below us, convergence to the
+Un-Concept above us) becomes:</p>
+<ul>
+<li><strong>Below To Nyn</strong> (see <a href="08-to-nyn.html">08-to-nyn.md</a>): the sub-cells of B1
+that our current instruments can reach. Finite in practice, large in number.</li>
+<li><strong>Above To Nyn</strong>: successive D1a authors, each B1 from its own position, each
+B2a from ours. As the chain lengthens, each link is further outside <code>K(p_now)</code>.</li>
+<li><strong>The apex</strong>: whatever terminates axis A. If B1, it is a very distant Layer N.
+If B2b, it is the Un-Concept proper.</li>
+</ul>
+<p>The convergence the owner saw is real but it is a convergence of <em>our
+knowledge</em>, not necessarily of <em>the structure</em>: from <code>p_now</code> everything far
+enough up looks the same (B2a), whether or not it is the same. That is the
+precise content of the Fog Front.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="The hourglass: us at the fog front, layers narrowing to the apex, the testable descent below.">
+<title>Genesis Hourglass</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap">
+
+<style>
+:root{--bg:#EDF0F3;--ink:#1B2430;--muted:#7A8592;--line:#C6CED7;--lamp:#B27418;--focus:#2A67A8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11171E;--ink:#E7EBEF;--muted:#8B97A4;--line:#2B3540;--lamp:#E2A749;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--ink:#E7EBEF;--muted:#8B97A4;--line:#2B3540;--lamp:#E2A749;--focus:#71A9E4}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 "IBM Plex Sans",system-ui,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab}
+canvas.drag{cursor:grabbing}
+#path{position:fixed;top:14px;left:16px;right:90px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 6px;z-index:2}
+#path span{cursor:pointer}#path span:hover{color:var(--ink)}#path i{color:var(--line);font-style:normal}
+#tilt{position:fixed;top:10px;right:14px;z-index:2;font:500 12px "IBM Plex Sans",sans-serif;color:var(--lamp);background:transparent;border:1px solid var(--lamp);border-radius:999px;padding:6px 12px;cursor:pointer;display:none}
+#tilt:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+#hint{position:fixed;bottom:14px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted);pointer-events:none;z-index:2;padding:0 16px}
+</style>
+<link rel="stylesheet" href="./theme.css">
+<link rel="stylesheet" href="./nav.css">
+<script src="./nav.js" defer data-page="hourglass" data-root="./" data-pos="br"></script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="path"></div>
+<button id="tilt">Tilt phone</button>
+<div id="hint">you are the fog front · up gets cleaner, down gets messier · click a name to move · right-click, double-click or double-tap to step back toward now · drag or tilt: the apex only exists in the direction your screen cannot show</div>
+<script>
+const F = {F0:"settled",F1:"testable soon",F2:"knowable, no test yet",FG:"provably undecidable",F3:"closed to us, open to some mind",F4:"closed to all",gate:"constraint"};
+
+const EVIL = [
+  {t:"Suffering is the price of free agents",s:"Denies that the suffering is gratuitous.",who:["Plantinga, free will defense (1974)"],f:"gate",d:"Widely held to answer the strict logical form of the problem of evil. The cost is denying that any suffering is gratuitous."},
+  {t:"Suffering builds souls",s:"Hardship is developmental.",who:["John Hick","Irenaeus"],f:"gate"},
+  {t:"We cannot judge what is gratuitous",s:"Our view is too small to call any suffering pointless.",who:["Wykstra","Bergmann (skeptical theism)"],f:"gate"},
+  {t:"The maker is not all-powerful",s:"Relaxes omnipotence instead.",who:["Process theology (Hartshorne)","Open theism"],f:"gate"},
+  {t:"Evil is only the absence of good",s:"Not a thing that was made.",who:["Augustine"],f:"gate"},
+  {t:"None of these work",s:"The amount and spread of suffering makes a good, all-powerful maker improbable.",who:["Rowe (1979), evidential problem of evil","Hume, Dialogues","Mackie (1955)","Epicurus"],f:"gate",d:"This is your Gate 1. Corrected status: strong evidential pressure on a good and all-powerful maker, not a mathematical impossibility. Every escape above costs exactly one attribute.",doc:"05-authorship.md §4"}
+];
+
+const EUTHYPHRO = {t:"Does it command good, or is good prior?",s:"The Euthyphro dilemma.",q:"Which way does it go?",f:"gate",doc:"06-morality.md §3",kids:[
+  {t:"It commands things because they are good",s:"Then goodness is prior to the maker, and morality is grounded elsewhere.",f:"gate",d:"Move to natural facts or reason-based facts under What is right."},
+  {t:"Things are good because it commands them",s:"Then saying the maker is good says nothing.",who:["Ockham","Ash’arite theology"],f:"gate"},
+  {t:"Its nature, not its will, is the standard",s:"The usual escape.",who:["Aquinas","Robert Adams"],f:"gate"}
+]};
+
+const WALK = {t:"A sample walk, end to end",s:"One position followed from the top to the bottom of every pillar. Yours, from the conversation.",walk:[
+  {path:[1],why:"Start with what is real."},
+  {path:[1,0],why:"You assumed the cascade of boxes ends somewhere."},
+  {path:[1,0,1],why:"You placed the end beyond our logic."},
+  {path:[1,0,1,1],why:"Not merely beyond us: beyond any mind. The Un-Concept."},
+  {path:[1,0,1,1,0],why:"So the only honest speech about it is negation. This is where your Gate 2 already lives."},
+  {path:[2],why:"Now what we are."},
+  {path:[2,1],why:"Experience is real as it seems."},
+  {path:[2,1,2],why:"Your Turn 7: feeling is the very thing from the start."},
+  {path:[3],why:"Now what is right."},
+  {path:[3,1],why:"With an ungraspable ground, nothing moral can be read off it, so realism has to come from nature or reason, or morality is built."},
+  {path:[3,1,2],why:"Built by agents. Your ascent principle sits here as a virtue ethic."},
+  {path:[4],why:"Now what we can know."},
+  {path:[4,5],why:"The Un-Concept is closed to all. It cannot be shown non-empty from anywhere, which is why it can be held but never proven."},
+  {path:[5],why:"And where we stand today."},
+  {path:[5,0],why:"Nothing on any main axis is eliminated. Your position is open, like every other."}
+],end:"Your full address: A1 B2b C1 D? · M2c N3 · F4"};
+
+const TREE = {t:"Everything",q:"Five questions. Each splits by either/or until it cannot split further.",kids:[
+WALK,
+
+{t:"What is real",s:"Where the ground of everything is, and whether we can reach it.",q:"Is there a bottom to reality?",doc:"02-genesis.md",kids:[
+  {t:"There is a bottom",s:"The chain of explanations stops somewhere.",q:"Can that bottom be grasped?",kids:[
+    {t:"Graspable",s:"Statable in some logic we already have, even if untested.",addr:"B1",q:"Was our world made by anyone?",kids:[
+      {t:"Made",s:"An intention produced our layer.",addr:"B1 D1",q:"Made by what?",kids:[
+        {t:"Something one layer up",s:"A being inside a bigger reality built ours. The Sandbox.",addr:"B1 D1a",d:"The maker is not the bottom. Whatever we learn about it answers nothing about the ground. As you put it: just another box. A sandbox is a limitation, not the code, so being inside one does not make the outside unknowable, only unreachable.",q:"What does the maker want from us?",doc:"05-authorship.md",kids:[
+          {t:"Nothing",s:"We are a side effect or a data set.",who:["Bostrom’s ancestor simulations","Epicurean gods","Deism","Plato’s Timaeus craftsman, on one reading"],addr:"D1a S0",f:"F2",d:"An indifferent maker gives no norms and answers nothing. Ethics has to be built from inside exactly as if the world were unmade."},
+          {t:"Something, but not our good or evil",s:"It has attitudes. They are not shaped by survival, so they do not map onto ours.",who:["Your Architect (Turn 12)","Cosmicism (Lovecraft)","Some readings of Job"],addr:"D1a S±",f:"F2",d:"Your deduction that the maker must feel emotion because it built emotion does not hold. Evolution built emotion with none of its own. So indifference stays open. But if it does have values, nothing says they track ours, and nothing says they bind us."},
+          {t:"Our good",s:"It wants what we would call our good.",addr:"D1a S+",q:"Then why is there suffering?",kids:EVIL},
+          {t:"Our harm",s:"It wants us to suffer.",who:["Gnostic demiurge","Marcion","Descartes’ demon, as a hypothesis"],addr:"D1a S−",f:"F2"},
+          {t:"We cannot tell",s:"Its stance is beyond us.",who:["Job’s conclusion","Agnostic theism"],addr:"D1a S?",f:"F3"},
+          {t:"Is the maker itself made?",s:"Same question, one layer up. The Infinite Box Cascade.",goto:[1]}
+        ]},
+        {t:"The bottom itself",s:"The ground is a mind that willed our world. The classical God.",addr:"B1 D1b",q:"What does it want?",kids:[
+          {t:"Our good",s:"All-good, all-powerful, all-knowing.",who:["Classical Christianity","Sunni Islam (Ash’arite and Mu’tazilite)","Rabbinic Judaism","Sikhism","Bahá’í","Berkeley","Leibniz"],addr:"D1b S+",q:"Then why is there suffering?",kids:EVIL},
+          {t:"Both creation and destruction",s:"Aspects that do not reduce to human good.",who:["Shaiva and Vaishnava Hinduism","Kashmir Shaivism"],addr:"D1b S±",f:"F2"},
+          {t:"Two makers, one good, one evil",s:"The world is their battlefield.",who:["Zoroastrianism","Manichaeism"],addr:"D1b C5 S{+,−}",f:"F2"},
+          {t:"Only what it is not",s:"Described by negation alone.",who:["Maimonides","Aquinas, in part"],addr:"D1b S?",f:"F3",d:"This edges toward the ungraspable branch. If the ground is truly beyond concepts, it belongs there, not here."},
+          EUTHYPHRO
+        ]},
+        {t:"Us",s:"The observers are the authors.",who:["Wheeler’s participatory universe","Advaita: Brahman is Atman","Self-simulation hypotheses","Fichte’s absolute I"],addr:"B1 D1c",f:"F2"}
+      ]},
+      {t:"Not made",s:"No intention behind it.",addr:"B1 D2",q:"Then what is it made of?",doc:"03-substrate.md",kids:[
+        {t:"Physical stuff",s:"Particles, fields, spacetime. Experience is derived or illusory. Clutter.",addr:"B1 C2 D2",q:"Then what is experience?",kids:[
+          {t:"An illusion",s:"Introspection misreports what the brain does.",who:["Dennett","Frankish","Graziano"],addr:"C2-i",f:"F1"},
+          {t:"A function",s:"Anything organized the right way has it. We are the information the neuron holds.",who:["Global Workspace (Baars, Dehaene)","Higher-order thought (Rosenthal)","Attention schema (Graziano)","Recurrent processing (Lamme)","Predictive processing (Seth, Clark)"],addr:"C2-f",f:"F0",d:"The Cogitate collaboration (2023 to 2025) tested Global Workspace against IIT. Both lost specific predictions. What it settles is which correlates track reports, never whether the correlates are the experience."},
+          {t:"A property of specific structure",s:"Not computation as such, but the right causal organization.",who:["Integrated Information Theory (Tononi, Koch)","Searle","Electromagnetic field theory (McFadden, Pockett)","Orch-OR, quantum microtubules (Penrose, Hameroff)"],addr:"C2-b",f:"F0",d:"IIT’s Phi cannot be computed for anything the size of a brain."},
+          {t:"Real, physical, and beyond us",s:"There is an explanation and we cannot hold it.",who:["McGinn","Pinker","Chomsky"],addr:"B2a-m",f:"F3"},
+          {t:"What is the physical bottom?",s:"Fields, strings, loops, sets, or graphs.",q:"Which?",kids:[
+            {t:"Quantum fields",s:"The Standard Model plus general relativity, unreconciled.",who:["Standard Model","General relativity"],f:"F0"},
+            {t:"Strings and branes",who:["String theory","M-theory (Witten)"],f:"F2"},
+            {t:"Loops of space",who:["Loop quantum gravity (Rovelli, Smolin)"],f:"F2"},
+            {t:"Discrete events",who:["Causal set theory (Sorkin)","Causal dynamical triangulations"],f:"F2"},
+            {t:"Rewriting graphs",who:["Wolfram’s hypergraph physics","Cellular automata (Zuse, Fredkin)"],f:"F2"},
+            {t:"Gravity tamed, nothing new",who:["Asymptotic safety (Weinberg, Reuter)"],f:"F2"}
+          ]},
+          {t:"Why does the physical exist at all?",s:"Necessary, brute, or one of many.",q:"Which?",kids:[
+            {t:"It had to",s:"Could not have failed to exist.",who:["Spinoza","Necessitarianism"],addr:"D2a",f:"F2"},
+            {t:"It just does",s:"No reason. The default.",who:["Russell","Most physicalists"],addr:"D2b",f:"F2"},
+            {t:"It is one of many and we are in this one",s:"Selection, not design.",who:["Eternal inflation plus anthropics (Guth, Vilenkin)","Smolin’s cosmological natural selection","Everett’s many worlds","Your multi-universal evolution"],addr:"D2c",f:"F2",d:"Searches for bubble-collision bruises in the cosmic microwave background: null so far."}
+          ]}
+        ]},
+        {t:"Structure or information",s:"Mathematics or code. Physical stuff is structure instantiated. Universe Code.",addr:"B1 C3 D2",q:"Why this structure?",kids:[
+          {t:"Every consistent structure exists",s:"Ours is one of them.",who:["Tegmark, mathematical universe"],addr:"C3 D2a",f:"F2"},
+          {t:"Information is fundamental",s:"It from bit.",who:["Wheeler","Zuse","Fredkin","Lloyd, the universe as a quantum computer"],addr:"C3",f:"F2",d:"Searches for Planck-scale pixelation (photon dispersion, the Holometer): null at every sensitivity tested so far."},
+          {t:"Spacetime is emergent",s:"From entanglement, error-correcting codes, or geometry outside spacetime.",who:["Almheiri, Dong, Harlow (holographic codes)","Preskill","Arkani-Hamed and Trnka (amplituhedron)"],addr:"C3",f:"F1",d:"Real and active. The amplituhedron lives in a toy theory (planar N=4 super Yang-Mills). Holographic codes live in anti-de Sitter space, and our universe is not that. Promising, not proven, and not a piece of anyone’s code. This is the one branch where quantum computers genuinely help.",doc:"09-tests.md T13, T14, T17"},
+          {t:"Only relations are real",s:"No things, just structure.",who:["Ontic structural realism (Ladyman, Ross)","Eddington"],addr:"C3",f:"F2"},
+          {t:"Is it code someone wrote?",s:"If yes, you are under Made, not here.",goto:[1,0,0,0]}
+        ]},
+        {t:"Mind",s:"Experience is fundamental. Brains organize or filter it. The pillar you had no name for.",addr:"B1 C1 D2",q:"One mind or many?",kids:[
+          {t:"One cosmic subject",s:"We are its dissociated parts.",who:["Cosmopsychism (Goff, Shani)","Kastrup’s analytic idealism","Yogācāra Buddhism","Schopenhauer’s Will"],f:"F2"},
+          {t:"Many tiny subjects",s:"Experience in every fundamental unit.",who:["Constitutive panpsychism (Strawson, Goff)","Leibniz’s monads","Chalmers, Type-F"],f:"F2",d:"The combination problem: how do micro-experiences add up to yours?"},
+          {t:"Experience as process",s:"Events of feeling, not things.",who:["Whitehead","Hartshorne","Nagel, Mind and Cosmos"],f:"F2"}
+        ]},
+        {t:"Neither, but the source of both",s:"A neutral base that shows up as mind from one side and matter from the other.",who:["Russell","William James","Mach","Spinoza, on one reading","Pauli and Jung, dual-aspect","Stoic Logos"],addr:"B1 C4 D2",f:"F2"},
+        {t:"More than one kind",s:"Mind and matter both fundamental.",addr:"B1 C5",q:"Do the kinds interact?",kids:[
+          {t:"Yes",s:"Mind moves matter.",who:["Descartes"],f:"F0",d:"Interaction should leave a physical trace: energy not conserved, laws bent at the interface. None found. Under pressure."},
+          {t:"No",s:"Mind rides along.",who:["Epiphenomenalism","Chalmers, property dualism"],f:"F2"},
+          {t:"Witness and machinery",s:"Pure awareness tangled in active matter.",who:["Samkhya: Purusha and Prakriti"],f:"F2"}
+        ]}
+      ]}
+    ]},
+    {t:"Not graspable",s:"No logic we possess can state it.",addr:"B2",q:"Graspable by anyone?",kids:[
+      {t:"By some mind, not ours",s:"Closed to human cognition the way calculus is closed to a dog.",who:["McGinn, cognitive closure","Kant’s noumenon, weak reading","Chomsky’s mysteries","Du Bois-Reymond’s ignorabimus"],addr:"B2a",f:"F3",q:"What happens if we move up a layer?",kids:[
+        {t:"It becomes graspable",s:"Today’s Un-Concept is tomorrow’s Layer 2. The fog moves with you.",d:"Your Turn 14 point, made a theorem: what an observer can settle grows as the observer moves. So “unknowable” needs a position attached. What stays fixed is that a boundary always exists, wherever you stand.",f:"F3",doc:"07-fog-front.md §4",goto:[1,0,0]}
+      ]},
+      {t:"By no mind at all",s:"Not code, not a box, not a concept. The Un-Concept.",addr:"B2b",f:"F4",q:"Then what can be said?",kids:[
+        {t:"Only what it is not",s:"Negation is the only honest speech.",who:["Pseudo-Dionysius","Maimonides","Eckhart","Plotinus’ One","Proclus","Ibn Arabi","Kabbalah’s Ein Sof","Nirguna Brahman","Dao De Jing, chapter 1","Zhuangzi"],f:"F4",d:"Apophatic. These traditions already accept your Gate 2 and have for two thousand years."},
+        {t:"Only paradox",s:"Language used against itself.",who:["Zen","Nagarjuna","Kierkegaard’s paradox"],f:"F4"},
+        {t:"Nothing",s:"Whereof one cannot speak.",who:["Wittgenstein, Tractatus 7"],f:"F4"},
+        {t:"Something positive",s:"Any tradition that names what it wants or is.",f:"gate",d:"Gate 2: a category error. The tradition relocates to Graspable, where its claims can be tested. It is not thereby false. It is unassertable from here.",doc:"05-authorship.md §5"},
+        {t:"Can this branch ever be proven?",s:"No, from any position.",f:"F4",d:"Proving that something lies beyond all positions would need a survey of all positions. Failure of every other branch raises this one’s credence a little and no more. Unexplained is not inexplicable."}
+      ]}
+    ]}
+  ]},
+  {t:"There is no bottom",s:"The chain never stops.",addr:"A3",q:"Line or loop?",kids:[
+    {t:"An endless line",s:"Boxes inside boxes, forever.",who:["Infinite nested simulations"],f:"F3"},
+    {t:"A loop",s:"It grounds itself.",who:["Penrose’s conformal cyclic cosmology","Bounce cosmologies","Stoic eternal return","Nietzsche’s eternal recurrence","Theravada dependent origination","Hegel’s Absolute"],f:"F3"}
+  ]}
+]},
+
+{t:"What we are",s:"Neurons, information, a lens, or a witness.",q:"Is experience real as it seems?",doc:"04-mind.md",kids:[
+  {t:"No",s:"Introspection misreports the brain’s processing. You are a physical system with a misleading self-model.",who:["Dennett","Frankish","Graziano"],addr:"C2-i",f:"F1"},
+  {t:"Yes",s:"There is something it is like to be you.",q:"Is it built or basic?",kids:[
+    {t:"Built from function",s:"The pattern matters; the neuron is one implementation.",who:["Global Workspace","Higher-order thought","Predictive processing"],addr:"C2-f",f:"F0",d:"Your Turn 6: we are the information the neuron holds."},
+    {t:"Built from specific structure",s:"The right causal organization, not computation as such.",who:["IIT","Searle"],addr:"C2-b",f:"F0"},
+    {t:"Basic, and everywhere",s:"Brains focus a feeling that was already there.",who:["Panpsychism","Cosmopsychism","Idealism"],addr:"C1",f:"F2",d:"Your Turn 7: feeling is the very thing from the start."},
+    {t:"Basic, and an extra kind",s:"Mind alongside matter.",who:["Descartes","Chalmers","Samkhya"],addr:"C5",f:"F2"},
+    {t:"Built, but we cannot see how",s:"The explanation exists and our minds are closed to it.",who:["McGinn"],addr:"B2a-m",f:"F3"}
+  ]},
+  {t:"Can we control it?",s:"Yes, in every branch.",f:"F0",d:"Under physical stuff, the prefrontal network modulates lower circuits. Under mind, mind organizes itself. Under two kinds, mind acts on matter. The brain running near a phase transition (criticality) is neutral between them. The question had the same answer everywhere, which is why it never discriminated.",doc:"04-mind.md §6"},
+  {t:"What can machines tell us?",s:"Decoders, dishes, emulations, qubits.",q:"Which machine?",kids:[
+    {t:"Brain decoders",s:"fMRI and MEG with AI. Gist, not verbatim. You can resist them.",f:"F0",d:"Which neural states carry which contents. Nothing about what experience is. The limits are physical: blood flow takes seconds, and reconstructing sources from surface fields has no unique answer."},
+    {t:"Biocomputing",s:"Living neurons on chips.",f:"F1",d:"Tells you the learning efficiency of tissue and whether neuron-like dynamics matter for intelligence. A dish that plays Pong says nothing about whether it feels. Behavior is not experience. Silicon AI did not hit a wall that needed brain cells; that claim was false."},
+    {t:"Whole-brain emulation",s:"Copy the wiring, run it.",f:"F1",d:"Settles whether behavior follows from structure. Cannot settle whether the copy experiences anything. So it cannot confirm Clutter, contrary to the conversation."},
+    {t:"Quantum computers",s:"Nothing on this axis.",f:"F2",d:"Except possibly Penrose and Hameroff’s microtubule coherence claim, where results lean negative."}
+  ]}
+]},
+
+{t:"What is right",s:"Whether there are moral facts, and whether the origin of things changes them.",q:"Are there moral facts independent of anyone’s attitudes?",doc:"06-morality.md",kids:[
+  {t:"Yes",s:"Some things are wrong whatever anyone thinks.",q:"Grounded in what?",kids:[
+    {t:"The will or nature of the ground",s:"God, the Good, the cosmic order.",who:["Divine command theory","Natural law (Aquinas)","Plato’s Form of the Good","Dharma"],addr:"M1a",f:"gate",q:"Commanded because good, or good because commanded?",kids:EUTHYPHRO.kids},
+    {t:"Natural facts",s:"Welfare, flourishing, cooperation. Survives every origin.",who:["Cornell realism (Boyd, Sturgeon)","Railton","Foot","Aristotle","Harris"],addr:"M1b"},
+    {t:"Facts known by reason, not nature",s:"Real, mind-independent, not physical.",who:["Moore","Parfit","Enoch","Huemer","Sidgwick"],addr:"M1c",d:"Under pressure from evolutionary debunking: if selection explains why we believe it, the belief needs no truth to explain it (Street, Joyce)."}
+  ]},
+  {t:"No",s:"Nothing is wrong independent of attitudes.",q:"Then what is moral talk doing?",kids:[
+    {t:"Failing",s:"It aims at facts and there are none.",who:["Mackie","Joyce, fictionalism","Nietzsche, on one reading"],addr:"M2a"},
+    {t:"Expressing",s:"It voices attitudes, not facts.",who:["Ayer","Blackburn","Gibbard"],addr:"M2b"},
+    {t:"Constructing",s:"Agents build moral facts by reasoning or agreeing.",who:["Kant, on one reading","Rawls","Korsgaard","Scanlon"],addr:"M2c"},
+    {t:"Indexing",s:"True relative to a culture.",who:["Harman","Wong","Westermarck"],addr:"M2d"}
+  ]},
+  {t:"What makes an act right?",s:"Six standards that mix.",q:"Which standard?",kids:[
+    {t:"Outcomes",who:["Bentham","Mill","Sidgwick","Singer","Negative utilitarianism (Popper)","Effective altruism"],addr:"N1"},
+    {t:"Duties and rights",who:["Kant","Ross","Nozick","Korsgaard"],addr:"N2"},
+    {t:"Character",who:["Aristotle","Confucius","Mencius","Stoics","Aquinas","MacIntyre","Nussbaum"],addr:"N3"},
+    {t:"Agreement",who:["Hobbes","Locke","Rousseau","Rawls","Gauthier","Scanlon"],addr:"N4"},
+    {t:"Care and the particular case",who:["Gilligan","Noddings","Held","Dancy"],addr:"N5"},
+    {t:"Command",who:["Ockham","Adams"],addr:"N6"}
+  ]},
+  {t:"Does the origin change the answer?",s:"Far less than it feels like it should.",f:"gate",d:"Natural-fact realism, reason-based realism, and every anti-realist option survive in every origin cell. Only “grounded in the maker’s will” depends on the origin, and it meets Euthyphro wherever it lands. If the ground is the Un-Concept, nothing moral can be read off it at all; that is your Gate 2. If the maker is indifferent or alien, its values do not bind you.",doc:"06-morality.md §4"},
+  {t:"Your candidate: the ascent principle",s:"The good is moving up levels of understanding.",addr:"M2c N3",d:"Coherent as a perfectionist virtue ethic. Close to Aristotle’s contemplative life, Spinoza’s third kind of knowledge, Teilhard’s Omega. It needs a bridge from “cleaner description” to “better”. The anti-school corollary is empirically weak; the defensible core is Illich’s point that institutions can swap credentialing for learning.",doc:"06-morality.md §7"}
+]},
+
+{t:"What we can know",s:"The fog front, made precise.",q:"From where we stand, how far away is a claim?",doc:"07-fog-front.md",kids:[
+  {t:"Settled",s:"Tested, result in hand.",f:"F0",d:"Decoders read gist, not verbatim. Glia roughly equal neurons. No Planck-scale pixelation at tested sensitivity. Courts reject fMRI lie detection. Interaction dualism leaves no trace."},
+  {t:"Testable soon",s:"Inside our reach, instrument not yet built or finished.",f:"F1",d:"Which correlates track reported experience. Whether emulation reproduces behavior. Lattice gauge theory and holographic toys on quantum computers."},
+  {t:"Knowable, no test yet",s:"Inside our logic, no experiment designed.",f:"F2",d:"Whether spacetime is emergent in our universe. Whether there is a Layer 2 maker. Which substrate is fundamental."},
+  {t:"Provably undecidable",s:"Fog inside our own logic, proven.",f:"FG",d:"Gödel: any consistent system rich enough for arithmetic has truths it cannot prove. Turing: no general test for whether a program halts. This cuts through every level, including below us. It is the part of your intuition that a system cannot fully read itself that is actually a theorem.",who:["Gödel (1931)","Turing (1936)","Chaitin"]},
+  {t:"Closed to us, open to some mind",s:"A differently built observer could settle it.",f:"F3",d:"Whether other systems experience anything. What Layer 3 and above are like."},
+  {t:"Closed to all",s:"The Un-Concept. Cannot be shown non-empty from anywhere.",f:"F4"},
+  {t:"Why the fog moves",s:"Knowability grows with position.",d:"Move to a higher layer or a stronger instrument and the set of claims you can settle grows. A claim closed to you today may be settled tomorrow. Three things do not move: Gödel’s fog, the fact that behavior never reveals experience, and the existence of some boundary at every position. Everything else about the fog is relative to where you stand.",f:"gate",doc:"07-fog-front.md §4"},
+  {t:"Two fogs people confuse",s:"Reading thoughts versus knowing minds.",d:"Content fog: decoders only read what is active in working memory. Shallow; better instruments shrink it. Nature fog: no outside method settles whether a system experiences. Deep; possibly closed to all.",f:"gate",doc:"04-mind.md §7"}
+]},
+
+{t:"Now",s:"τὸ νῦν, the standing point. Dated 4 September 2026.",q:"What is the score today?",doc:"08-to-nyn.md",kids:[
+  {t:"Nothing on any main axis is eliminated",s:"Bottom, graspability, substrate, maker, stance, morality: all open.",f:"F0",d:"Everything crossed off so far is a specific sub-theory: particular predictions of Global Workspace and IIT, particular discrete-spacetime models, fMRI lie detection as evidence, interaction dualism, and consciousness-collapse as a sign of rendering. The four pillars stand exactly where they stood, along with the cells they missed."},
+  {t:"What the instruments reach",s:"And where they stop.",q:"Which domain?",kids:[
+    {t:"Brain, from outside",s:"7T fMRI, wearable MEG, dense EEG.",d:"Reach: gist-level semantic decoding, category-level images, clinical consciousness detection. Stop: verbatim thought, single neurons.",f:"F0"},
+    {t:"Brain, from inside",s:"Utah arrays, Neuropixels, Neuralink-class implants.",d:"Reach: thousands of neurons, speech prostheses at conversational speed. Stop: whole-brain single-cell recording in a living human.",f:"F0"},
+    {t:"Wiring maps",s:"Fruit fly done. One cubic millimetre of human cortex done.",d:"A whole human brain at that resolution is about 1.4 zettabytes. Not yet storable.",f:"F1"},
+    {t:"Particles",s:"LHC at 13.6 TeV.",d:"Fifteen orders of magnitude short of the Planck scale.",f:"F0"},
+    {t:"Cosmos",s:"Planck, JWST, DESI, gravitational waves.",d:"Reach: cosmological parameters. Stop: any direct sign of other universes or of before the Big Bang.",f:"F0"},
+    {t:"Quantum computers",s:"Hundreds to a thousand noisy qubits; first error-corrected logical qubits.",d:"Reach: small quantum simulations, toy gauge theories, toy holography. Stop: fault-tolerant simulation of realistic systems, and anything outside our logic.",f:"F1"}
+  ]},
+  {t:"Will quantum computing settle it?",s:"No, and not because it is immature.",d:"A quantum computer is a physical system inside our layer obeying our layer’s laws. It moves questions from “testable soon” to “settled” inside the structure-and-information branch: which models of emergent spacetime and holographic codes match our universe. It cannot detect whether the layer was made, cannot measure experience, and cannot step outside our logic by running faster. Gödel applies to it as to any machine. Every computer already uses the universe’s physics; a quantum one uses superposition as a speed resource, which is not an ontological upgrade.",f:"gate",doc:"09-tests.md §4"},
+  {t:"Is any of this world-changing?",s:"Not yet.",d:"That would need a prediction no existing theory makes, testable soon, that moves an axis. There is none here. What there is: a valid partition that makes elimination well-posed, a fog front that survives your own objection, and a demonstration that origin constrains morality far less than intuition says. Useful. Not new to philosophy.",f:"gate"},
+  {t:"Rules for crossing anything off",s:"Twelve. The ones that matter most:",d:"Eliminate cells, not names. Elimination needs a partition proven exhaustive. Unexplained is not inexplicable. Every knowability claim carries a position. Only formal inconsistency eliminates; pressure lowers credence. Behavior tests never reach experience. Facts about a maker never reach facts about the ground. Value never descends without a stated bridge. Praise from an evaluator changes nothing.",f:"gate",doc:"10-elimination-rules.md"}
+]}
+]};
+
+
+// ---------- build: hourglass ----------
+const find=(t,n=TREE)=>{ if(n.t===t) return n; for(const k of (n.kids||[])){const r=find(t,k); if(r) return r;} return null; };
+const W=n=>n.kids?n.kids.filter(k=>!k.walk&&!k.goto):[];
+const nodes=[], links=[]; let apex=null, apexAnchor=null;
+function mk(t,o){ const nd=Object.assign({t,kids:[],parent:null,holder:false,inZ:false,who:[],level:0,ref:null},o||{}); nodes.push(nd); return nd; }
+function link(a,b,loop){ links.push({a,b,loop:!!loop}); if(!b.parent&&!loop){ b.parent=a; a.kids.push(b); } }
+// centre: us
+const US=mk("Now: us, the fog front",{level:0,who:["To Nyn, 4 September 2026","Humanity, neurons, Earth"]});
+// ---- UP: layers narrow toward the apex ----
+const L2=[ mk("Made by something one layer up",{level:-1,who:["Bostrom, ancestor simulations","The Sandbox / Architect","Gnostic demiurge","Plato’s craftsman"]}),
+           mk("Made by the ground itself",{level:-1,who:["Classical Christianity","Islam","Judaism","Sikhism","Bahá’í","Berkeley","Leibniz"]}),
+           mk("Made by us",{level:-1,who:["Wheeler’s participatory universe","Advaita: Brahman is Atman","Self-simulation"]}),
+           mk("Not made",{level:-1,who:["Physicalism","Tegmark’s mathematical universe","Panpsychism","Neutral monism","Spinoza"]}) ];
+L2.forEach(n=>link(US,n));
+const L3=[ mk("Another layer up again",{level:-2,who:["The Infinite Box Cascade","Nested simulations"]}),
+           mk("The ground itself",{level:-2,who:["Aquinas’ first cause","Plotinus’ emanation","Brahman"]}),
+           mk("Nothing further",{level:-2,who:["Russell","Hume","Spinoza","Necessitarianism"]}),
+           mk("One of many",{level:-2,who:["Eternal inflation","Many worlds","Smolin’s cosmological selection","Your multi-universal evolution"]}) ];
+link(L2[0],L3[0]); link(L2[0],L3[1]); link(L2[0],L3[2]);
+link(L2[1],L3[1]); link(L2[2],L3[1]); link(L2[2],L3[0]);
+link(L2[3],L3[2]); link(L2[3],L3[3]);
+const L4=[ mk("Can be stated in our logic",{level:-3,who:["Every theology with attributes","Every physics of the ground","Graspable, B1"]}),
+           mk("Beyond our logic",{level:-3,who:["Kant’s noumenon","McGinn’s cognitive closure","Not graspable, B2"]}) ];
+L3.forEach(n=>{ link(n,L4[0]); link(n,L4[1]); });
+link(L3[0],L2[0],true);   // the cascade loops: another box, same question
+link(L4[0],L2[0],true);   // stated in our logic: then who made that? same question
+const L5=mk("Closed to us, open to some mind",{level:-4,who:["The fog moves when you move","McGinn","Chomsky’s mysteries"]});
+link(L4[1],L5);
+apexAnchor=L5;
+apex=mk("The Un-Concept",{level:-5,inZ:true,who:["Pseudo-Dionysius","Maimonides","Eckhart","Plotinus’ One","Ein Sof","Ibn Arabi","Nirguna Brahman","Dao De Jing","Zhuangzi","Nagarjuna","Zen","Wittgenstein, Tractatus 7"]});
+link(L5,apex);
+// ---- DOWN: the infinite descent, from the matrix data ----
+function grow(ref,parent,level){ const nd=mk(ref.t,{level,ref,who:(!W(ref).length&&ref.who)?ref.who.slice():[]}); link(parent,nd); for(const k of W(ref)) grow(k,nd,level+1); return nd; }
+const notMade=find("Not made"), mind=find("What we are"), right=find("What is right"), know=find("What we can know"), now=find("Now");
+const D1=mk("What we are made of",{level:1}); link(US,D1); W(notMade).forEach(k=>grow(k,D1,2));
+const D2=mk("What we are",{level:1}); link(US,D2); W(mind).forEach(k=>grow(k,D2,2));
+const D3=mk("What is right",{level:1}); link(US,D3); W(right).forEach(k=>grow(k,D3,2));
+const D4=mk("What we can test",{level:1}); link(US,D4); W(now).forEach(k=>grow(k,D4,2)); W(know).forEach(k=>grow(k,D4,2));
+// holders as leaf dots in the descent only (the mess); above, holders show on focus
+nodes.slice().forEach(nd=>{ if(nd.level>0&&!nd.kids.length&&nd.who.length){ nd.who.forEach(w=>{ const h=mk(w,{level:nd.level+1,holder:true}); link(nd,h); }); nd.who=[]; } });
+// ---------- layout ----------
+const XU=1; let YU=2.6; const ZU=2.2; let cursor=0;
+function lay(nd){ const ks=nd.kids.filter(k=>k.level>nd.level); if(!ks.length){nd.lx=cursor++;} else {ks.forEach(lay); nd.lx=(ks[0].lx+ks[ks.length-1].lx)/2;} }
+[D1,D2,D3,D4].forEach(lay); const total=cursor; const cx0=(total-1)/2;
+let maxD=0; nodes.forEach(n=>{ if(n.level>0) maxD=Math.max(maxD,n.level); });
+YU=Math.max(2.6,(total*0.40)/(maxD+5));
+nodes.forEach(n=>{ if(n.level>0){ n.x=(n.lx-cx0)*XU; n.y=n.level*YU; n.z=0; } });
+US.x=0;US.y=0;US.z=0;
+const spread=total*0.22;
+[L2,L3,L4,[L5]].forEach(row=>{ const k=row.length; row.forEach((n,i)=>{ n.x=(k===1?0:(i-(k-1)/2)*(spread/(k-1)))* (1-(-n.level-1)*0.18); n.y=n.level*YU; n.z=0; }); });
+apex.x=L5.x; apex.y=L5.y; apex.z=ZU*3;
+const root=US, spine=[apex], anchor=apexAnchor;
+// ---------- camera ----------
+const cv=document.getElementById("c"), ctx=cv.getContext("2d");
+let Wd=0,Hd=0,dpr=1; function size(){dpr=Math.min(devicePixelRatio||1,2);Wd=innerWidth;Hd=innerHeight;cv.width=Wd*dpr;cv.height=Hd*dpr;}
+size(); addEventListener("resize",()=>{size();fit();});
+let yaw=0,pitch=0,yawT=0,pitchT=0, scale=10,scaleT=10, tx=0,ty=0,tz=0, txT=0,tyT=0,tzT=0;
+let focus=root; let hover=null;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function fit(){ setFocus(focus,true); }
+function down_(nd){ return nd.kids.filter(k=>k.level>nd.level||nd.level<0); }
+function extent(nd){ let mn=Infinity,mx=-Infinity,dep=0; (function w(n,d){ if(!n.inZ){mn=Math.min(mn,n.x);mx=Math.max(mx,n.x);} dep=Math.max(dep,d); if(n.level>=0) n.kids.forEach(k=>{ if(k.level>n.level) w(k,d+1); }); })(nd,0); return [mn,mx,dep]; }
+function setFocus(nd,instant){
+  focus=nd; txT=nd.x; tyT=nd.y+(nd.level>=0&&nd.kids.length?YU*0.6:0); tzT=nd.z;
+  let [mn,mx,dep]=extent(nd);
+  if(nd===US){ txT=0; tyT=((maxD-5)/2)*YU; mn=-total*0.55; mx=total*0.55; dep=maxD+5; }
+  else if(nd.level<0){ txT=0; tyT=-2.6*YU; mn=-spread*0.75; mx=spread*0.75; dep=5.6; }
+  const span=Math.max(mx-mn,2)*XU;
+  scaleT=Math.min(Math.max(Math.min((Wd*0.86)/span,(Hd*0.78)/Math.max(dep*YU,YU)),1.5),160);
+  if(nd.inZ){ scaleT=Math.min(scaleT,40); if(Math.abs(yawT)<0.35) yawT=0.9; }
+  if(instant){scale=scaleT;tx=txT;ty=tyT;tz=tzT;}
+  save(); crumbs();
+}
+function crumbs(){ const p=[]; for(let n=focus;n;n=n.parent) p.unshift(n);
+  document.getElementById("path").innerHTML=p.map((n,i)=>(i?"<i>›</i>":"")+`<span data-i="${nodes.indexOf(n)}">${esc(n.t)}</span>`).join("");
+  document.querySelectorAll("#path span").forEach(s=>s.addEventListener("click",()=>setFocus(nodes[+s.dataset.i]))); }
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function save(){try{localStorage.setItem("gem-hg",String(nodes.indexOf(focus)));}catch(e){}}
+try{const i=+localStorage.getItem("gem-hg"); if(nodes[i]&&!nodes[i].holder) focus=nodes[i];}catch(e){}
+// ---------- project ----------
+function proj(nd){
+  let x=nd.x-tx, y=nd.y-ty, z=nd.z-tz;
+  const cy=Math.cos(yaw),sy=Math.sin(yaw); let x1=x*cy+z*sy, z1=-x*sy+z*cy;
+  const cp=Math.cos(pitch),sp=Math.sin(pitch); let y1=y*cp-z1*sp, z2=y*sp+z1*cp;
+  const f=1/(1+z2*scale/(Wd*3));
+  return {sx:Wd/2+x1*scale*f, sy:Hd/2+y1*scale*f, f, z:z2};
+}
+function inPath(nd){ for(let n=focus;n;n=n.parent) if(n===nd) return true; return false; }
+function flat(){ return Math.abs(Math.sin(yaw))<0.06 && Math.abs(Math.sin(pitch))<0.06; }
+// ---------- draw ----------
+function draw(){
+  yaw+=(yawT-yaw)*0.12; pitch+=(pitchT-pitch)*0.12; scale+=(scaleT-scale)*0.12; tx+=(txT-tx)*0.12; ty+=(tyT-ty)*0.12; tz+=(tzT-tz)*0.12;
+  ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,Wd,Hd);
+  const ink=css("--ink"),muted=css("--muted"),line=css("--line"),lamp=css("--lamp"),bg=css("--bg");
+  const isFlat=flat(); const P=new Map(); nodes.forEach(n=>P.set(n,proj(n)));
+  // fog front line
+  { const a=proj({x:-total*0.55,y:0,z:0}), b=proj({x:total*0.55,y:0,z:0}); ctx.strokeStyle=lamp; ctx.globalAlpha=0.35; ctx.lineWidth=1; ctx.setLineDash([2,6]); ctx.beginPath(); ctx.moveTo(a.sx,a.sy); ctx.lineTo(b.sx,b.sy); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha=1; }
+  for(const L of links){ if(L.b.inZ&&isFlat) continue; const a=P.get(L.a), b=P.get(L.b); const hot=(inPath(L.b)&&L.b.parent===L.a)||L.a===focus||L.b===focus;
+    ctx.strokeStyle=L.b.inZ?lamp:(L.loop?lamp:(hot?ink:line)); ctx.globalAlpha=L.b.inZ?0.9:(L.loop?0.5:(hot?0.9:0.4)); ctx.lineWidth=hot?1.4:0.8;
+    ctx.setLineDash(L.b.inZ||L.loop?[3,4]:[]);
+    ctx.beginPath(); ctx.moveTo(a.sx,a.sy);
+    if(L.loop){ const mx=(a.sx+b.sx)/2+ (L.a.x>=0?1:-1)*Math.min(140,Wd*0.15), my=(a.sy+b.sy)/2; ctx.quadraticCurveTo(mx,my,b.sx,b.sy); } else ctx.lineTo(b.sx,b.sy);
+    ctx.stroke(); }
+  ctx.setLineDash([]); ctx.globalAlpha=1;
+  const labels=[];
+  for(const n of nodes){ if(n.inZ&&isFlat) continue; const p=P.get(n);
+    if(p.sx<-40||p.sx>Wd+40||p.sy<-40||p.sy>Hd+40) continue;
+    const hot=inPath(n)||n.parent===focus||n===hover||(focus.level<0&&focus.kids.includes(n));
+    let r=n.holder?1.6:(n===US?6:n.level<0?4:n.level===1?3.4:2.4); if(hot) r+=1.2; r*=p.f;
+    ctx.fillStyle=n.inZ?lamp:(n.holder?muted:ink); ctx.globalAlpha=hot?1:(n.holder?0.5:0.75);
+    ctx.beginPath(); ctx.arc(p.sx,p.sy,r,0,Math.PI*2); ctx.fill();
+    const show= n===US||n.level<0||n.level===1||inPath(n)||n.parent===focus||n===hover||(n.inZ&&(inPath(n.parent)||n.parent===focus));
+    if(show) labels.push({n,p}); }
+  ctx.globalAlpha=1;
+  for(const {n,p} of labels){ const big=n===focus; const fs=big?Math.max(18,Math.min(26,Wd*0.03)):(n.holder?12:(n.level<0?15:14));
+    ctx.font=`${n.holder?400:500} ${fs}px Spectral, Georgia, serif`; ctx.textAlign="center"; ctx.textBaseline="bottom";
+    const y=p.sy-(big?10:7)+(n.level===1&&!big&&(n.parent.kids.indexOf(n)%2)?fs+16:0); ctx.lineWidth=4; ctx.strokeStyle=bg; ctx.lineJoin="round"; ctx.strokeText(n.t,p.sx,y);
+    ctx.fillStyle=n.inZ?lamp:(n.holder?muted:ink); ctx.fillText(n.t,p.sx,y); }
+  // holders of the focused upper node: a quiet ring of names
+  if(focus.who&&focus.who.length&&(focus.level<=0||focus.inZ)&&!(focus.inZ&&isFlat)){ const p=P.get(focus); const k=focus.who.length; ctx.font="400 12px Spectral, Georgia, serif"; ctx.fillStyle=muted;
+    focus.who.forEach((w,i)=>{ const a=Math.PI+ (Math.PI*(i+1))/(k+1); const rx=Math.min(Wd*0.34,260), ry=70; const x=p.sx+rx*Math.cos(a), y=p.sy+18+ry*Math.sin(a)*-1; ctx.textAlign=Math.cos(a)<-0.3?"right":Math.cos(a)>0.3?"left":"center"; ctx.lineWidth=4; ctx.strokeStyle=bg; ctx.strokeText(w,x,y); ctx.fillText(w,x,y); }); }
+  if(isFlat&&(focus===anchor||inPath(anchor)||focus===L4[1])){ const p=P.get(anchor); ctx.font="italic 12px Spectral, Georgia, serif"; ctx.fillStyle=lamp; ctx.textAlign="center"; ctx.fillText("the apex has no direction on this screen. tilt.",p.sx,p.sy-26); }
+  requestAnimationFrame(draw);
+}
+// ---------- input ----------
+let down=null, moved=false, pts=new Map(), pinch0=0, clickTimer=null, lastTap=0;
+function pick(x,y){ let best=null,bd=22*22; for(const n of nodes){ if(n.inZ&&flat()) continue; const p=proj(n); const d=(p.sx-x)**2+(p.sy-y)**2; if(d<bd){bd=d;best=n;} } return best; }
+cv.addEventListener("pointerdown",e=>{ cv.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(pts.size===1){down={x:e.clientX,y:e.clientY};moved=false;} if(pts.size===2){const a=[...pts.values()];pinch0=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);} });
+cv.addEventListener("pointermove",e=>{ if(!pts.has(e.pointerId)){ hover=pick(e.clientX,e.clientY); return; }
+  const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const a=[...pts.values()];const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y); if(pinch0){scaleT=Math.min(160,Math.max(4,scaleT*d/pinch0));} pinch0=d; return;}
+  const dx=e.clientX-prev.x, dy=e.clientY-prev.y; if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>6){moved=true;cv.classList.add("drag");}
+  if(moved){ yawT+=dx*0.006; pitchT=Math.max(-1.2,Math.min(1.2,pitchT+dy*0.006)); } });
+function up(e){ pts.delete(e.pointerId); cv.classList.remove("drag"); if(pts.size) return;
+  if(!moved&&down){ const x=down.x,y=down.y; const now=Date.now();
+    if(e.pointerType==="touch"&&now-lastTap<320){ clearTimeout(clickTimer); back(); lastTap=0; return; }
+    lastTap=now; clearTimeout(clickTimer); clickTimer=setTimeout(()=>{ const n=pick(x,y); if(n){ setFocus(n.holder?n.parent:n); } },230); }
+  down=null; }
+cv.addEventListener("pointerup",up); cv.addEventListener("pointercancel",up);
+function back(){ clearTimeout(clickTimer); if(focus.parent) setFocus(focus.parent); }
+addEventListener("contextmenu",e=>{e.preventDefault();back();});
+cv.addEventListener("dblclick",e=>{e.preventDefault();clearTimeout(clickTimer);back();});
+addEventListener("keydown",e=>{ if(e.key==="Escape"||e.key==="Backspace"){e.preventDefault();back();} if(e.key==="ArrowLeft")yawT-=0.15; if(e.key==="ArrowRight")yawT+=0.15; if(e.key==="ArrowUp")pitchT-=0.1; if(e.key==="ArrowDown")pitchT+=0.1; });
+cv.addEventListener("wheel",e=>{e.preventDefault(); scaleT=Math.min(160,Math.max(4,scaleT*(e.deltaY<0?1.12:0.89)));},{passive:false});
+// tilt
+const tb=document.getElementById("tilt"); if("ontouchstart" in window && "DeviceOrientationEvent" in window) tb.style.display="block";
+let base=null;
+tb.addEventListener("click",async()=>{ try{ if(DeviceOrientationEvent.requestPermission){ const r=await DeviceOrientationEvent.requestPermission(); if(r!=="granted") return; } }catch(e){}
+  addEventListener("deviceorientation",e=>{ if(e.gamma==null) return; if(!base) base={g:e.gamma,b:e.beta}; yawT=Math.max(-1.3,Math.min(1.3,(e.gamma-base.g)*Math.PI/180*1.4)); pitchT=Math.max(-1,Math.min(1,(e.beta-base.b)*Math.PI/180*1.2)); });
+  tb.textContent="Tilting"; tb.disabled=true; });
+setFocus(focus,true); requestAnimationFrame(draw);
+</script>
+</body>
+</html>

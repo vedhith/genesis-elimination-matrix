@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11 — Glossary · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>11 — Glossary</h1>
+<p>Every coined term from the conversation and the matrix, and every borrowed
+technical term, with its precise meaning here and its source. Coinages by the
+owner are marked (O), by Gemini (G), by the matrix (M).</p>
+<h2>Coined terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Source</th>
+<th>Meaning in the matrix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Universe Code</td>
+<td>O</td>
+<td>Region <code>B1 C3</code>: the ground is abstract structure or information, and we are it executing. Pillar 1.</td>
+</tr>
+<tr>
+<td>The Sandbox</td>
+<td>O</td>
+<td>Region <code>B1 D1a</code>: our layer is a limited container made by an agent one layer up. Pillar 2. The owner&#39;s key refinement: a sandbox is a <em>limitation</em>, not the code.</td>
+</tr>
+<tr>
+<td>The Architect</td>
+<td>G</td>
+<td>The D1a author. Stance recorded on axis S.</td>
+</tr>
+<tr>
+<td>Clutter / AI</td>
+<td>O</td>
+<td>Region <code>B1 C2 D2</code>: unauthored physical stuff that became aware. Pillar 3.</td>
+</tr>
+<tr>
+<td>The Un-Concept</td>
+<td>O</td>
+<td><code>B2b</code>: a ground that is not code, not a box, not any concept. Pillar 4. Must be filed B2b, not B2a, to do its work.</td>
+</tr>
+<tr>
+<td>The Unconception</td>
+<td>O/M</td>
+<td>Proper name for the Un-Concept. Two senses at once: not conceivable, and the beginning before any conception. Family: an unconcept (position-relative, B2a), unconceptive (adj), to unconceive (release an imposed concept), unconceiving (the practice). See 13-the-word.md.</td>
+</tr>
+<tr>
+<td>Akatalepton</td>
+<td>M</td>
+<td>Classical synonym: Greek &quot;that which cannot be grasped.&quot;</td>
+</tr>
+<tr>
+<td>Fog Front</td>
+<td>O</td>
+<td>The boundary of <code>K(p)</code>: what an observer at position <code>p</code> can settle. Always position-indexed (Axiom 2).</td>
+</tr>
+<tr>
+<td>Fog Line 1/2/3</td>
+<td>G</td>
+<td>Labels for the fog at the bottom of each Layer 2 branch in Gemini&#39;s Turn 13 diagram. Superseded by axis F.</td>
+</tr>
+<tr>
+<td>Central Finite Curve</td>
+<td>O (name from <em>Rick and Morty</em>)</td>
+<td>The owner&#39;s name for the whole layered structure with fog above and testable branches below. Used here for the hourglass picture in 02 §7.</td>
+</tr>
+<tr>
+<td>Genesis Elimination Matrix</td>
+<td>G</td>
+<td>The whole map plus the elimination game. Name kept for the document set.</td>
+</tr>
+<tr>
+<td>The Knowability Horizon</td>
+<td>G</td>
+<td>Same as Fog Front; term retired in favor of axis F.</td>
+</tr>
+<tr>
+<td>Gate 1</td>
+<td>O/G</td>
+<td>Constraint: <code>S+ ∧ omnipotent ∧ omniscient ∧ gratuitous suffering</code> is inconsistent. The problem of evil. Level 1–4 depending on &quot;gratuitous.&quot;</td>
+</tr>
+<tr>
+<td>Gate 2</td>
+<td>O/G</td>
+<td>Constraint: <code>B2b ∧ asserted S or C</code> is a category error. Reclassifies, does not eliminate.</td>
+</tr>
+<tr>
+<td>Infinite Box Cascade</td>
+<td>G</td>
+<td>The D1a chain of authors above us. Terminates iff axis A is A1 or A2.</td>
+</tr>
+<tr>
+<td>The Great Collapse</td>
+<td>G</td>
+<td>Convergence of upper layers into indistinguishability from <code>p_now</code>. Restated: convergence of knowability, not of structure.</td>
+</tr>
+<tr>
+<td>The Infinite Descent</td>
+<td>G</td>
+<td>The many testable sub-cells below To Nyn.</td>
+</tr>
+<tr>
+<td>Sandwiches out</td>
+<td>O</td>
+<td>The owner&#39;s note that the bottom also has a limit (Planck scale, collider reach).</td>
+</tr>
+<tr>
+<td>Code to folder</td>
+<td>O</td>
+<td>Higher levels of description are cleaner than lower ones. Restated as emergence / effective theory (03 §2).</td>
+</tr>
+<tr>
+<td>The Inversion</td>
+<td>G</td>
+<td>Gemini&#39;s claim that &quot;code to folder&quot; inverts Hoffman. Rejected; see 03 §2.</td>
+</tr>
+<tr>
+<td>Ascent principle</td>
+<td>M (from O)</td>
+<td>Candidate norm: the good is moving up levels of understanding. 06 §7.</td>
+</tr>
+<tr>
+<td>Efficiency trap / Anti-School Protocol</td>
+<td>O/G</td>
+<td>Institutions optimize performance inside the box rather than enlarging it. 06 §7, 07 §8.</td>
+</tr>
+<tr>
+<td>Sandbox Verification Protocol</td>
+<td>G</td>
+<td>Everything inside our logic is in principle settleable; only B2 is not. Restated as axis F plus FG (Gödel) as a proven exception inside our logic.</td>
+</tr>
+<tr>
+<td>Sub-C, C-Meta, Sim-Loop, Trap-Ag, PurePhys, EmergAI</td>
+<td>G</td>
+<td>Gemini&#39;s six sub-branch codes from Turn 12. Mapped in <a href="../notes/genesis-elimination-matrix.html">../notes/genesis-elimination-matrix.md</a> §3 and superseded by cell addresses.</td>
+</tr>
+<tr>
+<td>Protonet, Bottleneck Ext, Material Soup, Non-Dual</td>
+<td>G</td>
+<td>Gemini&#39;s subtitles for the four pillars in the Turn 12 diagram. No independent meaning.</td>
+</tr>
+<tr>
+<td>The Driver / Emotion-Pod, The Mechanic / Algorithm, The Fabric / Paradox</td>
+<td>G</td>
+<td>Gemini&#39;s Layer 2 labels in Turn 13. Correspond to <code>D1a S</code>, <code>C2-f</code>, <code>B2b</code> respectively.</td>
+</tr>
+<tr>
+<td>Isabella Cognita strategy</td>
+<td>G</td>
+<td>Gemini&#39;s name for the &quot;observer is already outside&quot; escape route (05 §7). No known referent. Preserved as an unexplained coinage.</td>
+</tr>
+<tr>
+<td>Reflection principle</td>
+<td>G</td>
+<td>Claim that an author must possess any property it builds into a system. Rejected in 05 §3.</td>
+</tr>
+<tr>
+<td>Hysterical level</td>
+<td>O</td>
+<td>The owner&#39;s word for a scale of impossibility. Likely intended &quot;apophatic&quot; or &quot;heretical.&quot; Realized as the five-level scale in 06 §6.</td>
+</tr>
+<tr>
+<td>To Nyn (τὸ νῦν)</td>
+<td>M (Aristotle)</td>
+<td>The named, dated standing point <code>p_now</code> from which all F labels are read. 08.</td>
+</tr>
+<tr>
+<td>Content fog / Nature fog</td>
+<td>M</td>
+<td>Two things called &quot;fog&quot; in the conversation: limits on decoding active thought vs. the impossibility of third-person access to experience. 04 §7, 07 §7.</td>
+</tr>
+<tr>
+<td>Moving-fog theorem</td>
+<td>M (from O&#39;s Turn 14)</td>
+<td><code>K(p₁) ⊆ K(p₂)</code> for <code>p₂</code> above <code>p₁</code>; hence &quot;unknowable&quot; is position-relative. 07 §4.</td>
+</tr>
+<tr>
+<td>Cell address</td>
+<td>M</td>
+<td>A string of axis values locating a theory, e.g. `A1 B1 C2 D2b</td>
+</tr>
+</tbody></table>
+<h2>Axes and codes</h2>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Owner document</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>02</td>
+<td>A1 terminal necessary; A2 terminal brute; A3 no terminal</td>
+</tr>
+<tr>
+<td>B</td>
+<td>02</td>
+<td>B1 graspable; B2a graspable by some mind not ours; B2b ungraspable by any</td>
+</tr>
+<tr>
+<td>C</td>
+<td>03</td>
+<td>C1 experiential; C2 concrete non-experiential; C3 abstract; C4 neutral; C5 plural</td>
+</tr>
+<tr>
+<td>C (mind)</td>
+<td>04</td>
+<td>C2-i illusionism; C2-f functionalism; C2-b biological; C1; C4; C5; B2a-m mysterianism</td>
+</tr>
+<tr>
+<td>D</td>
+<td>02</td>
+<td>D1a higher-layer author; D1b ground-identical author; D1c we are authors; D2a unauthored necessary; D2b unauthored brute; D2c unauthored selected</td>
+</tr>
+<tr>
+<td>S</td>
+<td>05</td>
+<td>S0 indifferent; S+ benevolent; S− malevolent; S± mixed/alien; S? unknown</td>
+</tr>
+<tr>
+<td>M</td>
+<td>06</td>
+<td>M1a ground realism; M1b naturalist realism; M1c non-naturalist realism; M2a error theory; M2b expressivism; M2c constructivism; M2d relativism</td>
+</tr>
+<tr>
+<td>N</td>
+<td>06</td>
+<td>N1 consequentialist; N2 deontological; N3 virtue; N4 contractarian; N5 care; N6 divine command</td>
+</tr>
+<tr>
+<td>F</td>
+<td>07</td>
+<td>F0 settled; F1 testable soon; F2 knowable, no test; FG provably undecidable; F3 closed to us; F4 closed to all</td>
+</tr>
+</tbody></table>
+<h2>Borrowed technical terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hard problem</td>
+<td>Why functional processing is accompanied by experience.</td>
+<td>Chalmers 1995</td>
+</tr>
+<tr>
+<td>Other-minds problem</td>
+<td>No third-person access to another&#39;s experience.</td>
+<td>Classical; Axiom 6</td>
+</tr>
+<tr>
+<td>Cognitive closure</td>
+<td>Some truths are inaccessible to a mind of a given architecture.</td>
+<td>McGinn 1989</td>
+</tr>
+<tr>
+<td>Noumenon / phenomenon</td>
+<td>Things in themselves vs. things as they appear.</td>
+<td>Kant 1781</td>
+</tr>
+<tr>
+<td>Apophatic / via negativa</td>
+<td>Speaking of the ground only by negation.</td>
+<td>Pseudo-Dionysius; Maimonides</td>
+</tr>
+<tr>
+<td>Euthyphro dilemma</td>
+<td>Is X good because commanded, or commanded because good?</td>
+<td>Plato</td>
+</tr>
+<tr>
+<td>Is–ought gap</td>
+<td>Descriptive premises do not entail normative conclusions.</td>
+<td>Hume 1739</td>
+</tr>
+<tr>
+<td>Problem of evil (logical / evidential)</td>
+<td>Inconsistency / improbability of S+ with suffering.</td>
+<td>Mackie 1955 / Rowe 1979</td>
+</tr>
+<tr>
+<td>Free will defense</td>
+<td>Suffering as cost of free agency; answers the logical form.</td>
+<td>Plantinga 1974</td>
+</tr>
+<tr>
+<td>Evolutionary debunking</td>
+<td>Moral beliefs explained by selection, undermining M1c.</td>
+<td>Street 2006; Joyce 2006</td>
+</tr>
+<tr>
+<td>Emergence / effective theory</td>
+<td>Higher-level laws not practically deducible from lower.</td>
+<td>Anderson 1972; Wilson</td>
+</tr>
+<tr>
+<td>Interface theory of perception</td>
+<td>Perception evolved for fitness, not truth.</td>
+<td>Hoffman 2019</td>
+</tr>
+<tr>
+<td>Fitness-beats-truth theorem</td>
+<td>Formal result within Hoffman&#39;s model.</td>
+<td>Hoffman, Prakash, Singh</td>
+</tr>
+<tr>
+<td>Simulation argument</td>
+<td>Trilemma implying most observers are simulated, given premises.</td>
+<td>Bostrom 2003</td>
+</tr>
+<tr>
+<td>Cosmological natural selection</td>
+<td>Universes reproduce and evolve constants.</td>
+<td>Smolin 1997</td>
+</tr>
+<tr>
+<td>Mathematical universe hypothesis</td>
+<td>All consistent mathematical structures exist physically.</td>
+<td>Tegmark 2014</td>
+</tr>
+<tr>
+<td>It from bit</td>
+<td>Information as fundamental.</td>
+<td>Wheeler 1989</td>
+</tr>
+<tr>
+<td>Participatory universe</td>
+<td>Observers help bring the universe into being.</td>
+<td>Wheeler</td>
+</tr>
+<tr>
+<td>Amplituhedron</td>
+<td>Geometric object whose volume gives scattering amplitudes in planar N=4 SYM.</td>
+<td>Arkani-Hamed &amp; Trnka 2013</td>
+</tr>
+<tr>
+<td>Holographic error correction</td>
+<td>Bulk spacetime encoded in boundary via QEC (AdS/CFT toy models).</td>
+<td>Almheiri, Dong, Harlow 2015</td>
+</tr>
+<tr>
+<td>Criticality</td>
+<td>Brain dynamics near a phase transition.</td>
+<td>Beggs &amp; Plenz 2003</td>
+</tr>
+<tr>
+<td>Global Workspace Theory</td>
+<td>Consciousness as global broadcast.</td>
+<td>Baars 1988; Dehaene</td>
+</tr>
+<tr>
+<td>Integrated Information Theory</td>
+<td>Consciousness as integrated causal structure (Φ).</td>
+<td>Tononi 2004</td>
+</tr>
+<tr>
+<td>Illusionism</td>
+<td>Phenomenal consciousness is an introspective illusion.</td>
+<td>Frankish 2016; Dennett</td>
+</tr>
+<tr>
+<td>Panpsychism / cosmopsychism</td>
+<td>Experience is fundamental / the cosmos is the fundamental subject.</td>
+<td>Goff; Strawson; Shani</td>
+</tr>
+<tr>
+<td>Neutral monism</td>
+<td>Ground is neither mental nor physical.</td>
+<td>Russell; James; Mach</td>
+</tr>
+<tr>
+<td>Analytic idealism</td>
+<td>Reality is mind; brains are dissociated alters.</td>
+<td>Kastrup</td>
+</tr>
+<tr>
+<td>Purusha / Prakriti</td>
+<td>Pure witness / active matter.</td>
+<td>Samkhya</td>
+</tr>
+<tr>
+<td>Nirguna Brahman</td>
+<td>Brahman without attributes.</td>
+<td>Advaita Vedanta</td>
+</tr>
+<tr>
+<td>Gödel incompleteness</td>
+<td>Consistent arithmetic-capable systems have unprovable truths.</td>
+<td>Gödel 1931</td>
+</tr>
+<tr>
+<td>Halting problem</td>
+<td>No general decision procedure for program termination.</td>
+<td>Turing 1936</td>
+</tr>
+<tr>
+<td>Pessimistic meta-induction</td>
+<td>Past &quot;final&quot; theories were superseded; so will current ones.</td>
+<td>Laudan 1981</td>
+</tr>
+<tr>
+<td>Unconceived alternatives</td>
+<td>Elimination fails because live options were never conceived.</td>
+<td>Stanford 2006</td>
+</tr>
+<tr>
+<td>Underdetermination</td>
+<td>Evidence compatible with multiple theories.</td>
+<td>Duhem; Quine</td>
+</tr>
+<tr>
+<td>Distributed / extended cognition</td>
+<td>Tools and groups are part of the cognitive system.</td>
+<td>Clark &amp; Chalmers 1998</td>
+</tr>
+<tr>
+<td>Optically pumped magnetometer (OPM)</td>
+<td>Room-temperature magnetic sensor enabling wearable MEG.</td>
+<td>Nottingham group</td>
+</tr>
+<tr>
+<td>Inverse problem (MEG/EEG)</td>
+<td>Non-unique reconstruction of sources from surface fields.</td>
+<td>Standard</td>
+</tr>
+</tbody></table>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

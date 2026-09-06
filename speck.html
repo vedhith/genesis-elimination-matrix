@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="The Speck: the plane of everything we can state, and the one direction no turn reveals.">
+<title>The Speck</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap">
+
+<style>
+:root{--bg:#0F141A;--ink:#E7EBEF;--muted:#8B97A4;--line:#2B3540;--lamp:#E2A749;--plane:#1B2530;--dead:#7A5560;--focus:#71A9E4}
+:root[data-theme="light"]{--bg:#0F141A}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 "IBM Plex Sans",system-ui,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab}canvas.drag{cursor:grabbing}
+#top{position:fixed;top:14px;left:16px;right:100px;z-index:2;font:italic 400 15px/1.3 "Spectral",Georgia,serif;color:var(--muted)}
+#top b{font-style:normal;font-weight:500;color:var(--ink)}
+#tilt{position:fixed;top:10px;right:14px;z-index:2;font:500 12px "IBM Plex Sans",sans-serif;color:var(--lamp);background:transparent;border:1px solid var(--lamp);border-radius:999px;padding:6px 12px;cursor:pointer;display:none}
+#hint{position:fixed;bottom:14px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted);pointer-events:none;z-index:2;padding:0 16px}
+#card{position:fixed;left:16px;bottom:44px;max-width:300px;font-size:13px;color:var(--muted);z-index:2;pointer-events:none}
+#card b{display:block;font:500 17px "Spectral",Georgia,serif;color:var(--ink);margin-bottom:2px}
+</style>
+<link rel="stylesheet" href="./theme.css">
+<link rel="stylesheet" href="./nav.css">
+<script src="./nav.js" defer data-page="speck" data-root="./" data-pos="br"></script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="top"><b>The plane is everything we can state.</b> Seen flat, it is all there is. Tilt it.</div>
+<button id="tilt">Tilt phone</button>
+<div id="card"></div>
+<div id="hint">drag or tilt to turn · scroll or pinch to zoom · hover or tap a point · right-click or double-tap to reset</div>
+<script>
+// ---- the plane: every theory we can state, placed by when it was conceived (x) and what it says about moral facts (z: none … facts)
+const PLANE=[
+ ["Upanishads: Brahman",-700,.6],["Anaximander: the boundless",-580,0],["Democritus: atoms",-420,-.4],["Plato: the Forms",-380,1],["Aristotle",-340,.7],["Epicurus",-300,-.3],["Stoics: Logos",-300,.6],["Samkhya",-200,.2],
+ ["Nagarjuna: emptiness",150,-.4],["Plotinus: the One",250,.8],["Augustine",400,1],["Pseudo-Dionysius: negation",500,.5],["Shankara: Advaita",800,.3],["Ibn Arabi",1200,.6],["Maimonides",1190,.8],["Aquinas",1270,1],["Eckhart",1310,.5],
+ ["Descartes: two substances",1641,.5],["Spinoza: one substance",1677,.4],["Leibniz: monads",1714,.8],["Berkeley: idealism",1710,.8],["Hume",1739,-.6],["Kant: the noumenon",1781,.6],["Hegel",1807,.3],["Schopenhauer",1818,-.2],["Mill",1863,.4],["Nietzsche",1886,-.9],["Sidgwick",1874,.7],
+ ["Russell, James: neutral monism",1921,0],["Gödel: incompleteness",1931,0],["Ayer: expressivism",1936,-.9],["Turing",1936,0],["Everett: many worlds",1957,0],["Zeh: decoherence",1970,0],["Rawls",1971,-.3],["Mackie: error theory",1977,-1],["Wheeler: it from bit",1989,0],["Dennett",1991,-.3],
+ ["Chalmers: the hard problem",1995,0],["Smolin: cosmic selection",1997,0],["Bostrom: simulation",2003,0],["Tononi: IIT",2004,0],["Parfit",2011,1],["Arkani-Hamed: amplituhedron",2013,0],["Tegmark: mathematical universe",2014,0],["Frankish: illusionism",2016,-.3],["Goff: panpsychism",2017,0],["Hoffman: interface",2019,0],["Kastrup",2019,0],["Cortical Labs",2022,0],["Tang: brain decoder",2023,0],["You, now",2026,0]
+];
+const X=y=>((y+700)/2726)*2-1; // year -> -1..1
+// ---- what the plane lets us see above the fog. Rays: a concept on the plane that acts as a lens, and what it shows.
+const LENS=[
+ {from:"Gödel: incompleteness",to:[["the fog inside our own logic",1,0]],why:"A proven limit: some truths no system can reach. The fog is not only above us."},
+ {from:"Bostrom: simulation",to:[["a maker one box up",1.2,0],["its maker",2.2,0],["and again…",3,0]],why:"If many minds run ancestor simulations, most observers are inside one. Layer 2, then the cascade."},
+ {from:"Epicurus",to:[["what any maker cannot be",1,.5]],why:"Suffering constrains a maker’s stance. Not all-good and all-powerful at once."},
+ {from:"Zeh: decoherence",to:[["a conscious observer renders reality",.6,0]],dead:true,why:"A what-if that died. Any detector collapses the pattern; no mind needed."},
+ {from:"Smolin: cosmic selection",to:[["one of many",1.5,0],["the selector",2.5,0]],why:"Universes that reproduce. Ours is selected, not made."},
+ {from:"Arkani-Hamed: amplituhedron",to:[["space and time are not fundamental",1,0],["what they emerge from",2,0]],why:"Geometry outside spacetime gives the right answers. Something is underneath."},
+ {from:"Kant: the noumenon",to:[["the limit itself",1.6,.3]],why:"We know appearances. The thing in itself is the boundary, seen from inside."},
+ {from:"Pseudo-Dionysius: negation",to:[["speech by negation only",1,.5]],why:"The only honest words about the ungraspable are what it is not."},
+ {from:"Tegmark: mathematical universe",to:[["every consistent structure exists",1.3,0]],why:"If mathematics is all there is, our world is one solution among all."}
+];
+// ---- the speck: what-ifs we can stream from today’s theories. Small. Like an atom against the room.
+const SPECK=["we are information","we are a lens for a wider mind","the maker is indifferent","time is a landscape","the fog moves when we move","biology is one implementation"];
+// ---- build
+const nodes=[]; const byName={};
+PLANE.forEach(([t,y,m])=>{ const n={t,year:y,x:X(y),y:0,z:m*0.9,kind:"plane"}; nodes.push(n); byName[t]=n; });
+const rays=[];
+LENS.forEach((L,k)=>{ let prev=byName[L.from]; prev.lens=true; prev.why=L.why; const zoff=((k/(LENS.length-1))-0.5)*1.3, xoff=(k%2?1:-1)*0.14;
+  L.to.forEach(([t,h,dz],i)=>{ const n={t,x:prev.x+xoff*(i?0.5:1),y:h,z:(i?prev.z:prev.z+zoff*0.6)+dz*0.3,kind:"up",dead:!!L.dead,why:L.why}; nodes.push(n); rays.push({a:prev,b:n,dead:!!L.dead,fork:i>0}); prev=n; }); L.last=prev; });
+const you=byName["You, now"];
+SPECK.forEach((t,i)=>{ const a=(i/SPECK.length)*Math.PI*2; const n={t,x:you.x+0.045*Math.cos(a),y:0.22+0.05*Math.sin(a*2),z:you.z+0.045*Math.sin(a),kind:"speck"}; nodes.push(n); rays.push({a:you,b:n,speck:true}); });
+const W={t:"the Unconception",x:0,y:0,z:0,kind:"w"};
+const GRAIN=[]; { let s=7; const rnd=()=>{s=(s*16807)%2147483647;return s/2147483647;}; for(let i=0;i<900;i++){ const u=rnd()*2-1,v=rnd()*Math.PI*2,r=2.2+rnd()*2.6; const q=Math.sqrt(1-u*u); GRAIN.push({x:r*q*Math.cos(v),y:r*u,z:r*q*Math.sin(v)}); } }
+// ---- camera
+const cv=document.getElementById("c"),ctx=cv.getContext("2d"); let Wd,Hd,dpr;
+function size(){dpr=Math.min(devicePixelRatio||1,2);Wd=innerWidth;Hd=innerHeight;cv.width=Wd*dpr;cv.height=Hd*dpr;} size(); addEventListener("resize",size);
+let yaw=0.0,pitch=Math.PI/2,yawT=0.0,pitchT=Math.PI/2, scale=1,scaleT=1; let hover=null,picked=null;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function proj(p){ const cy=Math.cos(yaw),sy=Math.sin(yaw); let x1=p.x*cy+p.z*sy, z1=-p.x*sy+p.z*cy;
+  const cp=Math.cos(pitch),sp=Math.sin(pitch); let y1=p.y*cp-z1*sp, z2=p.y*sp+z1*cp;
+  const S=Math.min(Wd,Hd)*0.38*scale; const f=1/(1+z2*0.12); return {sx:Wd/2+x1*S*f, sy:Hd/2-y1*S*f+Hd*0.08, f, z:z2}; }
+const flat=()=>Math.abs(pitch-Math.PI/2)<0.05&&Math.abs(Math.sin(yaw))<0.05;
+const tilt=()=>Math.min(1,Math.max(0,(Math.abs(pitch-Math.PI/2)+Math.abs(Math.sin(yaw))*0.6)/0.6));
+function txt(s,x,y,font,color,align,bg){ ctx.font=font; ctx.textAlign=align||"center"; ctx.textBaseline="middle"; ctx.lineWidth=4; ctx.lineJoin="round"; ctx.strokeStyle=bg; ctx.strokeText(s,x,y); ctx.fillStyle=color; ctx.fillText(s,x,y); }
+function draw(){
+  yaw+=(yawT-yaw)*0.1; pitch+=(pitchT-pitch)*0.1; scale+=(scaleT-scale)*0.1;
+  ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,Wd,Hd);
+  const ink=css("--ink"),muted=css("--muted"),line=css("--line"),lamp=css("--lamp"),bg=css("--bg"),plane=css("--plane"),dead=css("--dead");
+  const T=tilt(), isFlat=flat();
+  // the volume the plane cannot see: grain, only when turned
+  if(T>0.05){ ctx.fillStyle=muted; for(const g of GRAIN){ const p=proj(g); if(p.z<-1.5) continue; ctx.globalAlpha=0.05+0.25*T*(0.5+0.5*Math.max(0,Math.min(1,(p.z+1)/3))); ctx.beginPath(); ctx.arc(p.sx,p.sy,0.9*p.f,0,7); ctx.fill(); } ctx.globalAlpha=1; }
+  // the plane
+  const C=[proj({x:-1.08,y:0,z:-1.02}),proj({x:1.08,y:0,z:-1.02}),proj({x:1.08,y:0,z:1.02}),proj({x:-1.08,y:0,z:1.02})];
+  ctx.fillStyle=plane; ctx.strokeStyle=line; ctx.lineWidth=1; ctx.beginPath(); C.forEach((p,i)=>i?ctx.lineTo(p.sx,p.sy):ctx.moveTo(p.sx,p.sy)); ctx.closePath(); ctx.fill(); ctx.stroke();
+  // fog: a haze just above the plane, only when turned
+  if(T>0.02){ const F=[proj({x:-1.08,y:0,z:-1.02}),proj({x:1.08,y:0,z:-1.02}),proj({x:1.08,y:0.35,z:-1.02}),proj({x:-1.08,y:0.35,z:-1.02})];
+    const g=ctx.createLinearGradient(0,F[0].sy,0,F[2].sy); g.addColorStop(0,lamp+"55"); g.addColorStop(1,lamp+"00"); ctx.fillStyle=g; ctx.globalAlpha=T; ctx.beginPath(); F.forEach((p,i)=>i?ctx.lineTo(p.sx,p.sy):ctx.moveTo(p.sx,p.sy)); ctx.closePath(); ctx.fill(); ctx.globalAlpha=1;
+    const fl=proj({x:-1.08,y:0.02,z:-1.02}); txt("the fog front",fl.sx+8,fl.sy-10,"italic 12px Spectral, Georgia, serif",lamp,"left",bg); }
+  // axes
+  const ax=[[-700,"−700"],[0,"0"],[1000,"1000"],[1500,"1500"],[2026,"now"]];
+  ax.forEach(([y,l])=>{ const p=proj({x:X(y),y:0,z:1.06}); txt(l,p.sx,p.sy+8,"11px IBM Plex Sans, sans-serif",muted,"center",bg); });
+  { const a=proj({x:1.12,y:0,z:-0.9}), b=proj({x:1.12,y:0,z:0.9}); txt("no moral facts",a.sx+6,a.sy,"11px IBM Plex Sans, sans-serif",muted,"left",bg); txt("moral facts",b.sx+6,b.sy,"11px IBM Plex Sans, sans-serif",muted,"left",bg); const t=proj({x:0,y:0,z:1.16}); txt("when it was first thought",t.sx,t.sy+10,"italic 12px Spectral, Georgia, serif",muted,"center",bg); }
+  if(T>0.3){ [[1,"layer 2"],[2,"layer 3"],[3,"beyond our logic"]].forEach(([h,l])=>{ const p=proj({x:-1.08,y:h,z:1.02}); ctx.globalAlpha=T; txt(l,p.sx-8,p.sy,"italic 12px Spectral, Georgia, serif",muted,"right",bg); ctx.globalAlpha=1; }); }
+  // rays above the fog
+  if(!isFlat){ for(const r of rays){ const a=proj(r.a),b=proj(r.b); ctx.strokeStyle=r.dead?dead:lamp; ctx.globalAlpha=(r.speck?0.5:0.85)*Math.min(1,T*1.6); ctx.lineWidth=r.speck?0.7:1.1; ctx.setLineDash(r.fork?[3,4]:[]); ctx.beginPath(); ctx.moveTo(a.sx,a.sy); ctx.lineTo(b.sx,b.sy); ctx.stroke(); } ctx.setLineDash([]); ctx.globalAlpha=1; }
+  // points
+  const order=nodes.map(n=>({n,p:proj(n)})).sort((a,b)=>a.p.z-b.p.z);
+  for(const {n,p} of order){ if(n.kind!=="plane"&&isFlat) continue; const hot=n===hover||n===picked;
+    let r=n.kind==="plane"?(n.lens?3.2:2.2):n.kind==="speck"?1.4:2.6; if(hot) r+=1.5; r*=p.f;
+    let col=n.kind==="plane"?(n.lens?lamp:ink):n.dead?dead:lamp; ctx.fillStyle=col; ctx.globalAlpha=n.kind==="plane"?0.9:Math.min(1,T*1.6);
+    ctx.beginPath(); ctx.arc(p.sx,p.sy,r,0,7); ctx.fill(); if(n.lens){ ctx.strokeStyle=lamp; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(p.sx,p.sy,r+3,0,7); ctx.stroke(); } }
+  ctx.globalAlpha=1;
+  // labels: lenses and major names on the plane always; up nodes when turned; hover always
+  for(const {n,p} of order){ if(n.kind!=="plane"&&isFlat) continue; const hot=n===hover||n===picked;
+    const major=n.lens||["Plato: the Forms","Aquinas","Kant: the noumenon","Nietzsche","Chalmers: the hard problem","You, now","Plotinus: the One","Upanishads: Brahman","Descartes: two substances"].includes(n.t);
+    if(!(hot||major||(n.kind==="up"&&T>0.3))) continue; if(n.kind==="speck"&&!hot) continue;
+    const c=n.kind==="plane"?(n.lens?lamp:ink):(n.dead?dead:lamp); ctx.globalAlpha=n.kind==="plane"?1:Math.min(1,T*1.6);
+    txt(n.t,p.sx,p.sy-(hot?14:11),`${hot?500:400} ${hot?15:12}px Spectral, Georgia, serif`,c,"center",bg); }
+  ctx.globalAlpha=1;
+  // the speck, named
+  if(!isFlat&&T>0.3){ const p=proj({x:you.x,y:0.34,z:you.z}); ctx.globalAlpha=Math.min(1,T); txt("the speck: what today lets us guess",p.sx,p.sy-8,"italic 12px Spectral, Georgia, serif",lamp,"center",bg); ctx.globalAlpha=1; }
+  // the Un-Concept: the direction no turn reveals
+  { const p=proj(W); const pulse=0.5+0.5*Math.sin(performance.now()/900); ctx.strokeStyle=ink; ctx.globalAlpha=0.35+0.3*pulse; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(p.sx,p.sy,7+3*pulse,0,7); ctx.stroke(); ctx.globalAlpha=1;
+    txt("the Unconception",p.sx,p.sy+22,"500 13px Spectral, Georgia, serif",ink,"center",bg); txt("the direction no turn reveals",p.sx,p.sy+37,"italic 11px Spectral, Georgia, serif",muted,"center",bg); }
+  // card
+  const c=document.getElementById("card"); const n=hover||picked; c.innerHTML=n?`<b>${n.t}</b>${n.year!=null?n.year<0?`${-n.year} BCE`:n.year:""}${n.kind==="up"?(n.dead?"a what-if that died":"seen from the plane through a lens"):""}${n.kind==="speck"?"a what-if streaming from current theories":""}${n.why?`<br>${n.why}`:""}`:"";
+  document.getElementById("top").innerHTML=isFlat?"<b>The plane is everything we can state.</b> Seen flat, it is all there is. Tilt it.":T<0.5?"<b>Turned a little.</b> A few lenses see past the fog. What they show is a speck.":"<b>Turned.</b> Lenses reach layers above; the layers fork; the volume around is what the plane cannot see. One thing stays a point from every angle.";
+  requestAnimationFrame(draw);
+}
+// ---- input
+let down=null,moved=false,pts=new Map(),pinch0=0,lastTap=0;
+function pick(x,y){ let best=null,bd=18*18; for(const n of nodes){ if(n.kind!=="plane"&&flat()) continue; const p=proj(n); const d=(p.sx-x)**2+(p.sy-y)**2; if(d<bd){bd=d;best=n;} } return best; }
+cv.addEventListener("pointerdown",e=>{ cv.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(pts.size===1){down={x:e.clientX,y:e.clientY};moved=false;} if(pts.size===2){const a=[...pts.values()];pinch0=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);} });
+cv.addEventListener("pointermove",e=>{ if(!pts.has(e.pointerId)){hover=pick(e.clientX,e.clientY);return;} const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const a=[...pts.values()];const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y); if(pinch0) scaleT=Math.min(6,Math.max(0.5,scaleT*d/pinch0)); pinch0=d; return;}
+  if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>6){moved=true;cv.classList.add("drag");}
+  if(moved){ yawT+=(e.clientX-prev.x)*0.006; pitchT=Math.max(-0.2,Math.min(Math.PI/2,pitchT-(e.clientY-prev.y)*0.006)); } });
+function up(e){ pts.delete(e.pointerId); cv.classList.remove("drag"); if(pts.size) return;
+  if(!moved&&down){ const now=Date.now(); if(e.pointerType==="touch"&&now-lastTap<320){ reset(); lastTap=0; return; } lastTap=now; picked=pick(down.x,down.y); } down=null; }
+cv.addEventListener("pointerup",up); cv.addEventListener("pointercancel",up);
+function reset(){ yawT=0; pitchT=Math.PI/2; scaleT=1; picked=null; }
+addEventListener("contextmenu",e=>{e.preventDefault();reset();}); cv.addEventListener("dblclick",e=>{e.preventDefault();reset();});
+cv.addEventListener("wheel",e=>{e.preventDefault(); scaleT=Math.min(6,Math.max(0.5,scaleT*(e.deltaY<0?1.12:0.89)));},{passive:false});
+addEventListener("keydown",e=>{ if(e.key==="Escape") reset(); if(e.key==="ArrowLeft")yawT-=0.15; if(e.key==="ArrowRight")yawT+=0.15; if(e.key==="ArrowUp")pitchT=Math.max(-0.2,pitchT-0.1); if(e.key==="ArrowDown")pitchT=Math.min(Math.PI/2,pitchT+0.1); });
+const tb=document.getElementById("tilt"); if("ontouchstart" in window&&"DeviceOrientationEvent" in window) tb.style.display="block"; let base=null;
+tb.addEventListener("click",async()=>{ try{ if(DeviceOrientationEvent.requestPermission){ const r=await DeviceOrientationEvent.requestPermission(); if(r!=="granted") return; } }catch(e){}
+  addEventListener("deviceorientation",e=>{ if(e.gamma==null) return; if(!base) base={g:e.gamma,b:e.beta}; yawT=Math.max(-1.3,Math.min(1.3,(e.gamma-base.g)*Math.PI/180*1.2)); pitchT=Math.max(-0.2,Math.min(Math.PI/2,Math.PI/2-(e.beta-base.b)*Math.PI/180*1.3)); }); tb.textContent="Tilting"; tb.disabled=true; });
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07 — The Fog Front: What Can an Observer at a Given Position Know? · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>07 — The Fog Front: What Can an Observer at a Given Position Know?</h1>
+<p>This document owns axis F (knowability) and gives the owner&#39;s Fog Front a
+precise form that survives the owner&#39;s own Turn 14 objection.</p>
+<h2>1. Definitions</h2>
+<ul>
+<li><strong>Position <code>p</code>:</strong> an observer&#39;s total epistemic situation: sense organs,
+instruments, formal systems available, and the layer of reality it inhabits.</li>
+<li><strong><code>K(p)</code>:</strong> the set of claims an observer at <code>p</code> can settle (prove,
+disprove, or show undecidable) in principle, given unlimited time at that
+position.</li>
+<li><strong><code>K_now(p)</code>:</strong> the subset settleable with instruments actually built.</li>
+<li><strong>Fog Front at <code>p</code>:</strong> the boundary of <code>K(p)</code>. Everything outside it is fog
+<em>from <code>p</code></em>.</li>
+</ul>
+<h2>2. Axis F — knowability status of a claim, relative to <code>p_now</code></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Value</th>
+<th>Meaning</th>
+<th>Examples at To Nyn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F0</td>
+<td>Settled</td>
+<td>Already tested, result in hand.</td>
+<td>fMRI decodes gist, not verbatim; glia ≈ neurons; no Planck-scale pixelation found at current sensitivity.</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>Testable with foreseeable technology</td>
+<td>Inside <code>K(p_now)</code>, not yet in <code>K_now</code>.</td>
+<td>Which correlates track reported experience (GWT vs IIT); whether whole-brain emulation reproduces behavior; lattice gauge theory on quantum computers.</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Knowable in principle, no known test</td>
+<td>Inside <code>K(p_now)</code> but no experiment designed.</td>
+<td>Whether spacetime is emergent from entanglement in our (de Sitter) universe; whether there is a Layer 2 author.</td>
+</tr>
+<tr>
+<td>FG</td>
+<td>Provably undecidable within our formal systems</td>
+<td>Inside our logic, outside <code>K(p)</code> for any <code>p</code> using the same logic.</td>
+<td>Gödel sentences; the halting problem; Chaitin&#39;s Ω digits beyond a point.</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Closed to our position, open to some possible position</td>
+<td>B2a.</td>
+<td>Whether other systems have experience (Axiom 6), if a mind with direct access is coherent; the nature of Layer 3 and above.</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>Closed to every position</td>
+<td>B2b.</td>
+<td>The Un-Concept proper. By definition, nothing can be listed here except the label.</td>
+</tr>
+</tbody></table>
+<p>Exhaustiveness: settled or not; if not, testable soon, testable eventually,
+provably undecidable, closed to us but not all, closed to all. Complete.</p>
+<h2>3. The two components of the Fog Front</h2>
+<p><strong>Proven core (FG).</strong> Gödel (1931): any consistent formal system rich enough
+to express arithmetic contains true statements it cannot prove. Turing (1936):
+no general procedure decides whether a program halts. Chaitin: most digits of
+the halting probability are unknowable. These are inside our logic, are not
+in dispute, and are already a Fog Front. The owner&#39;s intuition that &quot;a system
+cannot read its own code&quot; is <em>partly</em> vindicated here, though the correct
+statement is &quot;a system cannot prove all truths about itself,&quot; which is weaker.</p>
+<p><strong>Speculative extension (F3, F4).</strong> The claim that metaphysical questions
+(axes A, B, C, D) lie beyond <code>K(p)</code> for every human <code>p</code>. This is McGinn&#39;s
+cognitive closure applied broadly. It is a hypothesis. Evidence for it is the
+persistence of the hard problem; evidence against it is that many questions
+once called permanently mysterious (the composition of stars, the origin of
+species) moved from F3 to F0.</p>
+<h2>4. The moving-fog theorem (the owner&#39;s Turn 14, formalized)</h2>
+<p><strong>Claim:</strong> For positions <code>p₁</code> below <code>p₂</code> (where <code>p₂</code> has strictly more
+instruments or a higher layer), <code>K(p₁) ⊆ K(p₂)</code>, and typically the inclusion
+is strict. Therefore a claim in F3 at <code>p₁</code> may be in F1 or F0 at <code>p₂</code>.</p>
+<p><strong>Corollary 1:</strong> &quot;X is unknowable&quot; without a position index is not
+well-formed. The owner&#39;s &quot;we can prove the fog front is real no matter what&quot;
+is true only in the position-relative form: <em>for every <code>p</code>, the boundary of
+<code>K(p)</code> is non-empty</em> (guaranteed by FG alone).</p>
+<p><strong>Corollary 2:</strong> The absolute form, <em>there exists X outside <code>K(p)</code> for all
+<code>p</code></em>, is exactly the claim that F4 is non-empty, which is the claim that the
+Un-Concept exists. It cannot be proven from inside any <code>p</code>, because proving it
+would require surveying all positions. It can only be a posit.</p>
+<p><strong>Corollary 3 (the owner&#39;s self-refutation, resolved):</strong> &quot;Maybe we wake up
+from the Un-Concept to us right now and know more&quot; describes moving from <code>p₁</code>
+to <code>p₂</code>. It shows that what <em>looked like</em> F4 from <code>p₁</code> was F3. It does not
+show F4 is empty. So the owner was right that the fog moves, and right that
+this undermines proving the Un-Concept; but the position-relative Fog Front
+survives untouched.</p>
+<h2>5. What is stable across all positions</h2>
+<p>Only these:</p>
+<ol>
+<li>FG is non-empty at every position that uses a consistent formal system
+capable of arithmetic.</li>
+<li>Axiom 6 (behavior is not experience) holds at every position that
+observes other systems from outside.</li>
+<li>The boundary of <code>K(p)</code> exists for every <code>p</code>.</li>
+</ol>
+<p>Everything else about the fog is position-indexed.</p>
+<h2>6. Relationship to the hourglass</h2>
+<pre><code>      F4  ─────────────────────  Un-Concept (posit; cannot be shown non-empty)
+      F3  ─────────────────────  Layer 3 and above; nature of other minds
+      F2  ─────────────────────  Layer 2 existence; emergent spacetime in our universe
+      F1  ─────────────────────  correlates of experience; emulation; QC simulations
+  ═══ To Nyn ═══════════════════  the standing point, see 08-to-nyn.md
+      F0  ─────────────────────  settled results (many)
+      FG  ─────────────────────  cuts through every level, including below To Nyn
+</code></pre>
+<p>The owner&#39;s picture had the fog only above. FG shows fog also <em>below and
+within</em>: there are truths about arithmetic, and therefore about any physical
+system rich enough to compute, that no position can settle.</p>
+<h2>7. Content fog vs nature fog (from 04-mind.md)</h2>
+<p>Two things were called &quot;fog&quot; in the conversation and must be kept apart:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Claim</th>
+<th>F status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content fog</td>
+<td>Decoders can only read active working memory; a person can resist.</td>
+<td>F0, and shallow: better instruments reduce it.</td>
+</tr>
+<tr>
+<td>Nature fog</td>
+<td>No third-person method settles whether a system experiences.</td>
+<td>F3 at least; possibly F4 if &quot;direct access to another mind&quot; is incoherent.</td>
+</tr>
+</tbody></table>
+<h2>8. Does moving the fog have a cost?</h2>
+<p>The owner suggested (Turn 15) that tools like libraries and Google expand
+<code>K_now</code> while shrinking individual capability. In matrix terms: <strong><code>K_now(p)</code>
+for a civilization can grow while <code>K_now(individual)</code> shrinks</strong>, because the
+civilization&#39;s position includes the tools and the individual&#39;s may not. This
+is a real distinction (distributed cognition; Clark and Chalmers 1998). The
+empirical claim that it makes individuals &quot;dumber&quot; is weak (Flynn effect;
+mixed replications of the Google-effect study). The structural point stands:
+<code>p</code> can be a person, a lab, or a species, and the fog is different for each.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

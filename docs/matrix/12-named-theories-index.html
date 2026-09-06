@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12 — Named Theories Index: Proof of Coverage · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>12 — Named Theories Index: Proof of Coverage</h1>
+<p>Every named theory, tradition, or position mentioned in the conversation or
+the matrix, alphabetically, with its cell address. If a theory has no address,
+the partition has failed and must be repaired. As of To Nyn 2026-09-04, every
+entry has one.</p>
+<p>Notation per <a href="00-index.html">00-index.md</a>. <code>?</code> = silent on that axis.
+<code>{a,b}</code> = spans values. Genesis address is <code>A B C D [S]</code>; morality is <code>M N</code>;
+knowability is the F status of the theory&#39;s <em>distinctive</em> claim.</p>
+<table>
+<thead>
+<tr>
+<th>Theory / tradition</th>
+<th>Genesis</th>
+<th>Morality</th>
+<th>F</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Advaita Vedanta</td>
+<td>A1 B2b C1 D1c</td>
+<td>M2c / M1a</td>
+<td>F4</td>
+<td>Brahman = Atman puts the observer at the ground (D1c).</td>
+</tr>
+<tr>
+<td>Analytic idealism (Kastrup)</td>
+<td>A? B1 C1 D2</td>
+<td>?</td>
+<td>F2</td>
+<td>Non-theistic C1; the uncovered cell.</td>
+</tr>
+<tr>
+<td>Apophatic theology (Pseudo-Dionysius, Maimonides, Eckhart)</td>
+<td>A1 B2b C? D1b S?</td>
+<td>M1a (by negation)</td>
+<td>F4</td>
+<td>Lives inside Gate 2 knowingly.</td>
+</tr>
+<tr>
+<td>Aristotelian virtue ethics</td>
+<td>?</td>
+<td>M1b N3</td>
+<td>—</td>
+<td>Genesis-neutral.</td>
+</tr>
+<tr>
+<td>Attention Schema Theory (Graziano)</td>
+<td>? B1 C2-{i,f} D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Bahá&#39;í</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a N{2,6}</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Berkeley&#39;s idealism</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Biological naturalism (Searle)</td>
+<td>? B1 C2-b D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Block universe / eternalism</td>
+<td>? B1 C? D2a</td>
+<td>?</td>
+<td>F2</td>
+<td>A claim about time, filed under necessity.</td>
+</tr>
+<tr>
+<td>Bostrom&#39;s simulation argument</td>
+<td>? B1 C{3(layer)/?(ground)} D1a S0</td>
+<td>?</td>
+<td>F2</td>
+<td>Probabilistic; premise T21.</td>
+</tr>
+<tr>
+<td>Buddhism (Theravada)</td>
+<td>A3 B{1,2a} C? D2</td>
+<td>M1b N{1,3}</td>
+<td>F3</td>
+<td>Dependent origination read as A3.</td>
+</tr>
+<tr>
+<td>Buddhism (Yogācāra)</td>
+<td>A? B2a C1 D2</td>
+<td>M1b N3</td>
+<td>F3</td>
+<td></td>
+</tr>
+<tr>
+<td>Christianity (classical)</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a N{2,3,6}</td>
+<td>F2</td>
+<td>Gate 1 pressure at level 1–2.</td>
+</tr>
+<tr>
+<td>Christianity (process theology)</td>
+<td>A1 B1 C1 D1b S+ (not omnipotent)</td>
+<td>M1a</td>
+<td>F2</td>
+<td>Escapes Gate 1 by relaxing omnipotence.</td>
+</tr>
+<tr>
+<td>Clutter / AI (owner&#39;s pillar 3)</td>
+<td>A2 B1 C2 D2b</td>
+<td>M{1b,2}</td>
+<td>F1 partial</td>
+<td></td>
+</tr>
+<tr>
+<td>Cognitive closure (McGinn)</td>
+<td>? B2a ? ?</td>
+<td>?</td>
+<td>F3</td>
+<td></td>
+</tr>
+<tr>
+<td>Consciousness-causes-collapse (von Neumann–Wigner)</td>
+<td>? B1 C5 D?</td>
+<td>?</td>
+<td>F0 disfavored</td>
+<td>T03 invalid as evidence.</td>
+</tr>
+<tr>
+<td>Cosmological natural selection (Smolin)</td>
+<td>A? B1 C2 D2c</td>
+<td>?</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Cosmopsychism (Goff, Shani)</td>
+<td>A1 B1 C1 D2</td>
+<td>M1a possible</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Daoism</td>
+<td>A1 B2b C4 D2</td>
+<td>M2c / M1a N3</td>
+<td>F4</td>
+<td></td>
+</tr>
+<tr>
+<td>Deism</td>
+<td>A1 B1 C? D1b S0</td>
+<td>M1b</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Descartes&#39; evil demon (as hypothesis)</td>
+<td>? B1 C5 D1a S−</td>
+<td>?</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Digital physics (Zuse, Fredkin)</td>
+<td>A? B1 C3 D?</td>
+<td>?</td>
+<td>F2</td>
+<td>T01 constrains discrete versions.</td>
+</tr>
+<tr>
+<td>Divine command theory</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a N6</td>
+<td>—</td>
+<td>Euthyphro applies.</td>
+</tr>
+<tr>
+<td>Dualism, property (Chalmers)</td>
+<td>? B1 C5 D?</td>
+<td>?</td>
+<td>F2</td>
+<td>Epiphenomenal version untestable.</td>
+</tr>
+<tr>
+<td>Dualism, substance (Descartes)</td>
+<td>A1 B1 C5 D1b</td>
+<td>?</td>
+<td>F0 pressured</td>
+<td>T19 null.</td>
+</tr>
+<tr>
+<td>Effective altruism</td>
+<td>A2 B1 C2 D2b</td>
+<td>M{1b,1c} N1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Eliminative materialism (Churchland)</td>
+<td>A2 B1 C2-i D2b</td>
+<td>M2</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Emergent spacetime / holographic QEC (Almheiri, Dong, Harlow; Preskill)</td>
+<td>? B1 C3 D?</td>
+<td>?</td>
+<td>F1 (toy) / F2 (our universe)</td>
+<td>T14, T17.</td>
+</tr>
+<tr>
+<td>Epicureanism</td>
+<td>A2 B1 C2 D2b (gods S0)</td>
+<td>M1b N1</td>
+<td>—</td>
+<td>Origin of Gate 1.</td>
+</tr>
+<tr>
+<td>Error theory (Mackie)</td>
+<td>?</td>
+<td>M2a</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Expressivism (Ayer, Blackburn, Gibbard)</td>
+<td>?</td>
+<td>M2b</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Fitness-beats-truth theorem (Hoffman)</td>
+<td>?</td>
+<td>?</td>
+<td>F0 (within model)</td>
+<td>Formal result; not about reality directly.</td>
+</tr>
+<tr>
+<td>Functionalism / computationalism</td>
+<td>? B1 C2-f D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Global Workspace Theory (Baars, Dehaene)</td>
+<td>? B1 C2-f D?</td>
+<td>?</td>
+<td>F0 partial (T08)</td>
+<td></td>
+</tr>
+<tr>
+<td>Gnosticism</td>
+<td>A1 B2b C5 D1a S−</td>
+<td>M1a N2</td>
+<td>F4</td>
+<td>Demiurge is D1a; true God is B2b.</td>
+</tr>
+<tr>
+<td>Gödel incompleteness</td>
+<td>—</td>
+<td>—</td>
+<td>FG</td>
+<td>Not a theory of reality; a proven limit inside our logic.</td>
+</tr>
+<tr>
+<td>Hegel&#39;s Absolute</td>
+<td>A{1,3} B1 C1 D1c</td>
+<td>M2c</td>
+<td>F2</td>
+<td>Self-grounding; A1 or loop.</td>
+</tr>
+<tr>
+<td>Higher-Order Thought (Rosenthal)</td>
+<td>? B1 C2-f D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Hinduism (theistic, Vaishnava/Shaiva)</td>
+<td>A1 B1 C1 D1b S{+,±}</td>
+<td>M1a N{3,6}</td>
+<td>F2</td>
+<td>Destructive aspects put some readings at S±.</td>
+</tr>
+<tr>
+<td>Hoffman&#39;s interface theory</td>
+<td>? B1 C1 (conscious agents) D?</td>
+<td>?</td>
+<td>F2</td>
+<td>Perception claim is F0-ish; conscious-realism ontology is F2.</td>
+</tr>
+<tr>
+<td>Humanism (secular)</td>
+<td>A2 B1 C2 D2b</td>
+<td>M{1b,2c} N{1,2}</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Illusionism (Dennett, Frankish)</td>
+<td>? B1 C2-i D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Integrated Information Theory (Tononi, Koch)</td>
+<td>? B1 C2-b D?</td>
+<td>?</td>
+<td>F0 partial (T08); Φ FG-adjacent (intractable)</td>
+<td></td>
+</tr>
+<tr>
+<td>Islam (Ash&#39;arite)</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a N6</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Islam (Mu&#39;tazilite)</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1c N2</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Judaism (Rabbinic)</td>
+<td>A1 B{1,2b} C1 D1b S{+,?}</td>
+<td>M1a N{2,6}</td>
+<td>F2</td>
+<td>Maimonides pulls toward B2b.</td>
+</tr>
+<tr>
+<td>Kant&#39;s transcendental idealism</td>
+<td>? B2{a,b} ? ?</td>
+<td>M2c N2</td>
+<td>F3</td>
+<td>Noumenon; constructivist ethics.</td>
+</tr>
+<tr>
+<td>Lovecraftian cosmicism</td>
+<td>A? B2a C2 D1a S±</td>
+<td>M2a</td>
+<td>F3</td>
+<td>Fiction, but a real S± position.</td>
+</tr>
+<tr>
+<td>Mathematical universe (Tegmark)</td>
+<td>A1 B1 C3 D2a</td>
+<td>?</td>
+<td>F2</td>
+<td>T13 would support.</td>
+</tr>
+<tr>
+<td>Mysterianism (McGinn, Pinker)</td>
+<td>? B2a-m ? ?</td>
+<td>?</td>
+<td>F3</td>
+<td></td>
+</tr>
+<tr>
+<td>Natural law (Aquinas)</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a N{2,3}</td>
+<td>—</td>
+<td>Answers Euthyphro via God&#39;s nature.</td>
+</tr>
+<tr>
+<td>Naturalist moral realism (Boyd, Railton)</td>
+<td>?</td>
+<td>M1b</td>
+<td>—</td>
+<td>Survives every genesis cell.</td>
+</tr>
+<tr>
+<td>Neoplatonism (Plotinus, Proclus)</td>
+<td>A1 B2b C1 D2 (emanation, not will)</td>
+<td>M1a N3</td>
+<td>F4</td>
+<td>The One is B2b; emanation is not authorship.</td>
+</tr>
+<tr>
+<td>Neutral monism (Russell, James, Mach)</td>
+<td>A? B1 C4 D2</td>
+<td>?</td>
+<td>F2</td>
+<td>Uncovered cell.</td>
+</tr>
+<tr>
+<td>Non-naturalist realism (Moore, Parfit, Enoch)</td>
+<td>?</td>
+<td>M1c</td>
+<td>—</td>
+<td>Debunking pressure.</td>
+</tr>
+<tr>
+<td>Open theism</td>
+<td>A1 B1 C1 D1b S+ (not omniscient of future)</td>
+<td>M1a</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Orch-OR (Penrose, Hameroff)</td>
+<td>? B1 C2-b (quantum) D?</td>
+<td>?</td>
+<td>F1 negative-leaning (T18)</td>
+<td></td>
+</tr>
+<tr>
+<td>Owner&#39;s working position</td>
+<td>A? B2b C? D1a S{0,±} (20–25%)</td>
+<td>M2c + ascent N3</td>
+<td>F{2,4}</td>
+<td>Turns 11–16.</td>
+</tr>
+<tr>
+<td>Panpsychism, constitutive (Goff, Strawson)</td>
+<td>A? B1 C1 D2</td>
+<td>?</td>
+<td>F2</td>
+<td>Combination problem.</td>
+</tr>
+<tr>
+<td>Participatory universe (Wheeler)</td>
+<td>A? B1 C3 D1c</td>
+<td>?</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Physicalism (default)</td>
+<td>A2 B1 C2 D2b</td>
+<td>M{1b,2}</td>
+<td>F1 partial</td>
+<td></td>
+</tr>
+<tr>
+<td>Platonism (Form of the Good)</td>
+<td>A1 B1 C3 D2a</td>
+<td>M1a (abstract) N3</td>
+<td>F2</td>
+<td>M1a without a will.</td>
+</tr>
+<tr>
+<td>Predictive processing (Seth, Clark)</td>
+<td>? B1 C2-f D?</td>
+<td>?</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>Process philosophy (Whitehead)</td>
+<td>A1 B1 C1 D{1b,2}</td>
+<td>M1a N3</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Relativism (moral)</td>
+<td>?</td>
+<td>M2d</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Rick and Morty&#39;s Central Finite Curve</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Source of the owner&#39;s name; no philosophical content.</td>
+</tr>
+<tr>
+<td>Russellian monism</td>
+<td>A? B1 C{1,4} D2</td>
+<td>?</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Samkhya</td>
+<td>A1 B1 C5 D2</td>
+<td>M1b N3</td>
+<td>F2</td>
+<td>Purusha/Prakriti dualism, no author.</td>
+</tr>
+<tr>
+<td>Simulation, self- (D1c variants)</td>
+<td>? B1 C3 D1c</td>
+<td>?</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>Skeptical theism (Wykstra, Bergmann)</td>
+<td>A1 B1 C1 D1b S+</td>
+<td>M1a</td>
+<td>F2</td>
+<td>Gate 1 escape by denying we can judge &quot;gratuitous.&quot;</td>
+</tr>
+<tr>
+<td>Spinoza</td>
+<td>A1 B1 C4 D2a</td>
+<td>M1b N3</td>
+<td>F2</td>
+<td>One substance, two attributes, necessity.</td>
+</tr>
+<tr>
+<td>Stoicism</td>
+<td>A1 B1 C2 D2a (Logos)</td>
+<td>M1b N3</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Un-Concept (owner&#39;s pillar 4)</td>
+<td>A{1,2} B2b C? D? S?</td>
+<td>none derivable</td>
+<td>F4</td>
+<td></td>
+</tr>
+<tr>
+<td>Universe Code (owner&#39;s pillar 1)</td>
+<td>A? B1 C3 D?</td>
+<td>?</td>
+<td>F2</td>
+<td>Splits into Tegmark (D2a) and Bostrom (D1a).</td>
+</tr>
+<tr>
+<td>Utilitarianism (Bentham, Mill, Singer)</td>
+<td>?</td>
+<td>M{1b,1c} N1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Zen</td>
+<td>A? B2b C? D2</td>
+<td>M2c N3</td>
+<td>F4</td>
+<td>Beginner&#39;s mind as the unlearning practice.</td>
+</tr>
+</tbody></table>
+<h2>Coverage statement</h2>
+<p>Rows: 84. Rows without a genesis address: 6, all of them purely normative
+theories or non-theories (Aristotelian ethics, error theory, expressivism,
+relativism, utilitarianism, naturalist realism, non-naturalist realism,
+Gödel, Rick and Morty). Every theory that makes a claim about reality has a
+genesis address. Every theory that makes a claim about ethics has an M/N
+address. <strong>The partition covers every entry.</strong></p>
+<h2>Cells with no named occupant (unconceived alternatives)</h2>
+<p>These are the places where Rule 2 of the elimination game says a live option
+may be hiding:</p>
+<ul>
+<li><code>A3 B1 C3 D1a</code>: an infinite tower of authored simulations with no base
+reality. Discussed in simulation literature but rarely defended as the
+answer.</li>
+<li><code>A? B1 C4 D1a</code>: a neutral-monist ground with a higher-layer author. No
+known defender.</li>
+<li><code>A? B1 C2 D1c</code>: a physical universe authored by its own inhabitants
+(closed causal loop). Science-fiction bootstrap scenarios; no philosophical
+defender.</li>
+<li><code>A1 B1 C5 D1a S±</code>: dualist substance created by an alien-valued architect.
+Some Gnostic variants approach this.</li>
+<li><code>A? B2a C? D2c</code>: a selected universe whose ground is closed to us but open
+to some mind. Not defended by name.</li>
+</ul>
+<p>Any elimination argument that ends with &quot;therefore only X remains&quot; must show
+these cells are also excluded.</p>
+<h2>Added in the visual map (2026-09-04, later the same day)</h2>
+<p>Names added to leaf holder lists so the map covers more of the field. Cells
+follow their parent leaf.</p>
+<ul>
+<li>Physics bottom (B1 C2): Standard Model, general relativity, string and M-theory, loop quantum gravity, causal sets, causal dynamical triangulations, Wolfram hypergraphs, asymptotic safety, Everett many worlds, Lloyd’s quantum-computer universe, ontic structural realism (Ladyman, Ross), Eddington.</li>
+<li>Mind: attention schema, recurrent processing (Lamme), electromagnetic field theories (McFadden, Pockett), Orch-OR, Yogācāra, Schopenhauer, Leibniz monads, Chalmers Type-F, Hartshorne, Nagel’s <em>Mind and Cosmos</em>, Pauli–Jung dual aspect.</li>
+<li>Makers: Mu’tazilite Islam, Sikhism, Leibniz, Kashmir Shaivism, Zoroastrianism and Manichaeism (new cell: two makers, <code>D1b C5 S{+,−}</code>), Marcion, Fichte.</li>
+<li>No bottom: Penrose conformal cyclic cosmology, bounce cosmologies, Stoic eternal return, Nietzsche’s eternal recurrence.</li>
+<li>Ungraspable: Proclus, Ibn Arabi, Ein Sof, Zhuangzi, Kierkegaard, Du Bois-Reymond’s ignorabimus.</li>
+<li>Morality: Sidgwick, Popper (negative utilitarianism), Korsgaard, Mencius, Aquinas, Nussbaum, Locke, Rousseau, Gauthier, Gilligan, fictionalism (Joyce), Nietzsche, Westermarck, Foot, Huemer.</li>
+</ul>
+<h2>Correction (2026-09-04, appended per Axiom 10)</h2>
+<p>The coverage statement above says 84 rows. The table has 77 rows. The six rows without a genesis address are as listed; the count of rows was overstated and is corrected here rather than in place.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

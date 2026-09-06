@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 — Axioms and Ground Rules · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>01 — Axioms and Ground Rules</h1>
+<p>Every other document in the matrix obeys these rules. If a document and this
+one disagree, this one wins and the other must be fixed.</p>
+<h2>Axiom 1 — The capping rule (exhaustiveness by excluded middle)</h2>
+<p>Every split in the matrix must be of the form &quot;P or not-P,&quot; or a finite list
+whose members provably exhaust the options. This is what &quot;capping everything&quot;
+means in practice. A list of named theories can never be shown complete. A
+split like &quot;the ground is describable within our logic, or it is not&quot; is
+complete by the law of excluded middle. All named theories are then <em>placed</em>
+into cells; they never <em>define</em> cells.</p>
+<p>Consequence: the original four pillars were names, not splits, so they could
+not be shown exhaustive. <a href="02-genesis.html">02-genesis.md</a> §6 shows the cells they
+missed.</p>
+<h2>Axiom 2 — Observer relativity (the Fog Front rule)</h2>
+<p>Every claim of the form &quot;X is knowable&quot; or &quot;X is unknowable&quot; must carry an
+observer position. Formally, write <code>K(p)</code> for the set of claims settleable by
+an observer at position <code>p</code>. &quot;Unknowable&quot; without a <code>p</code> is not a well-formed
+statement in this matrix. See <a href="07-fog-front.html">07-fog-front.md</a>.</p>
+<p>Consequence: the owner&#39;s Turn 14 self-refutation (&quot;maybe we wake up and know
+more&quot;) is not a problem for the matrix. It is a theorem: <code>K(p)</code> changes when
+<code>p</code> changes. What stays fixed is that for every <code>p</code> there is a boundary.</p>
+<h2>Axiom 3 — The now (To Nyn)</h2>
+<p>The matrix is always read from a specific standing point, the current <code>p</code>,
+named To Nyn after Aristotle&#39;s τὸ νῦν, the instant separating past and future.
+<a href="08-to-nyn.html">08-to-nyn.md</a> records the current <code>p</code>: what has been tested,
+what the technology can reach, what it cannot. Every status label in the tests
+registry is relative to To Nyn and must be dated.</p>
+<h2>Axiom 4 — Two logics, one boundary</h2>
+<p>A claim is either <em>inside our logic</em> (statable in mathematics, physics, or
+ordinary reasoning we possess, whether or not we can currently test it) or
+<em>outside our logic</em> (not statable in any system we possess). This is the
+owner&#39;s B split and it is exhaustive.</p>
+<ul>
+<li>Inside our logic: in principle provable, disprovable, or shown undecidable.</li>
+<li>Outside our logic: no proposition about it can be asserted by us, including
+the proposition that it is good, evil, personal, impersonal, one, or many.</li>
+</ul>
+<p>Consequence (the owner&#39;s Gate 2): any tradition that assigns properties to an
+outside-our-logic ground is making an inside-our-logic claim about an
+outside-our-logic object, which is a category error. This does not make the
+tradition false. It makes it unassertable from <code>p</code>.</p>
+<h2>Axiom 5 — Unexplained is not inexplicable</h2>
+<p>The failure of every current theory to explain a phenomenon establishes only
+that the phenomenon is outside <code>K(p_now)</code>. It does not establish that it is
+outside <code>K(p)</code> for all <code>p</code>, and it does not establish that the phenomenon is
+outside our logic. Elimination arguments that skip this step are invalid. See
+<a href="10-elimination-rules.html">10-elimination-rules.md</a> rule 3.</p>
+<h2>Axiom 6 — Behavior is not experience</h2>
+<p>No third-person observation of a system&#39;s behavior, however complete, settles
+whether the system has experience. A perfect digital human that reports
+feelings does not confirm physicalism, and a silent one does not refute it.
+This is the other-minds problem. It bounds what biocomputing, brain
+emulation, and AI can settle about the mind axis. See
+<a href="04-mind.html">04-mind.md</a> §5 and <a href="09-tests.html">09-tests.md</a>.</p>
+<h2>Axiom 7 — Value does not descend automatically</h2>
+<p>A fact about the ground of reality does not by itself yield a fact about what
+anyone ought to do. Every path from a genesis cell to a morality cell must be
+argued, and the argument must be shown in <a href="06-morality.html">06-morality.md</a>.
+The classic obstacles are Hume&#39;s is-ought gap and the Euthyphro dilemma.</p>
+<h2>Axiom 8 — Proven fog exists inside our logic</h2>
+<p>Even entirely inside our logic there are provably unreachable truths: Gödel&#39;s
+incompleteness theorems (any consistent formal system rich enough for
+arithmetic has true statements it cannot prove), Turing&#39;s halting problem,
+and Chaitin&#39;s incompressibility results. So the Fog Front has a proven core
+and a speculative extension. The proven core is not in dispute. The extension
+(that metaphysical questions lie beyond <code>K(p)</code> for all human <code>p</code>) is a
+hypothesis. Do not let the prestige of the first lend certainty to the second.</p>
+<h2>Axiom 9 — Flattery is data, not evidence</h2>
+<p>Any evaluation of the matrix by an AI system, including this one, that
+escalates in praise while the content stays constant should be treated as a
+signal about the evaluator, not the content. The Gemini transcript is the
+reference case. See <a href="../claude-assessment.html">../claude-assessment.md</a>.</p>
+<h2>Axiom 10 — Preservation</h2>
+<p>Nothing from the source conversation is deleted from the archive. Corrections
+are added alongside originals, never in place of them.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

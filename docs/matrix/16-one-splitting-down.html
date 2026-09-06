@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16 — One at the Top, Splitting as It Goes Down · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>16 — One at the Top, Splitting as It Goes Down</h1>
+<p>Owner&#39;s request: show that it is a tree going up, splitting as you go down.
+Metacognition splits into introspection and more, and each of those is its
+own thing. Does this prove the Egg theory, that we are all one?</p>
+<h2>The tree</h2>
+<p><a href="../../one.html">one.html</a> draws it. One node at the top, the Unconception. Below
+it, Being. Below that, six kinds: Mind, Matter, Structure, Value, Knowing,
+Society. Each splits again. Metacognition sits four levels down and splits
+into introspection, self-monitoring, self-control, theory of mind, and
+meta-memory; introspection splits into access, confidence, feeling of knowing,
+tip of the tongue, and introspective error. About three hundred leaves. Every
+node is its own thing, and every node is also a part.</p>
+<p>The shape is the one the owner described: clean at the top, many at the
+bottom. Going up is going from folder to folder; going down is opening them.</p>
+<h2>Does it prove we are all one?</h2>
+<p>No, and the reason is worth having exactly.</p>
+<p>A tree that converges at the top shows <strong>common origin or common category</strong>.
+It does not show <strong>numerical identity</strong> of the leaves. Every living thing
+descends from one ancestor; that does not make you and a mushroom one
+organism. Every concept in the tree falls under Being; that does not make
+introspection and gravity one thing.</p>
+<p>So the tree is compatible with &quot;we are all one&quot; and does not establish it.
+&quot;We are all one&quot; is its own cell, and it has a name.</p>
+<h2>The Egg, named</h2>
+<p>Andy Weir&#39;s short story <em>The Egg</em> (2009): every person who ever lived is the
+same soul, living every life in turn, and the universe is an egg for that one
+being to mature in. In philosophy this is <strong>open individualism</strong> (Daniel
+Kolak, <em>I Am You</em>, 2004): there is exactly one subject of experience, and
+everyone is it. Its ancestors: Advaita Vedanta (Atman is Brahman),
+Schopenhauer (one Will behind all appearances), the Upanishads (<em>tat tvam
+asi</em>, &quot;you are that&quot;), and Schrödinger&#39;s <em>My View of the World</em>.</p>
+<p>The exhaustive split on how many of us there are:</p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Claim</th>
+<th>Who</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open individualism</td>
+<td>One subject; every person is it</td>
+<td>Kolak, Advaita, Schopenhauer, Weir&#39;s Egg</td>
+</tr>
+<tr>
+<td>Closed individualism</td>
+<td>One subject per person, persisting through life</td>
+<td>Common sense; most Western philosophy</td>
+</tr>
+<tr>
+<td>Empty individualism</td>
+<td>No persisting subject; each moment is its own</td>
+<td>Parfit, Buddhist <em>anatta</em>, Hume&#39;s bundle</td>
+</tr>
+</tbody></table>
+<p>Complete: one for all, one each, or none persisting.</p>
+<h2>What would favor the Egg</h2>
+<ul>
+<li>The pop hypothesis plus the owner&#39;s C1 (mind is fundamental) leaning: if
+experience is one field and brains are filters, open individualism follows
+naturally. Cosmopsychism is its metaphysical engine.</li>
+<li>Parfit&#39;s arguments against personal identity mattering push toward empty
+individualism; Kolak&#39;s push the same arguments one step further to open.</li>
+<li>Nothing empirical. The three positions predict the same observations. That
+is why the tree cannot decide it: the tree is a structure of concepts, and
+this is a question about subjects.</li>
+</ul>
+<h2>Where it lands in the matrix</h2>
+<p><code>C1 D1c</code> (mind fundamental, we are the authors) is the Egg&#39;s natural home;
+<code>C1 D2</code> (mind fundamental, unmade) is cosmopsychism&#39;s. The Unconception at
+the apex is compatible with either and asserts neither: under B2b, &quot;we are
+all one&quot; is as unstatable as &quot;we are many.&quot; The owner&#39;s tree points <em>at</em> the
+Egg. It does not get there, for the same reason nothing else does.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

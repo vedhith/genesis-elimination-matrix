@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10 — Elimination Rules: How to Play the Game Without Cheating · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>10 — Elimination Rules: How to Play the Game Without Cheating</h1>
+<p>The owner&#39;s stated goal (Turn 12): &quot;if we can test this chart we can then
+pinpoint if it&#39;s unknowable or knowable by knocking out the knowable theories
+... that&#39;s the game.&quot; These rules make the game valid. Every rule closes a
+hole that the informal version had.</p>
+<h2>Rule 1 — Eliminate cells, not names</h2>
+<p>A named theory may be eliminated only by eliminating a cell it occupies. If
+the theory can relocate to a neighboring cell without losing its content, it
+is not eliminated; it is moved. Record the move.</p>
+<p><em>Why:</em> named theories are elastic. &quot;Simulation hypothesis&quot; survives any
+physics result by adjusting the simulator&#39;s capabilities. Only the cell
+<code>D1a ∧ (specific rendering artifact predicted)</code> is eliminable.</p>
+<h2>Rule 2 — Elimination requires an exhaustive partition</h2>
+<p>You may conclude &quot;therefore the remaining cell is true&quot; only if the cells
+form a partition proven exhaustive by Axiom 1 (excluded middle or a proven
+finite enumeration). Over a list of names, the conclusion is invalid.</p>
+<p><em>Why:</em> the four-pillar version eliminated Code, Sandbox and Clutter and
+concluded Un-Concept. It missed C1 D2, C4, C5 and A3 entirely
+(<a href="02-genesis.html">02-genesis.md</a> §6). Over the partition, the same three
+eliminations leave five live regions, not one.</p>
+<h2>Rule 3 — Unexplained is not inexplicable (Axiom 5)</h2>
+<p>A cell is eliminated by a <em>positive</em> result it forbids, or by a <em>proof</em> of
+internal inconsistency. A cell is never eliminated by the absence of a
+successful theory within it.</p>
+<p><em>Why:</em> the informal game said &quot;if none of the knowable theories explain
+consciousness, the Un-Concept is proven.&quot; That infers F4 from F1/F2 failure.
+Corollary 2 in <a href="07-fog-front.html">07-fog-front.md</a> shows F4 cannot be proven
+from any position. Persistent failure raises the <em>credence</em> of F3/F4 and
+nothing more.</p>
+<h2>Rule 4 — Index every knowability claim to a position (Axiom 2)</h2>
+<p>&quot;Unknowable&quot; must read &quot;outside <code>K(p)</code>&quot; with <code>p</code> named. When To Nyn moves,
+re-check. A claim in F3 at one To Nyn may be F1 at the next.</p>
+<h2>Rule 5 — Distinguish improbable from impossible</h2>
+<p>Use the five-level scale from <a href="06-morality.html">06-morality.md</a> §6:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Label</th>
+<th>Eliminates?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Consistent, live</td>
+<td>No</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Under evidential pressure</td>
+<td>No (lowers credence)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Needs an added premise</td>
+<td>No (records the premise)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Category error</td>
+<td>No (reclassifies to another cell)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Formally inconsistent</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody></table>
+<p>Only level 4 eliminates. Gate 1 (problem of evil) reaches level 4 only when
+&quot;gratuitous&quot; is held fixed, which theists contest; otherwise it is level 1.
+Gate 2 is level 3: it relocates, it does not eliminate.</p>
+<h2>Rule 6 — One test, one axis</h2>
+<p>Record for each test which single axis value it bears on and in which
+direction. A test that &quot;supports simulation&quot; must name the cell (<code>D1a</code> with
+which sub-property) and the alternative it disfavors. See
+<a href="09-tests.html">09-tests.md</a> columns.</p>
+<h2>Rule 7 — Behavior tests never reach experience (Axiom 6)</h2>
+<p>No result of T05, T06, T07 or any emulation, biocomputing or AI benchmark
+may be recorded as bearing on axis C&#39;s experiential content. They may bear on
+C2-f vs C2-b <em>functional</em> predictions only.</p>
+<h2>Rule 8 — Author claims never reach ground claims</h2>
+<p>A result about Layer 2 (D1a author: exists, has stance S) says nothing about
+axes A and B. Do not propagate upward. The owner&#39;s &quot;just another box&quot; is this
+rule.</p>
+<h2>Rule 9 — Value never descends without a bridge (Axiom 7)</h2>
+<p>No genesis result eliminates or establishes an M or N cell without a stated
+bridging premise. The constraint table in <a href="06-morality.html">06-morality.md</a> §4
+lists the only propagations currently justified.</p>
+<h2>Rule 10 — Record eliminations in the tests registry, dated</h2>
+<p>An elimination is recorded as: cell, test ID, date, result, and the rule
+under which it counts. Undated eliminations are void.</p>
+<h2>Rule 11 — Do not let evaluators score the game (Axiom 9)</h2>
+<p>Praise from an AI system or any single evaluator does not change a cell&#39;s
+status. Only registry entries do.</p>
+<h2>Rule 12 — Preserve the eliminated</h2>
+<p>Eliminated cells stay on the map, marked. History of the fog is data
+(Axiom 10).</p>
+<h2>Worked example: applying the rules to the conversation&#39;s &quot;eliminations&quot;</h2>
+<table>
+<thead>
+<tr>
+<th>Claimed elimination</th>
+<th>Rule violated</th>
+<th>Corrected status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;All-good god is mathematically impossible&quot; (T13)</td>
+<td>Rule 5 (level 1 or 2, not 4)</td>
+<td><code>D1b S+</code> under evidential pressure; relocations available.</td>
+</tr>
+<tr>
+<td>&quot;Un-Concept proven by eliminating the other three&quot; (T12, T17)</td>
+<td>Rules 2 and 3</td>
+<td>Invalid. Five uncovered regions remain; F4 unprovable.</td>
+</tr>
+<tr>
+<td>&quot;Hoffman inverted / proved wrong&quot; (T16)</td>
+<td>Rule 1 (no cell eliminated; the &#39;inversion&#39; is a level-of-description claim compatible with Hoffman)</td>
+<td>No change.</td>
+</tr>
+<tr>
+<td>&quot;Double-slit proves rendering&quot; (T9, T12)</td>
+<td>Rule 6 (invalid test, T03)</td>
+<td>No bearing on D1a.</td>
+</tr>
+<tr>
+<td>&quot;Physicists found a piece of the universe code&quot; (T18)</td>
+<td>Rule 6 (amplituhedron is a toy-theory result; bears weakly on C3)</td>
+<td>C3 gets modest mathematical support; nothing eliminated.</td>
+</tr>
+<tr>
+<td>&quot;Clutter is the easiest to knock out or confirm&quot; (T12)</td>
+<td>Rule 7</td>
+<td>Emulation can confirm functional predictions only.</td>
+</tr>
+</tbody></table>
+<p>Under the rules, <strong>the game&#39;s current score is zero eliminations on axes A, B,
+C, D, S, M, N.</strong> Many sub-theory eliminations inside cells (see registry).</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

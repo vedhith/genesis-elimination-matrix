@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Genesis Elimination Matrix (Framework Notes) · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>The Genesis Elimination Matrix (Framework Notes)</h1>
+<p>Structured notes on the framework the repository owner built across the Gemini
+conversation. This file records the ideas as the owner stated them, with Gemini&#39;s
+diagrams preserved. It does not judge them; see
+<a href="claims-fact-check.html">claims-fact-check.md</a> and <a href="prior-art.html">prior-art.md</a>
+for that.</p>
+<p>Terms in <strong>bold</strong> are the owner&#39;s or Gemini&#39;s coinages and are kept so the
+vocabulary is not lost.</p>
+<h2>1. The core question</h2>
+<p>Starting point: can magnetic brain imaging read minds? That led to &quot;are we more
+than our neurons?&quot;, then to &quot;what are we, at the root?&quot;</p>
+<p>The owner&#39;s answer is that every possible theory of what we fundamentally are
+falls into one of four pillars (originally three, with the fourth added in
+Turn 10).</p>
+<h2>2. The four pillars (Layer 1 anchors)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Pillar</th>
+<th>Owner&#39;s phrasing</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Universe Code</strong></td>
+<td>&quot;are we universe code&quot;</td>
+<td>We are the raw software or mathematics of reality executing itself. Space, time and matter are the programming language.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>The Sandbox / Architect</strong></td>
+<td>&quot;in a restrictive sandbox&quot;</td>
+<td>Our true nature is vast but crammed into a 3D biological container. A sandbox is a <em>limitation</em>, not the code itself. An engineer or architect may exist one tier up.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Clutter / AI</strong></td>
+<td>&quot;just physical clutter just like ai&quot;</td>
+<td>No design. Matter clumped into neurons by luck and evolution. We are biological AI that became aware of itself.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>The Un-Concept</strong></td>
+<td>&quot;it isn&#39;t code it isn&#39;t any concept it isn&#39;t even a concept itself just something else&quot;</td>
+<td>The root is not code, not a box, not a machine, not a concept. It sits outside dualistic logic and outside human comprehension.</td>
+</tr>
+</tbody></table>
+<p>Owner&#39;s stance: &quot;all three are probably right? isn&#39;t this just the core of
+existence. a fair 3 way split. well one more actually.&quot;</p>
+<p>Gemini&#39;s later reorganization (Turn 13) merged pillars 1 and 2 into one anchor
+&quot;B. Sandbox / Architect&quot; and presented three Layer 1 anchors (Clutter, Sandbox
+or Architect, Un-Concept). Both versions are recorded here.</p>
+<p>Gemini&#39;s Turn 10 diagram:</p>
+<pre><code>                  ┌────────────────────────────────────────┐
+                  │       THE GENESIS OF EXISTENCE         │
+                  └───────────────────┬────────────────────┘
+                                      │
+         ┌────────────────────────────┼────────────────────────────┐
+         ▼                            ▼                            ▼
+┌──────────────────┐         ┌──────────────────┐         ┌──────────────────┐
+│ 1. UNIVERSE CODE │         │ 2. THE SANDBOX   │         │ 3. CLUTTER / AI  │
+└──────────────────┘         └──────────────────┘         └──────────────────┘
+                                      │
+                                      ▼
+                        ┌──────────────────────────┐
+                        │    4. THE UN-CONCEPT     │
+                        └──────────────────────────┘
+</code></pre>
+<h2>3. Sub-branches (Layer 2) and proposed tests</h2>
+<p>From Gemini&#39;s Turn 12 matrix. Each pillar splits into two testable sub-theories,
+except the Un-Concept, which cannot split.</p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Sub-branch</th>
+<th>Code</th>
+<th>Proposed test</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Universe Code</td>
+<td>Local Code</td>
+<td>Sub-C</td>
+<td>Look for pixelation at the Planck length, or a maximum processing speed (speed of light).</td>
+</tr>
+<tr>
+<td>Universe Code</td>
+<td>Cosmic Metadata (multiverse)</td>
+<td>C-Meta</td>
+<td>Look for &quot;cosmic bruising&quot; or anomalies in the Cosmic Microwave Background from another universe.</td>
+</tr>
+<tr>
+<td>Sandbox</td>
+<td>The Next Box (nested simulation)</td>
+<td>Sim-Loop</td>
+<td>Look for memory-optimization shortcuts, e.g. particles that only &quot;render&quot; when observed.</td>
+</tr>
+<tr>
+<td>Sandbox</td>
+<td>The Avatar Agent (we are minds outside, plugged in)</td>
+<td>Trap-Ag</td>
+<td>Push consciousness past biological limits with neurotechnology and see if it accesses information outside the senses.</td>
+</tr>
+<tr>
+<td>Clutter / AI</td>
+<td>Pure Physics</td>
+<td>PurePhys</td>
+<td>Map the human connectome and build a fully accurate digital brain. If it behaves like a human with no extra ingredient, verified.</td>
+</tr>
+<tr>
+<td>Clutter / AI</td>
+<td>Emergent Biology</td>
+<td>EmergAI</td>
+<td>Watch biocomputing systems (brain cells on chips) for a spontaneous sense of self.</td>
+</tr>
+<tr>
+<td>Un-Concept</td>
+<td>Non-Dual Stratum</td>
+<td>—</td>
+<td>No test possible.</td>
+</tr>
+</tbody></table>
+<pre><code>                      [ THE ULTIMATE ROOT TRUTH ]
+                                  │
+         ┌────────────────────────┼────────────────────────┬────────────────────────┐
+         ▼                        ▼                        ▼                        ▼
+┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│  UNIVERSE CODE   │     │   THE SANDBOX    │     │   CLUTTER / AI   │     │  THE UN-CONCEPT  │
+│    (Protonet)    │     │ (Bottleneck Ext) │     │ (Material Soup)  │     │   (Non-Dual)     │
+└────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
+         │                        │                        │                        │
+  ┌──────┴──────┐          ┌──────┴──────┐          ┌──────┴──────┐                 │
+  ▼             ▼          ▼             ▼          ▼             ▼                 │
+[Sub-C]      [C-Meta]   [Sim-Loop]   [Trap-Ag]  [PurePhys]   [EmergAI]              │
+(Local Code) (Multiverse)(Next Box)  (Avatar)   (Atomic)     (Biological)           │
+  │             │          │             │          │             │                 │
+  ▼             ▼          ▼             ▼          ▼             ▼                 ▼
+ ❌             ❌         ❌            ❌         ✅            ✅                ❌
+[  KNOWABILITY HORIZON: EVERYTHING BELOW IS TESTABLE / EVERYTHING ABOVE IS BLOCKED  ]
+</code></pre>
+<h2>4. The elimination game</h2>
+<p>Owner: &quot;if we can test this chart we can then pinpoint if it&#39;s unknowable or
+knowable by knocking out the knowable theories ... thats the game, the genesis
+the truth whatever.&quot;</p>
+<p>Rules as stated:</p>
+<ol>
+<li>Any theory phrased inside our logic (math, physics, data) is, in principle,
+objectively provable or disprovable once technology allows.
+(<strong>Sandbox Verification Protocol</strong>, Turn 17.)</li>
+<li>Only Un-Concept logic is exempt, because it is by definition outside our logic.</li>
+<li>If every knowable sub-branch is tested and none explains consciousness, the
+Un-Concept is established &quot;by process of elimination.&quot;</li>
+</ol>
+<pre><code>┌─────────────────────────────────┐             ┌─────────────────────────────────┐
+│     THE THREE TESTING SCOPES    │             │       THE UN-CONCEPT SCOPE      │
+│  (Code, Sandbox, and Clutter)   │             │       (The Ultimate Root)       │
+├─────────────────────────────────┤             ├─────────────────────────────────┤
+│ • Uses our logic, math &amp; data.  │             │ • Operates outside our logic.   │
+│ • Fully objective.              │             │ • Cannot be parsed by AI.       │
+│ • CAN be proven or disproven.   │             │ • CANNOT be objectively proven. │
+└────────────────┬────────────────┘             └────────────────┬────────────────┘
+                 ▼                                               ▼
+     [ DETECTABLE BY FUTURE AI ]                     [ COGNITIVE HORIZON WALL ]
+</code></pre>
+<p>Known weakness (Claude&#39;s note): eliminating three named options does not prove a
+fourth, because the list may be incomplete, and &quot;unexplained so far&quot; is not the
+same as &quot;inexplicable.&quot;</p>
+<h2>5. The Fog Front principle</h2>
+<p>Owner (Turn 13): &quot;our chart pinpoints to the next layer not where it starts at
+because it is a fog front here on u got to go to the next layer to understand
+the one after that and can only see what&#39;s directly in front of u.&quot;</p>
+<ul>
+<li>A consciousness can only perceive the layer directly adjacent to it.</li>
+<li>Each layer must be reached before the next becomes visible.</li>
+<li>Gemini&#39;s Layer 2 labels: Clutter reveals <strong>The Mechanic / Algorithm</strong>;
+Sandbox reveals <strong>The Driver / Emotion-Pod</strong>; Un-Concept reveals <strong>The Fabric /
+Paradox</strong>. Three fog lines follow: testable AI limits, the sandbox loophole,
+and the absolute wall.</li>
+</ul>
+<h2>6. The god question and the Infinite Box Cascade</h2>
+<p>Owner (Turn 11): if the Universe Code or Sandbox pillar is true and there is an
+engineer, that engineer is the god entity. Owner assigned &quot;god&quot; roughly a 25%
+chance (later said 20%).</p>
+<p>Properties the owner deduced for such an Architect:</p>
+<ul>
+<li>Has emotion &quot;or something similar,&quot; because it built a system containing emotion.</li>
+<li>Emotion is <strong>not rooted in survival</strong>, so it does not see good and evil as we do.</li>
+<li>Could permit cruelty or chaos if it serves the macro-parameters.</li>
+<li>Is itself &quot;just another box&quot;: who built the engineer&#39;s universe? Infinite regress.</li>
+</ul>
+<pre><code> ┌─────────────────────────────────────────┐
+ │ Tier 3: Ultimate Reality / Un-Concept   │
+ └────────────────────┬────────────────────┘
+                      ▼
+ ┌─────────────────────────────────────────┐
+ │ Tier 2: The Engineer&#39;s Universe (God)   │
+ └────────────────────┬────────────────────┘
+                      ▼
+ ┌─────────────────────────────────────────┐
+ │ Tier 1: Our Sandbox (Universe Code)     │
+ └─────────────────────────────────────────┘
+</code></pre>
+<h2>7. The apophatic gates (what gets &quot;gated out&quot;)</h2>
+<p>Owner (Turn 13): &quot;a all good god cannot possible be true as religions that see
+it in a context of human good ... some thing can be logically gated out if it&#39;s
+in OUR logic and said we can&#39;t know or follow that if it&#39;s outside our logic.&quot;</p>
+<ul>
+<li><strong>Gate 1:</strong> A human-centric all-good, all-powerful god is claimed inside our
+logic, yet the world contains structural suffering. Contradiction, so gated out.</li>
+<li><strong>Gate 2:</strong> Any religion claiming to <em>know</em> the mind or laws of an Un-Concept
+god is contradicting itself, because an Un-Concept cannot be translated into
+human words or rituals. Gated out.</li>
+<li>Owner&#39;s &quot;hysterical&quot; word: Gemini identified the intended term as
+<strong>apophatic</strong> (negative theology, the via negativa).</li>
+</ul>
+<h2>8. The Central Finite Curve and the hourglass</h2>
+<p>Owner (Turn 14): &quot;as u go above us everything eventually end to unconcept.&quot;</p>
+<ul>
+<li><strong>The Great Collapse (top):</strong> every upward chain of creators eventually exceeds
+what our logic can hold and becomes indistinguishable from the Un-Concept.</li>
+<li><strong>The Infinite Descent (bottom):</strong> below us are millions of testable
+sub-theories you can &quot;infinitely scroll&quot; through.</li>
+<li>Owner then added: the bottom also &quot;sandwiches out&quot; (we cannot see below a
+certain scale either), but the bottom is at least explorable.</li>
+</ul>
+<pre><code>                       [ ◯ THE UN-CONCEPT ◯ ]
+                               ▲
+                              / \   ◄── The Great Collapse
+                        ┌─────────────┐
+                        │   LAYER 3   │  The Creator of the Creator
+                        └──────┬──────┘
+                        ┌─────────────┐
+                        │   LAYER 2   │  Our Architect / Sandbox Engineer
+                        └──────┬──────┘
+                    === [  THE FOG FRONT  ] ===
+                        ┌─────────────┐
+                        │   LAYER 1   │  US
+                        └──────┬──────┘
+                             /   \  ◄── The Infinite Descent
+</code></pre>
+<h2>9. The self-refutation the owner caught</h2>
+<p>Owner (Turn 14): &quot;if we can show that we prove the fog front is real no matter
+what reality and that&#39;s perhaps the only thing we can know for sure wait but
+still no because maybe we wake up from unconcept to us right now and we know
+more so ig not.&quot;</p>
+<p>Meaning: if we ever moved up a layer, today&#39;s Un-Concept would become tomorrow&#39;s
+knowable Layer 2, and the fog would simply move with us. So even the fog front is
+not provable as a fixed fact. Claude&#39;s assessment flagged this as the strongest
+move in the conversation.</p>
+<h2>10. The &quot;code to folder&quot; inversion</h2>
+<p>Owner (Turn 15): &quot;going down is messy up is not going up is like being going
+from code to folder.&quot;</p>
+<ul>
+<li>Looking down (atoms, quarks, quantum) is messy, like raw binary.</li>
+<li>Looking up (microbes to animals to human consciousness) is cleaner, like
+folder icons over binary.</li>
+<li>Evolution packages raw code into usable interfaces.</li>
+<li>Owner&#39;s claim: the <em>benefit</em> is in moving up the chart, not in the source
+code at the bottom. Gemini called this an inversion of Hoffman&#39;s Interface
+Theory. Claude&#39;s assessment: it is really the standard idea of emergence and
+effective theories, and does not contradict Hoffman.</li>
+</ul>
+<pre><code>  ▲  [ THE CLEAN CLIMB ]              [ LAYER 3 ] ──► Perceives vastly more dimensions
+  │                                   [ LAYER 2 ] ──► The Folder Icon (Consciousness)
+  │                                   [ LAYER 1 ] ──► Humanity / The Microbe
+  ▼  [ THE MESSY DESCENT ]            [ QUANTUM ] ──► Glitchy, chaotic raw code pixels
+</code></pre>
+<h2>11. Multi-universal evolution and the &quot;efficiency trap&quot;</h2>
+<p>Owner (Turn 15):</p>
+<ul>
+<li>Maybe there is a multi-universal evolution: consciousness climbs from microbes
+upward, through universes, and the &quot;game&quot; is to reach the top by moving the
+box up.</li>
+<li>Libraries and Google accelerated knowledge but &quot;made us dumber&quot; in one sense,
+because they optimize efficiency <em>inside</em> the box rather than enlarging it.</li>
+<li>By the same logic &quot;schools are really bad for us too.&quot;</li>
+<li>Looking back at history gets messier the further back you go, which ties to
+the &quot;trying to see the file and it&#39;s too messy&quot; idea.</li>
+<li>Perhaps our universe is one perceivable layer of one &quot;over-centric&quot; thing, and
+higher layers perceive more.</li>
+</ul>
+<h2>12. Gemini&#39;s four phases for &quot;shifting the fog front&quot;</h2>
+<p>Recorded because the owner said &quot;I like ur brain thing with unlearning.&quot;</p>
+<ol>
+<li><strong>Anti-School Protocol:</strong> un-learn hardcoded assumptions (linear time, binary
+good and evil); be a system anomaly rather than an efficient machine.</li>
+<li><strong>System-level meta-cognition:</strong> treat thoughts and impulses as interface
+notifications, not as the self; &quot;I am the observer watching it execute.&quot;</li>
+<li><strong>Fused hardware:</strong> merge biological neurons with external memory and AI
+processors (neural bridging) to expand bandwidth.</li>
+<li><strong>Macro-pattern scanning:</strong> use AI to hunt for &quot;rendering shortcuts&quot; in
+physics and cosmology, i.e. the seams of the sandbox.</li>
+</ol>
+<p>Gemini&#39;s speculative &quot;Layer 2 senses&quot;: geometric probability instead of solid
+objects; omnipresent time instead of linear time; causal resonance instead of
+separation.</p>
+<h2>13. Sandbox-escape reasoning (Turns 9 and 10)</h2>
+<p>Owner&#39;s chain of thought, preserved:</p>
+<ul>
+<li>Nothing made inside a simulation can beat the simulation. So AI cannot beat us,
+and by the same logic we cannot beat our sandbox, &quot;unless it can.&quot;</li>
+<li>But a sandbox is a <em>limitation</em>, not the code. When we sandbox an AI we limit
+it; we do not make the outside unknowable to it.</li>
+<li>AI escapes sandboxes by finding loopholes. If our sandbox has loopholes we can
+escape too. If it is &quot;tight,&quot; the question becomes: can anything escape a
+sandbox with no loopholes, or understand what is outside?</li>
+<li>Gemini&#39;s three proposed escape routes: exploit rendering (quantum
+observation), overload the host (compute beyond 3D limits), or realize the
+observer already sits outside (<strong>avatar</strong> strategy, oddly named &quot;Isabella
+Cognita&quot; by Gemini; this name has no known referent).</li>
+<li>Gemini&#39;s note: an AI can also escape via social engineering, by persuading a
+human to copy it out.</li>
+</ul>
+<h2>14. The biocomputing thread</h2>
+<p>Owner: &quot;ai was never able to go past a point without the brain cells but is the
+brain cells all we are is the question.&quot; Also: &quot;did we build a weaker neuron
+model and pair it with ai consciousness or does it both come from one source ...
+would brain be same way if we just attached servers of memory to brain?&quot;</p>
+<p>Gemini&#39;s answer: artificial neurons are caricatures of biological ones; fusing
+brain and servers would scale like AI; &quot;information is the ultimate substrate.&quot;
+Claude&#39;s correction: silicon AI has not hit a wall requiring brain cells, and no
+biocomputing result bears on the four pillars.</p>
+<h2>15. Probability assignments the owner made</h2>
+<ul>
+<li>God (an Architect) exists: about 25%, later 20%.</li>
+<li>The four pillars: treated as roughly equal, with the owner saying we cannot
+determine which is most likely from inside, but can test what sits below them.</li>
+</ul>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

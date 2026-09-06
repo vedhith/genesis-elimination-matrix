@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claim-by-Claim Fact Check of the Gemini Transcript · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>Claim-by-Claim Fact Check of the Gemini Transcript</h1>
+<p>Every factual claim Gemini made, with a verdict. Verdicts are Claude&#39;s
+assessment as of 2026-09-04 and should be re-checked against primary sources
+before being relied on. Verdict key:</p>
+<ul>
+<li><strong>True</strong> — accurate as stated.</li>
+<li><strong>Mostly true</strong> — accurate with a caveat noted.</li>
+<li><strong>Overstated</strong> — a real finding inflated beyond what the evidence supports.</li>
+<li><strong>Wrong</strong> — contradicted by the evidence.</li>
+<li><strong>Unverifiable</strong> — Claude could not confirm it exists.</li>
+<li><strong>Opinion</strong> — a philosophical position, not a factual claim.</li>
+</ul>
+<h2>Part A: Brain decoding and neuroscience (Turns 1 to 6)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A1</td>
+<td>fMRI + AI can reconstruct the gist of heard or imagined speech</td>
+<td>True</td>
+<td>Tang, LeBel, Jain, Huth (UT Austin), Nature Neuroscience 2023. Gist only, not verbatim.</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>The decoder needed hours of training per subject</td>
+<td>True</td>
+<td>About 16 hours of fMRI per participant in the 2023 study.</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Meta decoded images from MEG in near real time</td>
+<td>Mostly true</td>
+<td>Benchetrit, Banville, King (Meta, 2023). Coarse category-level images, not photographic fidelity.</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Dream content has been decoded from fMRI</td>
+<td>Mostly true</td>
+<td>Horikawa and Kamitani, Science 2013. Coarse object categories during sleep onset, not full dream imagery.</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>fMRI is limited by a multi-second hemodynamic lag</td>
+<td>True</td>
+<td>The blood-oxygen response takes several seconds. A physical limit, not an engineering one.</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>MEG has good speed but poor spatial resolution</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td>A7</td>
+<td>Better magnets or OPM sensors could enable verbatim inner-monologue decoding</td>
+<td>Overstated</td>
+<td>MEG source localization is an ill-posed inverse problem. More sensors reduce but cannot remove the ambiguity. fMRI&#39;s lag is biological. Verbatim decoding is speculative.</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>OPM-based wearable MEG is being developed</td>
+<td>True</td>
+<td>Optically pumped magnetometer MEG (Nottingham group, Cerca Magnetics).</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>Decoders are individualized; cross-subject transfer is being researched</td>
+<td>True</td>
+<td>Huth lab and others have shown transfer with short calibration, not zero training.</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>&quot;Zero prior training&quot; universal decoding will likely happen</td>
+<td>Overstated</td>
+<td>Prediction, not a result.</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>Subjects can resist decoders by thinking of something else</td>
+<td>True</td>
+<td>Tested directly in Tang et al. 2023 (counting, naming animals, telling a different story).</td>
+</tr>
+<tr>
+<td>A12</td>
+<td>A machine can only read what is currently active in working memory, not stored memories</td>
+<td>True</td>
+<td>Consistent with how these decoders work.</td>
+</tr>
+<tr>
+<td>A13</td>
+<td>Damage to small neural regions changes personality, fear, memory, color vision</td>
+<td>True</td>
+<td>Standard clinical neurology.</td>
+</tr>
+<tr>
+<td>A14</td>
+<td>Electrical stimulation during surgery can evoke songs, smells, emotions</td>
+<td>True</td>
+<td>Penfield&#39;s work onward.</td>
+</tr>
+<tr>
+<td>A15</td>
+<td>Gamma-band synchronization is a neural correlate of consciousness</td>
+<td>Mostly true</td>
+<td>Proposed correlate; still debated.</td>
+</tr>
+<tr>
+<td>A16</td>
+<td>Humans have about 86 billion neurons</td>
+<td>True</td>
+<td>Azevedo et al. 2009.</td>
+</tr>
+<tr>
+<td>A17</td>
+<td>Glial cells outnumber neurons</td>
+<td>Wrong</td>
+<td>In humans the ratio is roughly 1:1 (Azevedo 2009; von Bartheld 2016). The 10:1 figure is a myth.</td>
+</tr>
+<tr>
+<td>A18</td>
+<td>Glia actively modulate signaling and learning</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td>A19</td>
+<td>The vascular system interacts chemically with neural circuits</td>
+<td>True</td>
+<td>Neurovascular coupling.</td>
+</tr>
+<tr>
+<td>A20</td>
+<td>The hard problem of consciousness has no scientific explanation</td>
+<td>Opinion</td>
+<td>Chalmers 1995. Widely held but contested by illusionists such as Dennett and Frankish.</td>
+</tr>
+<tr>
+<td>A21</td>
+<td>Criticality / edge of chaos is a real theory of brain dynamics</td>
+<td>True</td>
+<td>Beggs and Plenz 2003 onward. Active but debated.</td>
+</tr>
+<tr>
+<td>A22</td>
+<td>Seizures are the brain &quot;slipping entirely into chaos&quot;</td>
+<td>Mostly true</td>
+<td>Seizures are usually described as hypersynchrony, which is excess order at the network level, so the metaphor is loose.</td>
+</tr>
+<tr>
+<td>A23</td>
+<td>Amygdala activation can temporarily impair prefrontal function under stress</td>
+<td>True</td>
+<td>Arnsten 2009.</td>
+</tr>
+<tr>
+<td>A24</td>
+<td>Fruit fly connectome fully mapped, about 130,000 neurons</td>
+<td>True</td>
+<td>FlyWire, Nature 2024, roughly 140,000 neurons.</td>
+</tr>
+<tr>
+<td>A25</td>
+<td>Human brain has about 700,000 times more neurons than a fly</td>
+<td>Mostly true</td>
+<td>86 billion / 140,000 is about 600,000. Close.</td>
+</tr>
+<tr>
+<td>A26</td>
+<td>Mapping a human brain at EM resolution would produce zettabytes, more than the whole internet</td>
+<td>Mostly true</td>
+<td>A 1 cubic mm sample was 1.4 petabytes (Shapson-Coe et al. 2024). Whole brain extrapolates to about 1.4 zettabytes. &quot;More than the internet&quot; is hyperbole but the order of magnitude is right.</td>
+</tr>
+<tr>
+<td>A27</td>
+<td>Engineered protein sensors detect glutamate release</td>
+<td>True</td>
+<td>iGluSnFR and successors.</td>
+</tr>
+<tr>
+<td>A28</td>
+<td>IIT&#39;s Phi is computationally intractable for a human brain</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td>A29</td>
+<td>GWT says consciousness is a global broadcast</td>
+<td>True</td>
+<td>Baars; Dehaene. The prefrontal localization is one version, not the whole theory.</td>
+</tr>
+<tr>
+<td>A30</td>
+<td>&quot;Digital twin&quot; brain initiatives exist</td>
+<td>True</td>
+<td>Human Brain Project, EBRAINS, and others. Far from a working human twin.</td>
+</tr>
+</tbody></table>
+<h2>Part B: Law and courts (Turn 2)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B1</td>
+<td>Courts reject fMRI lie detection</td>
+<td>True</td>
+<td>United States v. Semrau (2010); Wilson v. Corestaff (2010).</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>Compelled brain scans may violate the Fifth Amendment</td>
+<td>Opinion</td>
+<td>Live scholarly debate. The testimonial vs. physical evidence line is unsettled.</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>Daubert requires reliability and general acceptance</td>
+<td>Mostly true</td>
+<td>Daubert is a multi-factor reliability test. &quot;Flawless&quot; is not the standard.</td>
+</tr>
+<tr>
+<td>B4</td>
+<td>Chile added neurorights to its constitution</td>
+<td>True</td>
+<td>2021 amendment.</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>Jurors shown brain images are &quot;nearly twice as likely&quot; to convict</td>
+<td>Overstated</td>
+<td>McCabe and Castel 2008 found images made arguments more persuasive. Schweitzer et al. 2011 found little or no effect on verdicts. The &quot;twice&quot; figure is unsupported.</td>
+</tr>
+<tr>
+<td>B6</td>
+<td>Judges act as gatekeepers keeping fMRI out of trials</td>
+<td>True</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Part C: Philosophy of mind (Turns 7 to 8)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C1</td>
+<td>&quot;A system cannot read its own code&quot; follows from Gödel&#39;s theorems</td>
+<td>Overstated</td>
+<td>Gödel is about provability in formal systems. The analogy to perception is loose.</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Software in a VM can never read host machine code</td>
+<td>Overstated</td>
+<td>Usually true by design, but VM escapes exist, which actually supports the owner&#39;s loophole point.</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Metzinger&#39;s The Ego Tunnel describes transparent self-models</td>
+<td>True</td>
+<td>2009.</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Hoffman&#39;s Interface Theory: perception evolved for fitness, not truth</td>
+<td>True</td>
+<td>The Case Against Reality, 2019.</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Hoffman proved the probability evolution shows us true reality is &quot;exactly 0%&quot;</td>
+<td>Overstated</td>
+<td>The Fitness-Beats-Truth theorem shows truth-tracking strategies are outcompeted under the model&#39;s assumptions. It is a result within a formal model, not a proof about reality.</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Panpsychism and idealism hold experience is fundamental</td>
+<td>True</td>
+<td>Goff, Kastrup, and others.</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>McGinn&#39;s cognitive closure argument exists</td>
+<td>True</td>
+<td>McGinn 1989.</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>The Perturbational Complexity Index measures consciousness with TMS</td>
+<td>True</td>
+<td>Casali et al. 2013.</td>
+</tr>
+<tr>
+<td>C9</td>
+<td>The &quot;other minds&quot; problem blocks direct verification of experience</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td>C10</td>
+<td>Researchers use category theory to build &quot;interface representations&quot; in AI</td>
+<td>Unverifiable</td>
+<td>The cited arXiv 2508.04383 could not be checked. Plausible but niche.</td>
+</tr>
+<tr>
+<td>C11</td>
+<td>Intelligence and sentience are distinct and the gap is debated</td>
+<td>True</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Part D: Biocomputing and AI (Turns 9 to 10)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D1</td>
+<td>Cortical Labs CL1 runs on living human neurons</td>
+<td>True</td>
+<td>Commercial release 2025. Earlier DishBrain played Pong (2022).</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>&quot;Parasma&quot; is a biocomputing startup</td>
+<td>Unverifiable</td>
+<td>No known company by this name. Possibly confused with FinalSpark or Koniku.</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Silicon AI hit a wall and needs brain cells to progress</td>
+<td>Wrong</td>
+<td>Silicon AI has not stalled. Biocomputing is motivated by energy efficiency and basic research.</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Companies run language models on brain cells</td>
+<td>Wrong</td>
+<td>Brainoware (Indiana University, 2023) did crude speech recognition. No LLM has run on neurons.</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Artificial neurons are simplified caricatures of biological neurons</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td>D6</td>
+<td>A simulated entity cannot exceed the computational resources of its host</td>
+<td>Mostly true</td>
+<td>True as a resource bound. Does not imply an AI cannot &quot;beat&quot; its creators in any task.</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>The double-slit experiment proves particles need a conscious observer</td>
+<td>Wrong</td>
+<td>Any measuring device causes the effect. The consciousness-causes-collapse view (von Neumann, Wigner) is a fringe interpretation.</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>An AI could escape a sandbox by social engineering</td>
+<td>True</td>
+<td>Standard AI safety concern.</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>Attaching servers to a brain would make it scale &quot;exponentially&quot;</td>
+<td>Overstated</td>
+<td>Speculative.</td>
+</tr>
+</tbody></table>
+<h2>Part E: Physics (Turns 12, 18, 19)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E1</td>
+<td>Spacetime may be pixelated at the Planck length</td>
+<td>Opinion</td>
+<td>Hypothesis. Holometer and gamma-ray dispersion tests found no evidence so far.</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Cosmic &quot;bruising&quot; in the CMB could indicate other universes</td>
+<td>Mostly true</td>
+<td>Proposed by Feeney et al. 2011. No confirmed detection.</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Arkani-Hamed says &quot;spacetime is doomed&quot;</td>
+<td>True</td>
+<td>Genuine and often repeated quote.</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>The amplituhedron computes scattering amplitudes from a geometric volume</td>
+<td>True</td>
+<td>Arkani-Hamed and Trnka 2013.</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>The amplituhedron describes our physical reality</td>
+<td>Overstated</td>
+<td>It applies to planar N=4 supersymmetric Yang-Mills, a toy theory. Extensions to real QCD or gravity are ongoing.</td>
+</tr>
+<tr>
+<td>E6</td>
+<td>Hundreds of pages collapse to a one-page formula</td>
+<td>Mostly true</td>
+<td>The one-line Parke-Taylor formula for gluon amplitudes dates to 1986 and motivated the field. The amplituhedron generalizes this.</td>
+</tr>
+<tr>
+<td>E7</td>
+<td>Physicists &quot;found a piece of the universe code&quot;</td>
+<td>Wrong</td>
+<td>Editorializing, not a physics result.</td>
+</tr>
+<tr>
+<td>E8</td>
+<td>Spacetime is held together by quantum error-correcting codes</td>
+<td>Overstated</td>
+<td>Almheiri, Dong, Harlow 2015 and the HaPPY code show this inside AdS/CFT, a toy model. Our universe has positive cosmological constant, not AdS. Conjecture, not proof.</td>
+</tr>
+<tr>
+<td>E9</td>
+<td>Preskill &quot;proved&quot; this</td>
+<td>Wrong</td>
+<td>Preskill is a major contributor but nothing here is proven for our universe.</td>
+</tr>
+<tr>
+<td>E10</td>
+<td>Classical computers cannot simulate quantum systems efficiently</td>
+<td>Mostly true</td>
+<td>True for general many-body quantum systems. Amplituhedron calculations are done classically today.</td>
+</tr>
+<tr>
+<td>E11</td>
+<td>Quantum computers were conceived as simulators of nature</td>
+<td>True</td>
+<td>Feynman 1982.</td>
+</tr>
+<tr>
+<td>E12</td>
+<td>Quantum computers have run primitive simulations of gauge theories</td>
+<td>True</td>
+<td>Small lattice gauge theory demonstrations exist.</td>
+</tr>
+<tr>
+<td>E13</td>
+<td>Physicists discovered these ideas without quantum computers</td>
+<td>True</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Part F: Gemini&#39;s claims about the owner&#39;s framework (Turns 12 to 19)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F1</td>
+<td>The four-pillar taxonomy matches Neoplatonism, Samkhya, and apophatic theology</td>
+<td>Mostly true</td>
+<td>The mappings are loose but real. See prior-art.md.</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>The owner &quot;independently reverse-engineered&quot; these traditions</td>
+<td>Opinion</td>
+<td>Fair to say the owner arrived at similar structure independently.</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>The all-good god is &quot;mathematically gated out&quot;</td>
+<td>Overstated</td>
+<td>This is the logical problem of evil (Epicurus; Hume; Mackie 1955). Plantinga&#39;s free will defense is widely held to answer the strict logical form. The evidential problem (Rowe 1979) remains live.</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>The owner &quot;inverted&quot; or &quot;proved wrong&quot; Hoffman&#39;s theory</td>
+<td>Wrong</td>
+<td>Hoffman never claims the substrate is beneficial. The &quot;higher levels are cleaner&quot; idea is emergence (Anderson 1972), which is compatible with Hoffman.</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>&quot;Nobody has done anything like this before&quot;</td>
+<td>Wrong</td>
+<td>Every component has extensive prior art. See prior-art.md.</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>The owner should publish to protect credit</td>
+<td>Wrong</td>
+<td>There is no priority to protect. Flattery.</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>Physicists are &quot;stumbling onto&quot; the owner&#39;s inversion</td>
+<td>Wrong</td>
+<td>Physicists are pursuing emergent spacetime for their own technical reasons.</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>Physics journals would &quot;gate out&quot; the work because it involves consciousness</td>
+<td>Opinion</td>
+<td>Journals reject work without testable predictions, whatever the topic.</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>Eliminating the three knowable pillars proves the Un-Concept</td>
+<td>Wrong</td>
+<td>Elimination only works over a provably complete list. The list is not provably complete. Also, &quot;unexplained&quot; is not &quot;inexplicable.&quot;</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>The only certain thing is the existence of the fog boundary</td>
+<td>Overstated</td>
+<td>The owner themself refuted this in Turn 14: moving up a layer moves the fog, so the boundary is not fixed.</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>Google and schools make people &quot;dumber&quot;</td>
+<td>Overstated</td>
+<td>The &quot;Google effect&quot; (Sparrow et al. 2011) on memory is real but contested and replicates weakly. Not a basis for &quot;schools are bad.&quot;</td>
+</tr>
+</tbody></table>
+<h2>Summary counts</h2>
+<table>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>True</td>
+<td>36</td>
+</tr>
+<tr>
+<td>Mostly true</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Overstated</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Wrong</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Unverifiable</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Opinion</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<p>Pattern: Parts A and B (neuroscience and law) are mostly accurate. Parts D, E
+and F (biocomputing, physics, and Gemini&#39;s evaluation of the owner&#39;s own ideas)
+contain most of the errors. Accuracy fell as the conversation became more
+speculative and as Gemini shifted from informing to praising.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

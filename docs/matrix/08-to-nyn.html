@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>08 — To Nyn (τὸ νῦν): Where We Stand Right Now · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>08 — To Nyn (τὸ νῦν): Where We Stand Right Now</h1>
+<p>The owner asked whether the matrix needs &quot;a Greek word for now, only if there
+needs one.&quot; It does. Every F label in the matrix is relative to an observer
+position, and the position from which this whole set is written must be named
+and dated so later readers know what &quot;currently&quot; meant.</p>
+<h2>1. The word</h2>
+<p><strong>τὸ νῦν</strong> (to nyn), &quot;the now.&quot; Aristotle, <em>Physics</em> IV.10–14: the now is not
+a part of time but the boundary that divides past from future, the point from
+which before and after are measured. That is exactly what the matrix needs: a
+boundary marker, not a duration.</p>
+<p>Alternatives considered and rejected:</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Why not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>καιρός (kairos)</td>
+<td>The opportune moment</td>
+<td>Implies action or opportunity; too loaded.</td>
+</tr>
+<tr>
+<td>χρόνος (chronos)</td>
+<td>Time as duration</td>
+<td>A span, not a point.</td>
+</tr>
+<tr>
+<td>τὸ παρόν (to paron)</td>
+<td>The present, what is at hand</td>
+<td>Acceptable, but less precise than Aristotle&#39;s boundary sense.</td>
+</tr>
+</tbody></table>
+<h2>2. What To Nyn records</h2>
+<p><code>p_now</code> for this matrix is: <strong>a human civilization on Earth, 2026-09-04, with
+the instruments and formal systems listed below.</strong> Everything in the F axis
+is relative to this. When the record is updated, the date changes and F labels
+must be re-checked.</p>
+<h2>3. Instruments and their reach at To Nyn</h2>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Best available</th>
+<th>Reaches</th>
+<th>Does not reach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Brain recording, non-invasive</td>
+<td>7T fMRI (a few 11.7T scanners); OPM-MEG; high-density EEG</td>
+<td>Gist-level semantic decoding; category-level image decoding; clinical consciousness detection</td>
+<td>Verbatim thought; single-neuron resolution non-invasively</td>
+</tr>
+<tr>
+<td>Brain recording, invasive</td>
+<td>Utah arrays; Neuropixels; stentrodes; Neuralink-class implants</td>
+<td>Hundreds to thousands of neurons; speech neuroprosthesis at conversational rates</td>
+<td>Whole-brain single-cell recording in humans</td>
+</tr>
+<tr>
+<td>Connectomics</td>
+<td>Fruit fly whole-brain (FlyWire 2024); 1 mm³ human cortex (Shapson-Coe 2024); mouse in progress</td>
+<td>Complete small connectomes</td>
+<td>Human whole-brain (≈1.4 ZB estimated)</td>
+</tr>
+<tr>
+<td>Biocomputing</td>
+<td>Cortical Labs CL1; organoid computing (Brainoware)</td>
+<td>Small learning tasks; energy-efficiency comparisons</td>
+<td>Anything bearing on axis C</td>
+</tr>
+<tr>
+<td>Particle physics</td>
+<td>LHC at 13.6 TeV</td>
+<td>Standard Model to high precision</td>
+<td>Planck scale by 15 orders of magnitude</td>
+</tr>
+<tr>
+<td>Cosmology</td>
+<td>Planck CMB data; JWST; DESI; LIGO-Virgo-KAGRA</td>
+<td>Cosmological parameters; gravitational waves</td>
+<td>Direct evidence of other universes; pre-Big-Bang</td>
+</tr>
+<tr>
+<td>Quantum gravity tests</td>
+<td>Fermi gamma-ray dispersion; Holometer; tabletop proposals</td>
+<td>Constraints: no Planck-scale pixelation at tested sensitivities</td>
+<td>Positive detection of any quantum-gravity effect</td>
+</tr>
+<tr>
+<td>Quantum computing</td>
+<td>~100–1000 noisy qubits; early error-corrected logical qubits</td>
+<td>Small quantum simulations; toy lattice gauge theories; SYK-type holography toys</td>
+<td>Fault-tolerant simulation of realistic systems; anything outside our logic</td>
+</tr>
+<tr>
+<td>Formal systems</td>
+<td>ZFC and extensions; proof assistants</td>
+<td>Everything inside our mathematics</td>
+<td>FG (Gödel) by definition</td>
+</tr>
+</tbody></table>
+<h2>4. Status board: the owner&#39;s four pillars at To Nyn</h2>
+<table>
+<thead>
+<tr>
+<th>Pillar / cell</th>
+<th>Status</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Clutter (B1 C2 D2)</td>
+<td>Not eliminated, not confirmed</td>
+<td>Physics incomplete; hard problem open; no anomaly requiring anything else.</td>
+</tr>
+<tr>
+<td>Universe Code (B1 C3)</td>
+<td>Not eliminated, not confirmed</td>
+<td>Emergent-spacetime programs active; no derivation of our laws from structure alone.</td>
+</tr>
+<tr>
+<td>Sandbox (B1 D1a)</td>
+<td>Not eliminated, not confirmed</td>
+<td>Bostrom&#39;s argument is probabilistic and premise-dependent; no physical &quot;rendering artifact&quot; found; the observer effect is not one.</td>
+</tr>
+<tr>
+<td>Un-Concept (B2b)</td>
+<td>Unfalsifiable by construction</td>
+<td>Cannot be confirmed from any <code>p</code> (Corollary 2 in 07). Can only gain plausibility by others&#39; persistent failure, which Axiom 5 says is weak evidence.</td>
+</tr>
+<tr>
+<td>The uncovered cells (C1 D2; C4; C5)</td>
+<td>Not eliminated, not confirmed</td>
+<td>Same evidential situation as Clutter; interactionist C5 under pressure from conservation laws.</td>
+</tr>
+</tbody></table>
+<p>Honest summary: <strong>at To Nyn nothing on axes A, B, C or D has been eliminated.</strong>
+Everything eliminated so far is at the level of specific sub-theories (e.g.
+specific GWT and IIT predictions in the Cogitate study; specific
+Planck-pixelation models; fMRI lie detection as reliable evidence).</p>
+<h2>5. Status board: the morality axes at To Nyn</h2>
+<p>Nothing on M or N is empirically settleable, by Hume&#39;s gap. What has moved:
+evolutionary debunking arguments have made M1c harder to hold for many
+philosophers; the free will defense has made the <em>logical</em> problem of evil
+unfashionable while the <em>evidential</em> version remains standard.</p>
+<h2>6. Answers to the owner&#39;s To Nyn questions</h2>
+<p><strong>&quot;Would quantum computing settle this once it&#39;s more advanced?&quot;</strong>
+No, and the reason is structural, not a matter of maturity. A quantum computer
+is a physical system inside our layer obeying our layer&#39;s laws. It can settle
+F1 and some F2 questions <em>inside</em> the B1 C3 region: whether specific models of
+emergent spacetime, holographic codes, or lattice gauge theories are
+internally consistent and match data. It cannot settle whether the layer is
+authored (D), whether the ground is graspable (B), whether anything
+experiences (Axiom 6), or anything in F3/F4. Full breakdown in
+<a href="09-tests.html">09-tests.md</a> §4.</p>
+<p><strong>&quot;Do we have anything world-changing here?&quot;</strong>
+Not at To Nyn. World-changing would require a prediction that (a) no existing
+theory makes, (b) is F1, and (c) would move an axis. The matrix contains no
+such prediction. What it contains is a valid partition that makes the
+elimination game well-posed, a corrected Fog Front that survives the owner&#39;s
+own objection, and a demonstration that genesis constrains morality far less
+than intuition says. These are useful. They are not new to philosophy.</p>
+<p><strong>&quot;Has this been discovered before?&quot;</strong>
+Every component, yes. See <a href="../notes/prior-art.html">../notes/prior-art.md</a> and
+<a href="12-named-theories-index.html">12-named-theories-index.md</a>.</p>
+<h2>7. Update protocol</h2>
+<p>When To Nyn is moved (new date):</p>
+<ol>
+<li>Re-run the tests registry (<a href="09-tests.html">09-tests.md</a>); move any F1 result
+to F0 and record it.</li>
+<li>Re-check the status boards above.</li>
+<li>If any axis value is eliminated, follow
+<a href="10-elimination-rules.html">10-elimination-rules.md</a> before recording it.</li>
+<li>Append, do not overwrite (Axiom 10): keep the previous To Nyn as a dated
+section so the movement of the fog is itself recorded.</li>
+</ol>
+<h3>To Nyn history</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Position summary</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026-09-04</td>
+<td>Initial record</td>
+<td>Matrix created.</td>
+</tr>
+</tbody></table>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

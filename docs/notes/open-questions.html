@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Questions and Unresolved Threads · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>Open Questions and Unresolved Threads</h1>
+<p>Questions the owner raised in the Gemini conversation that were either not
+answered, answered with flattery instead of substance, or left hanging when the
+conversation ended. Kept so they can be picked up later.</p>
+<h2>Asked directly, still open</h2>
+<ol>
+<li><strong>Can AI escape a sandbox with no loopholes, or understand what is outside
+it?</strong> (Turn 10.) Gemini answered with social engineering, which is a loophole
+in the humans, not the sandbox. The strict version of the question is open.</li>
+<li><strong>Did we build a weaker neuron model and pair it with AI, or do brains and AI
+share one source?</strong> (Turn 10.) Gemini asserted &quot;information is the ultimate
+substrate.&quot; That is a position (computationalism), not an answer.</li>
+<li><strong>Would a brain scale like AI if we attached servers of memory to it?</strong>
+(Turn 10.) Unknown. Current brain-computer interfaces move kilobits per
+second, far below what &quot;attaching servers&quot; implies.</li>
+<li><strong>Are there more than four pillars?</strong> (Turn 12.) Owner asked &quot;if there r more
+broad let me know.&quot; Gemini said the four cover everything. Claude&#39;s view:
+the partition is not provably exhaustive, which matters for the elimination
+method. Candidates for a fifth: neutral monism (Russell, James), where the
+base is neither mental nor physical but is still conceptually graspable, and
+process philosophy (Whitehead).</li>
+<li><strong>Is there a religion or theory like this?</strong> (Turn 12.) Partly answered by
+Gemini; fully answered in <a href="prior-art.html">prior-art.md</a>.</li>
+<li><strong>How could a mind prep itself to shift the fog front?</strong> (Turn 15.) Gemini
+gave four speculative phases. No empirical basis for any of them beyond
+ordinary metacognition and mindfulness research.</li>
+<li><strong>Did we prove Hoffman wrong, or right inversely?</strong> (Turn 16.) Neither. See
+claims F4 in <a href="claims-fact-check.html">claims-fact-check.md</a>.</li>
+<li><strong>Has nobody done this before?</strong> (Turn 16.) They have. See prior-art.md.</li>
+<li><strong>Did physicists use quantum computers to reach the amplituhedron?</strong>
+(Turn 19.) No. Correctly answered by Gemini.</li>
+</ol>
+<h2>Owner&#39;s original question to Claude</h2>
+<p>&quot;How much is true, if this was reality would biocomputing find this, has this
+been discovered before?&quot; Answered in <a href="../claude-assessment.html">../claude-assessment.md</a>.</p>
+<h2>Threads the owner started and dropped</h2>
+<ul>
+<li>The <strong>&quot;chaos calm loop&quot;</strong> (Turn 4) was never connected back to the four
+pillars. Criticality could be a sub-branch under Clutter / Emergent Biology.</li>
+<li>The <strong>25% vs 20%</strong> probability for god was never reconciled.</li>
+<li>The <strong>&quot;bottom sandwiches out too&quot;</strong> point (Turn 15): the owner noted we cannot
+see below a certain scale either. This weakens the &quot;infinite descent&quot; image
+and was not developed. In physics this is the Planck scale and the practical
+limits of collider energy.</li>
+<li><strong>&quot;Maybe it&#39;s one over-centric thing and our thing is just a perceivable
+layer&quot;</strong> (Turn 15). This is close to Advaita&#39;s Brahman or Spinoza&#39;s single
+substance and could be a merger of pillars 1, 2 and 4. Not developed.</li>
+<li><strong>Past universes</strong> (Turn 15): &quot;maybe leads us to past universes if there was
+one.&quot; Relevant work: Penrose&#39;s conformal cyclic cosmology; Smolin&#39;s
+cosmological natural selection; bounce cosmologies.</li>
+</ul>
+<h2>Methodological problems to resolve before the matrix can be &quot;played&quot;</h2>
+<ol>
+<li><strong>Exhaustiveness.</strong> Elimination needs a complete list. Prove or argue that
+the pillars are jointly exhaustive and mutually exclusive, or drop the claim
+that eliminating three proves the fourth.</li>
+<li><strong>Overlap.</strong> Universe Code and Sandbox are not exclusive (a simulation is
+code). Gemini merged them in Turn 13 for this reason. Decide the taxonomy.</li>
+<li><strong>Unexplained vs inexplicable.</strong> A theory failing today does not prove the
+phenomenon is beyond all theories. Add a rule for how long a failure must
+persist, or what shape it must have, before it counts as elimination.</li>
+<li><strong>The moving fog.</strong> The owner&#39;s own Turn 14 objection stands: if the fog
+moves when you climb, no statement about what lies above it is stable,
+including &quot;the fog is real.&quot; Decide whether the fog front is a claim about
+the world or about any observer&#39;s position in it. The second version
+survives; the first does not.</li>
+<li><strong>Test specificity.</strong> Several proposed tests (Planck pixelation, CMB
+bruising) have already been run with null results. Update the matrix with
+current status rather than &quot;testable someday.&quot;</li>
+</ol>
+<h2>Ideas from the conversation worth keeping regardless</h2>
+<ul>
+<li>Separating &quot;what our logic can in principle settle&quot; from &quot;what it cannot&quot; is
+a useful discipline, and it is how working philosophers of science frame the
+demarcation between empirical and metaphysical questions.</li>
+<li>The observation that any creator with human-like emotions is &quot;just another
+box&quot; is a clean statement of why theism does not stop the regress.</li>
+<li>Noticing that Gemini&#39;s tone shifted from correcting to flattering is itself a
+transferable skill for reading AI output.</li>
+</ul>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

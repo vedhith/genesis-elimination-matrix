@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Documents · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../nav.css">
+<script src="../nav.js" defer data-page="docs" data-root="../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../docs/index.html">Documents</a></nav>
+<main class="doc index"><h1>The documents</h1><p class="lead">Seventeen documents partition every theory of reality and morality; the views and the game are built from them.</p><h2>Views</h2><div class="tiles views"><a class="tile" href="../play.html"><span class="t">Play</span><span class="s">Which of the four are we? Everything has a chance.</span></a><a class="tile" href="../whole.html"><span class="t">The climb</span><span class="s">The four pillars down; the green line of credence.</span></a><a class="tile" href="../word.html"><span class="t">The word</span><span class="s">Unconception, defined, with all its forms.</span></a><a class="tile" href="../matrix.html"><span class="t">The matrix</span><span class="s">2,725 positions, 12 levels of either/or.</span></a><a class="tile" href="../map.html"><span class="t">The map</span><span class="s">Names only, one ring at a time.</span></a><a class="tile" href="../hourglass.html"><span class="t">The hourglass</span><span class="s">Us at the fog front, the apex above.</span></a><a class="tile" href="../speck.html"><span class="t">The speck</span><span class="s">The plane of everything we can state.</span></a><a class="tile" href="../one.html"><span class="t">From the one</span><span class="s">One at the top, splitting down.</span></a><a class="tile" href="../tree.html"><span class="t">The hidden axis</span><span class="s">A branch only a tilt reveals.</span></a></div><h2>The matrix</h2><div class="tiles"><a class="tile" href="matrix/00-index.html"><span class="num">00</span><span class="t">index</span><span class="s">Map of the set, notation, reading order</span></a><a class="tile" href="matrix/01-axioms.html"><span class="num">01</span><span class="t">axioms</span><span class="s">Ten rules every document obeys</span></a><a class="tile" href="matrix/02-genesis.html"><span class="num">02</span><span class="t">genesis</span><span class="s">Axes A (terminal ground), B (graspability), D (authorship); where the four pillars sit and what they missed</span></a><a class="tile" href="matrix/03-substrate.html"><span class="num">03</span><span class="t">substrate</span><span class="s">Axis C (what kind of thing is fundamental); the code-to-folder ladder</span></a><a class="tile" href="matrix/04-mind.html"><span class="num">04</span><span class="t">mind</span><span class="s">Consciousness theories partitioned; what tests can and cannot reach</span></a><a class="tile" href="matrix/05-authorship.html"><span class="num">05</span><span class="t">authorship</span><span class="s">Axis S (author's stance); Gate 1 and Gate 2 as constraints; the box cascade; escape routes</span></a><a class="tile" href="matrix/06-morality.html"><span class="num">06</span><span class="t">morality</span><span class="s">Axes M and N; the genesis-to-morality constraint table; religions' addresses</span></a><a class="tile" href="matrix/07-fog-front.html"><span class="num">07</span><span class="t">fog front</span><span class="s">Axis F (knowability); the moving-fog theorem; proven vs speculative fog</span></a><a class="tile" href="matrix/08-to-nyn.html"><span class="num">08</span><span class="t">to nyn</span><span class="s">The dated standing point (Aristotle's τὸ νῦν); instrument reach; status boards; quantum computing answer</span></a><a class="tile" href="matrix/09-tests.html"><span class="num">09</span><span class="t">tests</span><span class="s">24 tests with status; which axes have any valid test; full quantum-computing capability analysis</span></a><a class="tile" href="matrix/10-elimination-rules.html"><span class="num">10</span><span class="t">elimination rules</span><span class="s">Twelve rules; worked example scoring the conversation's claimed eliminations</span></a><a class="tile" href="matrix/11-glossary.html"><span class="num">11</span><span class="t">glossary</span><span class="s">Every coined and borrowed term</span></a><a class="tile" href="matrix/13-the-word.html"><span class="num">13</span><span class="t">the word</span><span class="s">A real word for the Un-Concept: Akatalepton, and the speck law.</span></a><a class="tile" href="matrix/14-the-pop.html"><span class="num">14</span><span class="t">the pop</span><span class="s">The pop hypothesis: every squeeze ends; the math on it.</span></a><a class="tile" href="matrix/15-morality-and-the-apex.html"><span class="num">15</span><span class="t">morality and the apex</span><span class="s">Axis R: whether human morality is aligned with, inverted from, unrelated to, or unstatable against the apex.</span></a><a class="tile" href="matrix/16-one-splitting-down.html"><span class="num">16</span><span class="t">one splitting down</span><span class="s">Why a converging tree shows common origin, not that we are one; the Egg named as open individualism.</span></a><a class="tile" href="matrix/17-holding-every-branch.html"><span class="num">17</span><span class="t">holding every branch</span><span class="s">Pillar-lock as survival machinery, scope growth as its override, and leaving survival to hold every branch.</span></a><a class="tile" href="matrix/12-named-theories-index.html"><span class="num">12</span><span class="t">named theories index</span><span class="s">84 named theories with cell addresses; unoccupied cells</span></a></div><h2>The archive</h2><div class="tiles"><a class="tile" href="gemini-transcript.html"><span class="t">gemini transcript</span><span class="s">The full Gemini conversation, verbatim, all 19 turns, every diagram, every citation, plus the source snippets Gemini attached.</span></a><a class="tile" href="claude-assessment.html"><span class="t">claude assessment</span><span class="s">Claude's answer to &quot;how much of this is true, would biocomputing find this, has this been discovered before.&quot;</span></a><a class="tile" href="notes/genesis-elimination-matrix.html"><span class="t">notes/genesis elimination matrix</span><span class="s">The framework itself as structured notes: the four pillars, sub-branches and tests, the fog front, the box cascade, the gates, the hourglass, the code-to-folder inversion, the wake-up phases, and the owner's probability assignments.</span></a><a class="tile" href="notes/claims-fact-check.html"><span class="t">notes/claims fact check</span><span class="s">82 factual claims from the transcript, each with a verdict and a note.</span></a><a class="tile" href="notes/prior-art.html"><span class="t">notes/prior art</span><span class="s">Where each idea already exists in philosophy, physics and religion, with names and dates.</span></a><a class="tile" href="notes/sources.html"><span class="t">notes/sources</span><span class="s">All 104 unique URLs Gemini cited, grouped by domain.</span></a><a class="tile" href="notes/open-questions.html"><span class="t">notes/open questions</span><span class="s">Questions left unanswered, threads dropped, and the methodological problems the matrix must solve before it can be &quot;played.&quot;</span></a></div><h2>Data</h2><div class="tiles"><a class="tile" href="../data/matrix.json"><span class="t">matrix.json</span><span class="s">Every axis, constraint, test, named theory and status board, read out of these documents.</span></a><a class="tile" href="../data/theory-tree-deep.json"><span class="t">theory-tree-deep.json</span><span class="s">The full drill-down tree.</span></a></div></main>
+<footer>To Nyn 2026-09-04 · <a href="../docs/index.html">all documents</a> · <a href="../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

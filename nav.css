@@ -1,0 +1,27 @@
+/* The dock at the bottom of every page. */
+.gem-dock{position:fixed;left:0;right:0;bottom:0;z-index:60;height:var(--dock,56px);display:flex;align-items:stretch;background:color-mix(in srgb,var(--surface,#FAF7F1) 92%,transparent);border-top:1px solid var(--line,#D9D1C3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .38s cubic-bezier(.2,.7,.2,1);font:500 13.5px/1 "IBM Plex Sans",system-ui,sans-serif;user-select:none;-webkit-user-select:none;padding-bottom:env(safe-area-inset-bottom)}
+.gem-dock.nomotion{transition:none}
+.gem-dock.min{transform:translateY(100%)}
+.gem-dock-list{flex:1;display:flex;align-items:center;gap:2px;overflow-x:auto;overflow-y:hidden;padding:0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.gem-dock-list::-webkit-scrollbar{display:none}
+.gem-dock-list a{flex:0 0 auto;display:inline-flex;align-items:center;height:36px;padding:0 13px;border-radius:999px;color:var(--muted,#6B655B);text-decoration:none;white-space:nowrap;transition:color .15s,background .15s}
+.gem-dock-list a:hover{color:var(--ink,#1E1B16);background:var(--row-hover,#EFE8DB)}
+.gem-dock-list a[aria-current="page"]{color:var(--ink,#1E1B16);background:var(--stone-2,#ECE5D8);font-family:"Spectral",Georgia,serif;font-size:15px}
+.gem-dock-list a:focus-visible{outline:2px solid var(--focus,#2A67A8);outline-offset:-2px}
+.gem-dock-hide{all:unset;cursor:pointer;display:grid;place-items:center;width:44px;color:var(--muted,#6B655B);border-left:1px solid var(--line,#D9D1C3)}
+.gem-dock-hide:hover{color:var(--ink,#1E1B16);background:var(--row-hover,#EFE8DB)}
+.gem-dock-hide:focus-visible{outline:2px solid var(--focus,#2A67A8);outline-offset:-2px}
+.gem-dock-show{all:unset;cursor:pointer;position:absolute;right:14px;bottom:100%;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 10px;border:1px solid var(--line,#D9D1C3);border-bottom:0;border-radius:10px 10px 0 0;background:color-mix(in srgb,var(--surface,#FAF7F1) 92%,transparent);color:var(--muted,#6B655B);font-size:12px;letter-spacing:.04em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .25s .1s,color .15s}
+.gem-dock.min .gem-dock-show{opacity:1;pointer-events:auto}
+.gem-dock-show:hover{color:var(--ink,#1E1B16)}
+.gem-dock-show:focus-visible{outline:2px solid var(--focus,#2A67A8);outline-offset:2px}
+/* every page leaves room for the dock and lifts what it keeps at the bottom */
+html.gem-has-dock{--dock-pad:var(--dock,56px)}
+html.gem-dock-min{--dock-pad:0px}
+html.gem-has-dock #hint{bottom:calc(var(--dock-pad) + 10px)!important;transition:bottom .38s cubic-bezier(.2,.7,.2,1)}
+html.gem-has-dock #why{bottom:calc(var(--dock-pad) + 16px)!important;transition:opacity .15s,bottom .38s cubic-bezier(.2,.7,.2,1)}
+html.gem-has-dock #menu{bottom:calc(var(--dock-pad) + 18px)!important;transition:opacity 1.2s,bottom .38s cubic-bezier(.2,.7,.2,1)}
+html.gem-has-dock #ui .bottom,html.gem-has-dock #result .land-actions{padding-bottom:calc(var(--dock-pad) + 16px)!important;transition:padding-bottom .38s cubic-bezier(.2,.7,.2,1)}
+html.gem-has-dock #drawer .wrap,html.gem-has-dock .wrap{padding-bottom:calc(var(--dock-pad) + 60px)}
+html.gem-has-dock #card{bottom:calc(var(--dock-pad) + 40px)!important}
+@media (prefers-reduced-motion:reduce){.gem-dock,.gem-dock-show,html.gem-has-dock #hint,html.gem-has-dock #why,html.gem-has-dock #menu{transition:none}}

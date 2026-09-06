@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prior Art: Where Each Idea in the Framework Already Exists · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>Prior Art: Where Each Idea in the Framework Already Exists</h1>
+<p>The owner asked &quot;has this been discovered before?&quot; and &quot;nobody has really done
+anything like this before?&quot; This file maps each component of the framework to
+existing work. The point is not to diminish the framework. Arriving at these
+positions independently is a good sign. The point is to answer the question
+honestly and give the owner the reading list Gemini did not.</p>
+<h2>The four pillars</h2>
+<table>
+<thead>
+<tr>
+<th>Owner&#39;s pillar</th>
+<th>Established position</th>
+<th>Key names and works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Universe Code</td>
+<td>Digital physics; the mathematical universe hypothesis; pancomputationalism; &quot;it from bit&quot;</td>
+<td>Konrad Zuse, <em>Calculating Space</em> (1969). Edward Fredkin. John Wheeler, &quot;It from Bit&quot; (1989). Max Tegmark, <em>Our Mathematical Universe</em> (2014). Stephen Wolfram, <em>A New Kind of Science</em> (2002).</td>
+</tr>
+<tr>
+<td>The Sandbox / Architect</td>
+<td>The simulation hypothesis; the demiurge; Plato&#39;s cave</td>
+<td>Nick Bostrom, &quot;Are You Living in a Computer Simulation?&quot; (2003). Plato, <em>Republic</em> book VII. Gnostic demiurge traditions. Also Descartes&#39; evil demon (1641).</td>
+</tr>
+<tr>
+<td>Clutter / AI</td>
+<td>Physicalism; eliminative materialism; illusionism about consciousness</td>
+<td>Democritus. Hobbes. Daniel Dennett, <em>Consciousness Explained</em> (1991). Keith Frankish, &quot;Illusionism&quot; (2016). Patricia Churchland.</td>
+</tr>
+<tr>
+<td>The Un-Concept</td>
+<td>Kant&#39;s noumenon; apophatic theology; Neoplatonic One; Dao; Brahman without attributes; mysterianism</td>
+<td>Kant, <em>Critique of Pure Reason</em> (1781). Pseudo-Dionysius, <em>Mystical Theology</em> (5th c.). Plotinus, <em>Enneads</em>. Maimonides, <em>Guide for the Perplexed</em>. <em>Dao De Jing</em> ch. 1 (&quot;the Dao that can be spoken is not the eternal Dao&quot;). Nirguna Brahman in Advaita Vedanta. Colin McGinn, &quot;Can We Solve the Mind-Body Problem?&quot; (1989). Wittgenstein, <em>Tractatus</em> 7.</td>
+</tr>
+</tbody></table>
+<h2>The Fog Front</h2>
+<p>&quot;You can only see the layer directly in front of you.&quot;</p>
+<ul>
+<li>Kant&#39;s phenomena vs. noumena: we know only how things appear to us, never
+things in themselves.</li>
+<li>McGinn&#39;s cognitive closure: some truths are inaccessible to a mind of a
+given architecture, the way calculus is closed to a dog.</li>
+<li>Noam Chomsky&#39;s &quot;problems vs. mysteries&quot; distinction.</li>
+<li>Thomas Nagel, &quot;What Is It Like to Be a Bat?&quot; (1974).</li>
+<li>In physics, the horizon idea appears as effective field theory: each energy
+scale has its own description, and higher-energy structure is invisible from
+below.</li>
+</ul>
+<h2>The Infinite Box Cascade (regress of creators)</h2>
+<ul>
+<li>Bostrom&#39;s own paper discusses nested simulations and stacked levels.</li>
+<li>The classic &quot;who made God?&quot; regress appears in Hume, <em>Dialogues Concerning
+Natural Religion</em> (1779), and in Bertrand Russell, <em>Why I Am Not a
+Christian</em> (1927).</li>
+<li>Aquinas&#39;s first-cause argument is an attempt to <em>stop</em> the regress; the owner
+instead lets it run into the Un-Concept, which is the Neoplatonic move.</li>
+</ul>
+<h2>The Central Finite Curve and the hourglass</h2>
+<ul>
+<li>The name &quot;Central Finite Curve&quot; comes from the TV series <em>Rick and Morty</em>
+(season 5, 2021), where it denotes the bounded set of realities in which a
+particular condition holds. The owner adopted the name for their own structure.</li>
+<li>The shape (many branches below, convergence above) matches Plotinus&#39;s
+emanation scheme in reverse and resembles a Porphyrian tree.</li>
+</ul>
+<h2>&quot;Going up is cleaner, going down is messier&quot;</h2>
+<ul>
+<li>Philip Anderson, &quot;More Is Different&quot; (Science, 1972): each level of complexity
+has its own laws not deducible in practice from the level below.</li>
+<li>Effective field theory and the renormalization group (Wilson, 1970s): coarse
+descriptions become simpler because irrelevant microscopic detail washes out.</li>
+<li>Daniel Dennett, &quot;Real Patterns&quot; (1991): higher-level patterns are real and
+more compressible.</li>
+<li>Erik Hoel, &quot;causal emergence&quot; (2013 onward): macro-scales can carry more
+causal information than micro-scales.</li>
+</ul>
+<p>This is the idea Gemini called an &quot;inversion of Hoffman.&quot; It is not; Hoffman&#39;s
+interface theory is about perception being fitness-tuned, and it is fully
+compatible with emergence.</p>
+<h2>The apophatic gates</h2>
+<ul>
+<li>Gate 1 (all-good god vs. suffering) is the problem of evil: Epicurus (via
+Lactantius), Hume&#39;s <em>Dialogues</em>, J. L. Mackie, &quot;Evil and Omnipotence&quot; (1955).
+Responses: Alvin Plantinga&#39;s free will defense (1974); John Hick&#39;s soul-making
+theodicy. The evidential version: William Rowe (1979).</li>
+<li>Gate 2 (no one can speak for the ineffable) is the via negativa itself and
+also appears in Maimonides&#39; negative attributes and in Zen&#39;s &quot;if you meet the
+Buddha on the road, kill him.&quot;</li>
+</ul>
+<h2>Elimination as method</h2>
+<ul>
+<li>Sherlock Holmes&#39;s &quot;eliminate the impossible&quot; (Doyle, 1890) and Popperian
+falsification (Karl Popper, <em>Logik der Forschung</em>, 1934).</li>
+<li>The known flaw: elimination requires an exhaustive partition. Philosophers
+call the risk &quot;false dichotomy&quot; or, for scientific theories, the
+&quot;underdetermination of theory by evidence&quot; (Duhem, Quine) and the &quot;problem
+of unconceived alternatives&quot; (Kyle Stanford, 2006).</li>
+</ul>
+<h2>Multi-universal evolution</h2>
+<ul>
+<li>Lee Smolin, &quot;cosmological natural selection&quot; (<em>The Life of the Cosmos</em>,
+1997): universes reproduce via black holes and their constants evolve.</li>
+<li>Teilhard de Chardin&#39;s noosphere and Omega Point (1950s), and Frank Tipler&#39;s
+Omega Point (1994), for consciousness climbing toward a cosmic endpoint.</li>
+<li>Hegel&#39;s <em>Phenomenology of Spirit</em> (1807): Spirit coming to know itself
+through stages of history.</li>
+</ul>
+<h2>The &quot;efficiency trap&quot; (Google and schools make us less capable)</h2>
+<ul>
+<li>Plato, <em>Phaedrus</em>: Socrates argues writing will weaken memory.</li>
+<li>Nicholas Carr, &quot;Is Google Making Us Stupid?&quot; (2008) and <em>The Shallows</em> (2010).</li>
+<li>Sparrow, Liu, Wegner, &quot;Google Effects on Memory&quot; (Science, 2011). Replications
+have been mixed.</li>
+<li>Ivan Illich, <em>Deschooling Society</em> (1971), for the anti-school position.</li>
+</ul>
+<h2>Un-learning and observing one&#39;s own mind</h2>
+<ul>
+<li>Vipassana and Zen &quot;witness consciousness&quot;; Samkhya&#39;s Purusha observing Prakriti.</li>
+<li>Metacognitive therapy (Adrian Wells) and ACT&#39;s &quot;cognitive defusion.&quot;</li>
+<li>Zen&#39;s <em>shoshin</em> (beginner&#39;s mind), Shunryu Suzuki (1970).</li>
+</ul>
+<h2>Fused hardware / cognitive expansion</h2>
+<ul>
+<li>Andy Clark and David Chalmers, &quot;The Extended Mind&quot; (1998).</li>
+<li>J. C. R. Licklider, &quot;Man-Computer Symbiosis&quot; (1960).</li>
+<li>Ray Kurzweil, <em>The Singularity Is Near</em> (2005).</li>
+<li>Current brain-computer interface work: Neuralink, Synchron, Precision
+Neuroscience.</li>
+</ul>
+<h2>Waking up from the Un-Concept (the owner&#39;s self-refutation)</h2>
+<ul>
+<li>Buddhist and Advaita traditions already hold that awakening reveals the
+previously unknowable, which is the owner&#39;s point that the fog moves.</li>
+<li>In philosophy of science, this is the pessimistic meta-induction: every past
+&quot;final theory&quot; was superseded, so the current horizon is probably not final.</li>
+</ul>
+<h2>What is genuinely the owner&#39;s own</h2>
+<p>Combining these into one tree with a knowability horizon and an elimination
+procedure is a personal synthesis, and a reasonable one for someone thinking
+this through from scratch. Nothing in it is a priority claim against working
+scientists or philosophers, and nothing in it needs protecting. The valuable
+next step is not publication but reading the primary sources above and seeing
+which branches survive contact with them.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

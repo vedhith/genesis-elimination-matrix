@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Genesis Elimination Matrix — Master Index · Genesis Elimination Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>:root{--bg:#EDF0F3;--surface:#F7F8FA;--ink:#1B2430;--muted:#5C6875;--line:#D3DAE1;--lamp:#B27418;--row-hover:#F1F4F7;--focus:#2A67A8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}}
+:root[data-theme="dark"]{--bg:#11171E;--surface:#182028;--ink:#E7EBEF;--muted:#97A3AF;--line:#28323D;--lamp:#E2A749;--row-hover:#1D2731;--focus:#71A9E4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.crumbs i{color:var(--line);font-style:normal;padding:0 6px}
+.doc h1{font:500 clamp(28px,5vw,38px)/1.15 "Spectral",Georgia,serif;letter-spacing:-.005em;margin:0 0 18px;text-wrap:balance}
+.doc h2{font:500 24px/1.2 "Spectral",Georgia,serif;margin:38px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.doc h3{font:500 19px/1.25 "Spectral",Georgia,serif;margin:26px 0 8px}
+.doc p{margin:0 0 14px;max-width:70ch}
+.doc a{color:var(--lamp);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--lamp) 40%,transparent)}
+.doc a:hover{border-bottom-color:var(--lamp)}
+.doc code{font:13.5px "IBM Plex Mono",ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+.doc pre{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font:13px/1.5 "IBM Plex Mono",ui-monospace,Menlo,monospace}
+.doc pre code{background:none;border:0;padding:0;font-size:inherit}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.doc th{font:500 11.5px "IBM Plex Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc tr:hover td{background:var(--row-hover)}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 14px;max-width:70ch}
+.doc li{margin:0 0 6px}
+.doc blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--lamp);color:var(--muted)}
+.doc hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+.doc .lead{font:italic 400 19px/1.45 "Spectral",Georgia,serif;color:var(--muted);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 8px}
+.tile{display:grid;align-content:start;gap:6px;padding:16px 16px 14px;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile .num{font:500 12px "IBM Plex Mono",ui-monospace,monospace;color:var(--muted)}
+.tile .t{font:500 18px/1.2 "Spectral",Georgia,serif;text-transform:capitalize}
+.tile .s{font-size:13px;line-height:1.45;color:var(--muted)}
+.tiles.views .tile{border-color:var(--line);background:color-mix(in srgb,var(--lamp) 6%,var(--surface))}
+.doc.index h2{margin-top:30px}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nav.css">
+<script src="../../nav.js" defer data-page="docs" data-root="../../" data-pos="br"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumbs"><a href="../../index.html">Genesis Elimination Matrix</a> <i>›</i> <a href="../../docs/index.html">Documents</a></nav>
+<main class="doc">
+<h1>The Genesis Elimination Matrix — Master Index</h1>
+<p>A set of interlocking documents that partition every possible theory of what
+exists, where it came from, what we are, what we can know, and what we ought to
+do. The set is built so that any named theory, religion, or intuition has exactly
+one home cell, and so that eliminating cells is logically valid.</p>
+<p>This replaces the informal four-pillar list from the Gemini conversation (see
+<a href="../notes/genesis-elimination-matrix.html">../notes/genesis-elimination-matrix.md</a>)
+with a partition built from exhaustive splits. The four pillars survive as
+named regions of the new map; see <a href="02-genesis.html">02-genesis.md</a> §6.</p>
+<h2>How the documents interlock</h2>
+<pre><code>                     ┌──────────────────────────┐
+                     │  01 AXIOMS               │  rules every other doc obeys
+                     └────────────┬─────────────┘
+                                  │
+        ┌─────────────────────────┼─────────────────────────┐
+        ▼                         ▼                         ▼
+┌───────────────┐        ┌────────────────┐        ┌────────────────┐
+│ 02 GENESIS    │───────►│ 03 SUBSTRATE   │───────►│ 04 MIND        │
+│ origin axes   │        │ what exists    │        │ what we are    │
+│ A, B, D       │        │ axis C         │        │ axis C applied │
+└───────┬───────┘        └────────┬───────┘        └────────┬───────┘
+        │                         │                         │
+        ▼                         ▼                         ▼
+┌───────────────┐        ┌────────────────┐        ┌────────────────┐
+│ 05 AUTHORSHIP │───────►│ 06 MORALITY    │◄───────│ 07 FOG FRONT   │
+│ axis D, S     │        │ axes M, N      │        │ axis F         │
+└───────┬───────┘        └────────┬───────┘        └────────┬───────┘
+        │                         │                         │
+        └─────────────────────────┼─────────────────────────┘
+                                  ▼
+                     ┌──────────────────────────┐
+                     │  08 TO NYN (the now)     │  where the observer stands
+                     └────────────┬─────────────┘
+                                  ▼
+        ┌─────────────────────────┼─────────────────────────┐
+        ▼                         ▼                         ▼
+┌───────────────┐        ┌────────────────┐        ┌────────────────┐
+│ 09 TESTS      │        │ 10 ELIMINATION │        │ 11 GLOSSARY    │
+│ registry      │        │ game rules     │        │ every term     │
+└───────────────┘        └────────────────┘        └────────────────┘
+                                  │
+                                  ▼
+                     ┌──────────────────────────┐
+                     │  12 NAMED THEORIES INDEX │  proof of coverage
+                     └──────────────────────────┘
+</code></pre>
+<h2>The documents</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>File</th>
+<th>Axis</th>
+<th>Question it partitions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td><a href="01-axioms.html">01-axioms.md</a></td>
+<td>—</td>
+<td>What rules make the map valid?</td>
+</tr>
+<tr>
+<td>02</td>
+<td><a href="02-genesis.html">02-genesis.md</a></td>
+<td>A, B, D</td>
+<td>Is there a ground, can it be grasped, was our layer made?</td>
+</tr>
+<tr>
+<td>03</td>
+<td><a href="03-substrate.html">03-substrate.md</a></td>
+<td>C</td>
+<td>What kind of thing is fundamental?</td>
+</tr>
+<tr>
+<td>04</td>
+<td><a href="04-mind.html">04-mind.md</a></td>
+<td>C applied</td>
+<td>What is consciousness and what are we?</td>
+</tr>
+<tr>
+<td>05</td>
+<td><a href="05-authorship.html">05-authorship.md</a></td>
+<td>D, S</td>
+<td>If something made us, what is it and what does it want?</td>
+</tr>
+<tr>
+<td>06</td>
+<td><a href="06-morality.html">06-morality.md</a></td>
+<td>M, N</td>
+<td>Are there moral facts, and which survive each genesis cell?</td>
+</tr>
+<tr>
+<td>07</td>
+<td><a href="07-fog-front.html">07-fog-front.md</a></td>
+<td>F</td>
+<td>What can an observer at a given position know?</td>
+</tr>
+<tr>
+<td>08</td>
+<td><a href="08-to-nyn.html">08-to-nyn.md</a></td>
+<td>—</td>
+<td>Where do we stand right now, and what is already settled?</td>
+</tr>
+<tr>
+<td>09</td>
+<td><a href="09-tests.html">09-tests.md</a></td>
+<td>—</td>
+<td>Every proposed test, its status, and what quantum computing can do.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="10-elimination-rules.html">10-elimination-rules.md</a></td>
+<td>—</td>
+<td>How to play the elimination game without cheating.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="11-glossary.html">11-glossary.md</a></td>
+<td>—</td>
+<td>Every coined and borrowed term.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="12-named-theories-index.html">12-named-theories-index.md</a></td>
+<td>—</td>
+<td>Every named theory, religion and position, with its cell address.</td>
+</tr>
+</tbody></table>
+<h2>Cell address notation</h2>
+<p>A theory&#39;s address is a string of axis values, for example:</p>
+<pre><code>A1 B1 C2 D2b | M2c N1 | F1
+</code></pre>
+<p>read as: terminal necessary ground (A1), graspable in principle (B1), matter-like
+substrate (C2), unauthored and brute (D2b); constructivist meta-ethics (M2c) with
+consequentialist norms (N1); knowable in principle with a foreseeable test (F1).</p>
+<p>Axis values are defined in the document that owns the axis. A theory that is
+silent on an axis gets <code>?</code> for that slot. A theory that spans several values
+gets them in braces, <code>C{1,2}</code>.</p>
+<h2>Reading order</h2>
+<ol>
+<li><code>01-axioms.md</code> for the rules.</li>
+<li><code>02-genesis.md</code> for the main map.</li>
+<li><code>07-fog-front.md</code> and <code>08-to-nyn.md</code> for what &quot;knowable&quot; means and where we are.</li>
+<li><code>06-morality.md</code> for how each origin cell constrains ethics.</li>
+<li><code>10-elimination-rules.md</code> before trying to cross anything off.</li>
+<li><code>12-named-theories-index.md</code> to find any specific theory.</li>
+</ol>
+<h2>Provenance</h2>
+<p>Built on 2026-09-04 from the Gemini conversation archived in
+<a href="../gemini-transcript.html">../gemini-transcript.md</a>, the owner&#39;s requests, and
+Claude&#39;s assessment in <a href="../claude-assessment.html">../claude-assessment.md</a>. The
+owner&#39;s original coinages (Universe Code, Sandbox, Clutter, Un-Concept, Fog
+Front, Central Finite Curve, the gates, the hourglass) are kept and given precise
+definitions in the glossary.</p>
+
+</main>
+<footer>To Nyn 2026-09-04 · <a href="../../docs/index.html">all documents</a> · <a href="../../play.html">play the game</a></footer>
+</div>
+</body>
+</html>

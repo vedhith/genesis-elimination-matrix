@@ -1,0 +1,13 @@
+/* One palette for the whole site: cream paper, matte ink, ember, green.
+   Injected after each page's own styles so it wins in every theme state. */
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"],:root[data-theme="light"]{
+  --bg:#F3EEE4; --surface:#FAF7F1; --stone:#FAF7F1; --stone-2:#ECE5D8; --node:#FAF7F1; --plane:#E6DFD1;
+  --ink:#1E1B16; --muted:#6B655B; --line:#D9D1C3; --edge:#D9D1C3; --edge-2:#C4BBAA; --track:#E2DACB;
+  --lamp:#B27418; --ember:#B27418; --ember-soft:rgba(178,116,24,.12); --lamp-soft:#F0E3C8;
+  --green:#2C7A58; --red:#A8352B; --violet:#6A4C9E; --blue:#2A67A8; --focus:#2A67A8; --dead:#9A6B72;
+  --row-hover:#EFE8DB;
+  --f0:#2C7A58; --f1:#2A67A8; --f2:#6B655B; --fg:#6A4C9E; --f3:#B27418; --f4:#1E1B16;
+  --dock:56px;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink)}
